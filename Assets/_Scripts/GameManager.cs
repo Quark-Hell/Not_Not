@@ -26,6 +26,13 @@ public class GameManager : MonoBehaviour
         ChipherSide = _generationSide.GenerateSide(_gameData.difficult, _lightsManager.lightColor, out _gameData.Side, out _gameData.OneRightSide);
         ChipherTMP.text = ChipherSide;
 
+        if (_gameData.difficult >= DifficultsEnum.Hard)
+        {
+            _lightsManager.ChangeArrowMaterials();
+        }
+
+        print(_gameData.Side);
+
         _timer.ResetTimerBar();
     }
     public void Loos()

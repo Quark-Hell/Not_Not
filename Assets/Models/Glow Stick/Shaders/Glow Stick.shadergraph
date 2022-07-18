@@ -4393,7 +4393,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "dfd0525670aa48d3badad59d29b28832",
     "m_Id": 0,
-    "m_DisplayName": "Emission Strength ",
+    "m_DisplayName": "Emission Strength",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
