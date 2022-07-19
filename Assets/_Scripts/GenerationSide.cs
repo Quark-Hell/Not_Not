@@ -15,9 +15,9 @@ public class GenerationSide
 {
     private int IndexOfSelectedSide;
 
-    public string[] NamesSide = { "Up", "Down", "Left", "Right" };
-    public string[] ColorsSide = { "Blue", "Red", "Green", "Yellow" };
-    public string Negation = "Not";
+    private DifficultsEnum _difficult;
+    private LightColor[] _lightColor;
+    private LanguageSettings _languageSettings;
 
     private void InitializeSideEnum(out SidesEnum side, out bool isOneRightSide)
     {
@@ -57,30 +57,30 @@ public class GenerationSide
             //Expamle output: "Right"
             if (hasAdditionalNegation)
             {
-                return NamesSide[IndexOfSelectedSide];
+                return _languageSettings.NamesOfSides[IndexOfSelectedSide];
             }
             //Expamle output: "Not Not Right"
-            return Negation + " " + Negation + " " + NamesSide[IndexOfSelectedSide];
+            return _languageSettings.Negation + " " + _languageSettings.Negation + " " + _languageSettings.NamesOfSides[IndexOfSelectedSide];
         }
         //Expamle output: "Not Right"
         else
         {
-            return Negation + " " + NamesSide[IndexOfSelectedSide];
+            return _languageSettings.Negation + " " + _languageSettings.NamesOfSides[IndexOfSelectedSide];
         }
     }
-    private string ChipherColor(LightColor[] lightColor, bool isOneRightSide)
+    private string ChipherColor(bool isOneRightSide)
     {
         //Prepare to next generation
-        for (byte i = 0; i < lightColor.Length; i++)
+        for (byte i = 0; i < _lightColor.Length; i++)
         {
-            lightColor[i].IsSelected = false;
+            _lightColor[i].IsSelected = false;
         }
 
-        int randColor = Random.Range(0, lightColor.Length);
+        int randColor = Random.Range(0, _lightColor.Length);
         //Expamle output: "Red" or "Not Not Red"
         if (isOneRightSide)
         {
-            lightColor[randColor].IsSelected = true;
+            _lightColor[randColor].IsSelected = true;
 
             // 0 = false, 1 = true
             bool hasAdditionalNegation = Random.Range(0, 2) == 1;
@@ -88,34 +88,34 @@ public class GenerationSide
             //Expamle output: "Red"
             if (hasAdditionalNegation)
             {
-                return lightColor[randColor].NameOfColor;
+                return _languageSettings.NamesOfColors[randColor];
             }
             //Expamle output: "Not Not Red"
-            return Negation + " " + Negation + " " + lightColor[randColor].NameOfColor;
+            return _languageSettings.Negation + " " + _languageSettings.Negation + " " + _languageSettings.NamesOfColors[randColor];
         }
         //Expamle output: "Not Red"
         else
         {
 
-            lightColor[randColor].IsSelected = true;
-            return Negation + " " + lightColor[randColor].NameOfColor;
+            _lightColor[randColor].IsSelected = true;
+            return _languageSettings.Negation + " " + _languageSettings.NamesOfColors[randColor];
         }
     }
 
-    private string GetCipher(DifficultsEnum difficult, LightColor[] lightColor, bool isOneRightSide)
+    private string GetCipher(bool isOneRightSide)
     {
-        switch (difficult)
+        switch (_difficult)
         {
             //TODO: Language
 
             case DifficultsEnum.Easy:
-                return NamesSide[IndexOfSelectedSide];
+                return _languageSettings.NamesOfSides[IndexOfSelectedSide];
 
             case DifficultsEnum.Medium:
                 return ChipherText(isOneRightSide);
 
             case DifficultsEnum.Hard:
-                return ChipherColor(lightColor, isOneRightSide);
+                return ChipherColor(isOneRightSide);
 
             case DifficultsEnum.HardPlus:
                 return "";
@@ -126,18 +126,22 @@ public class GenerationSide
         return "";
     }
 
-    private void DeselectedLightColors(LightColor[] lightColor)
+    private void DeselectedLightColors()
     {
-        for (byte i = 0; i < lightColor.Length; i++)
+        for (byte i = 0; i < _lightColor.Length; i++)
         {
-            lightColor[i].IsSelected = false;
+            _lightColor[i].IsSelected = false;
         }
     }
 
-    public string GenerateSide(DifficultsEnum difficult, LightColor[] lightColor, out SidesEnum side, out bool isOneRightSide)
+    public string GenerateSide(DifficultsEnum difficultsEnum, LightColor[] lightColor, LanguageSettings languageSettings, out SidesEnum side, out bool isOneRightSide)
     {
+        _difficult = difficultsEnum;
+        _lightColor = lightColor;
+        _languageSettings = languageSettings;
+
         InitializeSideEnum(out side, out isOneRightSide);
-        DeselectedLightColors(lightColor);
-        return GetCipher(difficult, lightColor, isOneRightSide);
+        DeselectedLightColors();
+        return GetCipher(isOneRightSide);
     }
 }

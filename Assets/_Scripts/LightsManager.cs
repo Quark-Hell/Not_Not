@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -7,6 +8,7 @@ public struct LightColor
 {
     public string NameOfColor;
     public Color ColorOfLight;
+    [Range(0, 100)] public float EmissionIntensity;
     public bool IsSelected;
 }
 
@@ -18,19 +20,23 @@ public class LightsManager : MonoBehaviour
     [SerializeField] private GameObject[] _arrows = new GameObject[4];
 
     private Material[] _linkToMaterials = new Material[4];
-    void Start()
+    void Awake()
     {
         lightColor[0].NameOfColor = "Blue";
         lightColor[0].ColorOfLight = Color.blue;
+        lightColor[0].EmissionIntensity = 40f;
 
         lightColor[1].NameOfColor = "Red";
         lightColor[1].ColorOfLight = Color.red;
+        lightColor[1].EmissionIntensity = 10f;
 
         lightColor[2].NameOfColor = "Green";
         lightColor[2].ColorOfLight = Color.green;
+        lightColor[2].EmissionIntensity = 10f;
 
         lightColor[3].NameOfColor = "Yellow";
         lightColor[3].ColorOfLight = Color.yellow;
+        lightColor[3].EmissionIntensity = 10f;
 
         //Cach data
         for (byte i = 0; i < _arrows.Length; i++)
@@ -39,6 +45,14 @@ public class LightsManager : MonoBehaviour
         }
 }
 
+    private void ResetColorOfMaterials(Material[] materials)
+    {
+        for (byte i = 0; i < materials.Length; i++)
+        {
+            _linkToMaterials[i].SetColor("_EmissionColor", Color.white);
+        }
+    }
+
     int GetIndexOfSide(SidesEnum sidesEnum)
     {
         System.Array values = System.Enum.GetValues(typeof(SidesEnum));
@@ -46,20 +60,67 @@ public class LightsManager : MonoBehaviour
         return System.Array.IndexOf(SidesEnum.GetValues(sidesEnum.GetType()), sidesEnum);
     }
 
+    public void Shuffle<T>(T[] array)
+    {
+        int n = array.Length;
+        while (n > 1)
+        {
+            int k = Random.Range(0,n--);
+            T temp = array[n];
+            array[n] = array[k];
+            array[k] = temp;
+        }
+    }
+
+    private void ChangeWrongArrowsMaterial(int indexOfSelected)
+    {
+        Color[] colors = new Color[3];
+
+        byte t = 0;
+        for (byte i = 0; i < lightColor.Length; i++)
+        {
+            if (lightColor[i].IsSelected == false)
+            {
+                colors[t] = lightColor[i].ColorOfLight;
+                t++;
+            }
+        }
+        t = 0;
+
+
+        Shuffle(colors);
+
+        for (byte i = 0; i < lightColor.Length; i++)
+        {
+            if (i != indexOfSelected)
+            {
+                _linkToMaterials[i].SetColor("_EmissionColor", colors[t]);
+                t++;
+            }
+        }
+    }
+
+    private void ChangeRightArrowMaterial(int indexOfSelected)
+    {
+        for (byte i = 0; i < lightColor.Length; i++)
+        {
+            if (lightColor[i].IsSelected)
+            {
+                _linkToMaterials[indexOfSelected].SetColor("_EmissionColor", lightColor[i].ColorOfLight * lightColor[i].EmissionIntensity);
+                return;
+            }
+        }
+    }
+
     public void ChangeArrowMaterials()
     {
+        ResetColorOfMaterials(_linkToMaterials);
+
         if (_gameData.OneRightSide)
         {
             int indexOfSelected = GetIndexOfSide(_gameData.Side);
-
-            for (byte i = 0; i < lightColor.Length;i++)
-            {
-                if (lightColor[i].IsSelected)
-                {
-                    _linkToMaterials[indexOfSelected].SetColor("_EmissionColor", lightColor[i].ColorOfLight);
-                    return;
-                }
-            }
+            ChangeWrongArrowsMaterial(indexOfSelected);
+            ChangeRightArrowMaterial(indexOfSelected);
         }
         else
         {
@@ -67,16 +128,8 @@ public class LightsManager : MonoBehaviour
             SidesEnum invertedEnum = ~all ^ ~_gameData.Side;
 
             int indexOfNotSelected = GetIndexOfSide(invertedEnum);
-
-            for (byte i = 0; i < lightColor.Length; i++)
-            {
-                print(lightColor[i].NameOfColor);
-                if (lightColor[i].IsSelected)
-                {
-                    print(lightColor[i].NameOfColor);
-                    _linkToMaterials[indexOfNotSelected].SetColor("_EmissionColor", lightColor[i].ColorOfLight);
-                }
-            }
+            ChangeWrongArrowsMaterial(indexOfNotSelected);
+            ChangeRightArrowMaterial(indexOfNotSelected);
         }
     }
 }

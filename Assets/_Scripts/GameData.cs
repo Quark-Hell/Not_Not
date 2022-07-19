@@ -25,6 +25,6 @@ public class GameData : MonoBehaviour
 
     void IncreaseDifficult()
     {
-        difficult += 2;
+        difficult += 1;
     }
 }
