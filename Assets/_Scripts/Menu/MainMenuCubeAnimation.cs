@@ -15,20 +15,27 @@ public class MainMenuCubeAnimation : MonoBehaviour
         public float Delay;
     }
 
+    [Header("Pieces Animation")]
     [SerializeField] private Piece[] _piece;
     [SerializeField] private AnimationCurve _movingCurve;
+
+    [Header("Levitation Animation")]
+    [SerializeField] private GameObject _cube;
+    [SerializeField] private float _levitationSpeed;
+    [SerializeField] private float _levitationAmplitude;
 
     const float T = 0.05f;
 
 
     void Start()
     {
-        CreateTween();
+        PiecesAnimation();
+        Levitation();
     }
 
     private List<Sequence> _sequence = new List<Sequence>();
 
-    void CreateTween()
+    void PiecesAnimation()
     {
         _sequence.Clear();
 
@@ -45,5 +52,14 @@ public class MainMenuCubeAnimation : MonoBehaviour
             s.SetLoops(-1, LoopType.Yoyo);
             s.SetEase(_movingCurve);
         }
+    }
+
+   void Levitation()
+    {
+        float endPos = _cube.transform.position.y + _levitationAmplitude;
+
+        Tween tween = _cube.transform.DOMoveY(endPos,_levitationSpeed * Time.deltaTime);
+        tween.SetEase(Ease.InOutSine);
+        tween.SetLoops(-1, LoopType.Yoyo);
     }
 }

@@ -9,57 +9,49 @@ public class MainMenuSwipeCube : MonoBehaviour
 
     public void SwipeUp()
     {
-        if (_cubeButtons.CurrentButton != Vector2.up)
+        if (_cubeButtons.CurrentButton == Vector2.down || _cubeButtons.CurrentButton == Vector2.zero)
         {
-            if (_cubeButtons.CurrentButton != Vector2.left && _cubeButtons.CurrentButton != Vector2.right)
+            if (_cubeMovement.IsMoving == false)
             {
-                if (_cubeMovement.IsMoving == false)
-                {
-                    _cubeButtons.CurrentButton.y++;
-                    _cubeMovement.OnSwipeUp();
-                }
+                _cubeButtons.CurrentButton.y++;
+                _cubeMovement.OnSwipeUp();
             }
         }
     }
+
     public void SwipeDown()
     {
-        if (_cubeButtons.CurrentButton != Vector2.down)
+        if (_cubeButtons.CurrentButton == Vector2.up || _cubeButtons.CurrentButton == Vector2.zero)
         {
-            if (_cubeButtons.CurrentButton != Vector2.left && _cubeButtons.CurrentButton != Vector2.right)
+
+            if (_cubeMovement.IsMoving == false)
             {
-                if (_cubeMovement.IsMoving == false)
-                {
-                    _cubeButtons.CurrentButton.y--;
-                    _cubeMovement.OnSwipeDown();
-                }
+                _cubeButtons.CurrentButton.y--;
+                _cubeMovement.OnSwipeDown();
             }
         }
     }
+
     public void SwipeLeft()
     {
-        if (_cubeButtons.CurrentButton != Vector2.up && _cubeButtons.CurrentButton != Vector2.down)
+        if (_cubeButtons.CurrentButton == Vector2.right || _cubeButtons.CurrentButton == Vector2.zero)
         {
-            if (_cubeButtons.CurrentButton != Vector2.left)
+            if (_cubeMovement.IsMoving == false)
             {
-                if (_cubeMovement.IsMoving == false)
-                {
-                    _cubeButtons.CurrentButton.x--;
-                    _cubeMovement.OnSwipeLeft();
-                }
+                _cubeButtons.CurrentButton.x--;
+                _cubeMovement.OnSwipeLeft();
             }
         }
     }
+
     public void SwipeRight()
     {
-        if (_cubeButtons.CurrentButton != Vector2.up && _cubeButtons.CurrentButton != Vector2.down)
+        if (_cubeButtons.CurrentButton == Vector2.left || _cubeButtons.CurrentButton == Vector2.zero)
         {
-            if (_cubeButtons.CurrentButton != Vector2.right)
+            if (_cubeMovement.IsMoving == false)
             {
-                if (_cubeMovement.IsMoving == false)
-                {
-                    _cubeButtons.CurrentButton.x++;
-                    _cubeMovement.OnSwipeRight();
-                }
+                _cubeButtons.CurrentButton.x++;
+                _cubeMovement.OnSwipeRight();
             }
         }
     }

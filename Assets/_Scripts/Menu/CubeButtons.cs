@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class CubeButtons : MonoBehaviour
 {
-    private Vector2[] _buttonsCoordinate = new Vector2[5];
+    public Vector2[] _buttonsCoordinate { get; private set; }
     public Vector2 CurrentButton;
 
     void Start()
     {
+        _buttonsCoordinate = new Vector2[5];
+
         _buttonsCoordinate[0] = new Vector2(0,0);//Play Button
         _buttonsCoordinate[1] = new Vector2(-1, 0);//Market Button
         _buttonsCoordinate[2] = new Vector2(1, 0);//Credits Button
