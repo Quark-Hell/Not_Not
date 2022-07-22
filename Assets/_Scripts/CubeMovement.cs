@@ -6,12 +6,22 @@ using UnityEngine;
 public class CubeMovement : MonoBehaviour
 {
     [Range(0,10f)]
-    [SerializeField] private float _speed;
+    public float _speed;
 
-    [SerializeField] private Quaternion _up;
-    [SerializeField] private Quaternion _down;
-    [SerializeField] private Quaternion _left;
-    [SerializeField] private Quaternion _right;
+    public Quaternion Up;
+    public Quaternion Down;
+    public Quaternion Left;
+    public Quaternion Right;
+
+    public int MaxSwipeToUp;
+    public int MaxSwipeToDown;
+    public int MaxSwipeToLeft;
+    public int MaxSwipeToRight;
+
+    public int CountSwipeToUp { get; private set; }
+    public int CountSwipeToDown { get; private set; }
+    public int CountSwipeToLeft { get; private set; }
+    public int CountSwipeToRight { get; private set; }
 
     public bool IsMoving { get; private set; }
 
@@ -20,39 +30,56 @@ public class CubeMovement : MonoBehaviour
         IsMoving = false;
     }
 
-    public void OnSwipeUp()
+    private void DoRatate(Quaternion rotate)
     {
         if (IsMoving == false)
         {
             IsMoving = true;
-            transform.DORotateQuaternion(_up * transform.rotation, _speed).OnComplete(() => IsMoving = false);
+            transform.DORotateQuaternion(rotate * transform.rotation, _speed).OnComplete(() => IsMoving = false);
+        }
+    }
+
+    public void OnSwipeUp()
+    {
+        if (CountSwipeToUp < MaxSwipeToUp || CountSwipeToUp < 0)
+        {
+            CountSwipeToUp++;
+            CountSwipeToDown--;
+
+            DoRatate(Up);
         }
     }
 
     public void OnSwipeDown()
     {
-        if (IsMoving == false)
+        if (CountSwipeToDown < MaxSwipeToDown || MaxSwipeToDown < 0)
         {
-            IsMoving = true;
-            transform.DORotateQuaternion(_down * transform.rotation, _speed).OnComplete(() => IsMoving = false);
+            CountSwipeToDown++;
+            CountSwipeToUp--;
+
+            DoRatate(Down);
         }
     }
 
     public void OnSwipeLeft()
     {
-        if (IsMoving == false)
+        if (CountSwipeToLeft < MaxSwipeToLeft || MaxSwipeToLeft < 0)
         {
-            IsMoving = true;
-            transform.DORotateQuaternion(_left * transform.rotation, _speed).OnComplete(() => IsMoving = false);
+            CountSwipeToLeft++;
+            CountSwipeToRight--;
+
+            DoRatate(Left);
         }
     }
 
     public void OnSwipeRight()
     {
-        if (IsMoving == false)
+        if (CountSwipeToRight < MaxSwipeToRight || MaxSwipeToRight < 0)
         {
-            IsMoving = true;
-            transform.DORotateQuaternion(_right * transform.rotation, _speed).OnComplete(() => IsMoving = false);
+            CountSwipeToRight++;
+            CountSwipeToLeft--;
+
+            DoRatate(Right);
         }
     }
 }
