@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
         CipherSide = _generationSide.GenerateSide(_gameData.difficult, _lightsManager.lightColor, _languageSettings, out _gameData.Side, out _gameData.OneRightSide);
         CipherTMP.text = CipherSide;
 
+        print(_gameData.difficult);
+
         if (_gameData.difficult >= DifficultsEnum.Hard)
         {
             _lightsManager.ChangeArrowMaterials();

@@ -13,16 +13,6 @@ public class CubeMovement : MonoBehaviour
     public Quaternion Left;
     public Quaternion Right;
 
-    public int MaxSwipeToUp;
-    public int MaxSwipeToDown;
-    public int MaxSwipeToLeft;
-    public int MaxSwipeToRight;
-
-    public int CountSwipeToUp { get; private set; }
-    public int CountSwipeToDown { get; private set; }
-    public int CountSwipeToLeft { get; private set; }
-    public int CountSwipeToRight { get; private set; }
-
     public bool IsMoving { get; private set; }
 
     private void Start()
@@ -41,45 +31,21 @@ public class CubeMovement : MonoBehaviour
 
     public void OnSwipeUp()
     {
-        if (CountSwipeToUp < MaxSwipeToUp || CountSwipeToUp < 0)
-        {
-            CountSwipeToUp++;
-            CountSwipeToDown--;
-
-            DoRatate(Up);
-        }
+        DoRatate(Up);
     }
 
     public void OnSwipeDown()
     {
-        if (CountSwipeToDown < MaxSwipeToDown || MaxSwipeToDown < 0)
-        {
-            CountSwipeToDown++;
-            CountSwipeToUp--;
-
-            DoRatate(Down);
-        }
+        DoRatate(Down);
     }
 
     public void OnSwipeLeft()
     {
-        if (CountSwipeToLeft < MaxSwipeToLeft || MaxSwipeToLeft < 0)
-        {
-            CountSwipeToLeft++;
-            CountSwipeToRight--;
-
-            DoRatate(Left);
-        }
+        DoRatate(Left);
     }
 
     public void OnSwipeRight()
     {
-        if (CountSwipeToRight < MaxSwipeToRight || MaxSwipeToRight < 0)
-        {
-            CountSwipeToRight++;
-            CountSwipeToLeft--;
-
-            DoRatate(Right);
-        }
+        DoRatate(Right);
     }
 }

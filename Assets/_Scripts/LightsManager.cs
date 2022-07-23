@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using UnityEngine.UI;
 using UnityEngine;
 
 [System.Serializable]
@@ -19,7 +19,7 @@ public class LightsManager : MonoBehaviour
     [SerializeField] private GameData _gameData;
     [SerializeField] private GameObject[] _arrows = new GameObject[4];
 
-    private Material[] _linkToMaterials = new Material[4];
+    private Image[] _linkToImage = new Image[4];
     void Awake()
     {
         lightColor[0].NameOfColor = "Blue";
@@ -41,15 +41,15 @@ public class LightsManager : MonoBehaviour
         //Cach data
         for (byte i = 0; i < _arrows.Length; i++)
         {
-            _linkToMaterials[i] = _arrows[i].GetComponent<Renderer>().material;
+            _linkToImage[i] = _arrows[i].GetComponent<Image>();
         }
 }
 
-    private void ResetColorOfMaterials(Material[] materials)
+    private void ResetColorOfMaterials(Image[] materials)
     {
         for (byte i = 0; i < materials.Length; i++)
         {
-            _linkToMaterials[i].SetColor("_EmissionColor", Color.white);
+            _linkToImage[i].color = Color.white;
         }
     }
 
@@ -94,7 +94,7 @@ public class LightsManager : MonoBehaviour
         {
             if (i != indexOfSelected)
             {
-                _linkToMaterials[i].SetColor("_EmissionColor", colors[t]);
+                _linkToImage[i].color = colors[t];
                 t++;
             }
         }
@@ -106,7 +106,7 @@ public class LightsManager : MonoBehaviour
         {
             if (lightColor[i].IsSelected)
             {
-                _linkToMaterials[indexOfSelected].SetColor("_EmissionColor", lightColor[i].ColorOfLight * lightColor[i].EmissionIntensity);
+                _linkToImage[indexOfSelected].color =  lightColor[i].ColorOfLight;
                 return;
             }
         }
@@ -114,7 +114,7 @@ public class LightsManager : MonoBehaviour
 
     public void ChangeArrowMaterials()
     {
-        ResetColorOfMaterials(_linkToMaterials);
+        ResetColorOfMaterials(_linkToImage);
 
         if (_gameData.OneRightSide)
         {

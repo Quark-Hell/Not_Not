@@ -48,7 +48,7 @@ public class EnglishLanguage
 public class RussianLanguage
 {
     public readonly string[] NamesOfSides = { "Вверх", "Вниз", "Влево", "Вправо" };
-    public readonly string[] NamesOfColors = { "Синий", "Красный", "Зелёный", "Вправо" };
+    public readonly string[] NamesOfColors = { "Синий", "Красный", "Зелёный", "Жёлтый" };
     public readonly string Negation = "Не";
 }
 

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class TipsAnimation : MonoBehaviour
 {
+    [Header("Arrow Animation")]
     [SerializeField] private Transform _upArrow;
     [SerializeField] private Transform _downArrow;
     [SerializeField] private Transform _leftArrow;
@@ -19,7 +20,7 @@ public class TipsAnimation : MonoBehaviour
     [SerializeField] private float _fadeDuration;
     [Range(0, 1)][SerializeField] private float _showAlpha;
     [Range(0, 1)][SerializeField] private float _hideAlpha;
-    [Range(0, 3)][SerializeField] private float _delay;
+    [Range(0, 20)][SerializeField] private float _delay;
 
     [SerializeField] CubeButtons _cubeButtons;
 

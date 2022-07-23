@@ -42,7 +42,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _FrameTex:
         m_Texture: {fileID: 2800000, guid: 35f23c48db908de47a926c4bb1831818, type: 3}
-        m_Scale: {x: 3.76, y: 1}
+        m_Scale: {x: 2.48, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
@@ -85,10 +85,10 @@ Material:
     - _SpecularHighlights: 1
     - _SpriteOverlay: 0
     - _SrcBlend: 1
-    - _Thickness: 100
+    - _Thickness: 3
     - _TileMode: 0
     - _UVSec: 0
-    - _Weight: 0.5
+    - _Weight: 0.556
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -96,5 +96,5 @@ Material:
     - _GradientOutline1: {r: 0, g: 0.04827571, b: 1, a: 1}
     - _GradientOutline2: {r: 0.7461073, g: 0.8591039, b: 1, a: 1}
     - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 0.9117647, g: 0, b: 0, a: 1}
+    - _SolidOutline: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

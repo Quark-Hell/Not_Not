@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 
@@ -7,6 +8,8 @@ public class CubeButtons : MonoBehaviour
 {
     public Vector2[] _buttonsCoordinate { get; private set; }
     public Vector2 CurrentButton;
+
+    [SerializeField] private CubeAnimation _cubeAnimation;
 
     void Start()
     {
@@ -19,6 +22,14 @@ public class CubeButtons : MonoBehaviour
         _buttonsCoordinate[4] = new Vector2(0, -1);//Settings Button
 
         CurrentButton = _buttonsCoordinate[0];
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            Click(CurrentButton);
+        }
     }
 
     public void Click(Vector2 coordinate)
@@ -53,6 +64,7 @@ public class CubeButtons : MonoBehaviour
 
     private void PlayButton()
     {
+        _cubeAnimation.Interact("Game");
         //Start Game
     }
 

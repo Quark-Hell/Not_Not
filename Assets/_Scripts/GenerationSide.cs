@@ -96,7 +96,6 @@ public class GenerationSide
         //Expamle output: "Not Red"
         else
         {
-
             _lightColor[randColor].IsSelected = true;
             return _languageSettings.Negation + " " + _languageSettings.NamesOfColors[randColor];
         }
