@@ -125,8 +125,7 @@ public class TipsAnimation : MonoBehaviour
                     //Stop all except up arrow
                     if (s != _arrowsAnim[1]) 
                     {
-                        if (IsDelaying(s, _delay)) { s.OnStepComplete(() => s.Pause()); }
-                        else { s.Pause(); }
+                        s.Rewind();
                     }
                 }
                 break;
@@ -137,8 +136,7 @@ public class TipsAnimation : MonoBehaviour
                     //Stop all except down arrow
                     if (s != _arrowsAnim[0])
                     {
-                        if (IsDelaying(s, _delay)) { s.OnStepComplete(() => s.Pause()); }
-                        else { s.Pause(); }
+                        s.Rewind();
                     }
                 }
                 break;
@@ -149,8 +147,7 @@ public class TipsAnimation : MonoBehaviour
                     //Stop all except right arrow
                     if (s != _arrowsAnim[2])
                     {
-                        if (IsDelaying(s, _delay)) { s.OnStepComplete(() => s.Pause()); }
-                        else { s.Pause(); }
+                        s.Rewind();
                     }
                 }
                 break;
@@ -161,8 +158,7 @@ public class TipsAnimation : MonoBehaviour
                     //Stop all except left arrow
                     if (s != _arrowsAnim[3])
                     {
-                        if (IsDelaying(s, _delay)) { s.OnStepComplete(() => s.Pause()); }
-                        else { s.Pause(); }
+                        s.Rewind();
                     }
                 }
                 break;

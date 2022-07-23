@@ -7,9 +7,9 @@ using UnityEngine;
 public class CubeButtons : MonoBehaviour
 {
     public Vector2[] _buttonsCoordinate { get; private set; }
-    public Vector2 CurrentButton;
+    [HideInInspector] public Vector2 CurrentButton;
 
-    [SerializeField] private CubeAnimation _cubeAnimation;
+    [SerializeField] private CubeEffects _cubeEffects;
 
     void Start()
     {
@@ -26,15 +26,12 @@ public class CubeButtons : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonUp(0))
-        {
-            Click(CurrentButton);
-        }
+
     }
 
-    public void Click(Vector2 coordinate)
+    public void Click()
     {
-        switch (coordinate)
+        switch (CurrentButton)
         {
             case Vector2 v when v.Equals(Vector2.zero):
                 PlayButton();
@@ -64,7 +61,7 @@ public class CubeButtons : MonoBehaviour
 
     private void PlayButton()
     {
-        _cubeAnimation.Interact("Game");
+        _cubeEffects.Interact("Game");
         //Start Game
     }
 

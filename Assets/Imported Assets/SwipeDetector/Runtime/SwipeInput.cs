@@ -11,6 +11,7 @@ namespace BurningLab.SwipeDetector
         {
             public UnityEvent<Vector2> swipeStart;
             public UnityEvent<Vector2> swipeEnd;
+            public UnityEvent clickEvent;
             public UnityEvent swipeUp;
             public UnityEvent swipeRight;
             public UnityEvent swipeDown;
@@ -73,7 +74,11 @@ namespace BurningLab.SwipeDetector
                 _events.swipeEnd.Invoke(_posOut);
 
                 Vector2 delta = _posIn - _posOut;
-                if (Mathf.Abs(delta.magnitude) < _minSwipeDistance) return;
+                if (Mathf.Abs(delta.magnitude) < _minSwipeDistance) 
+                {
+                    _events.clickEvent.Invoke();
+                    return;
+                }
                 
                 if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
                 {

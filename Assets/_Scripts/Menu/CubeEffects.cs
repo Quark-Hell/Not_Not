@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
 
-public class CubeAnimation : MonoBehaviour
+public class CubeEffects : MonoBehaviour
 {
     [System.Serializable]
     public class Piece
@@ -26,9 +27,11 @@ public class CubeAnimation : MonoBehaviour
         }
     }
 
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private MenuManager _menuManager;
+
     [Header("Pieces Animation")]
     [SerializeField] private Piece[] _piece;
-    [SerializeField] private AnimationCurve _movingCurve;
     [SerializeField] [Range(0,10)] private float _prependInterval;
     [SerializeField] [Range(0, 1)] private float _appendInterval;
 
@@ -37,12 +40,17 @@ public class CubeAnimation : MonoBehaviour
     [SerializeField] private float _levitationSpeed;
     [SerializeField] private float _levitationAmplitude;
 
+    [Header("Blind Animation")]
+    [SerializeField] private Image _blindImage;
+    [SerializeField] [Range(0, 255)] private float _maxAlpha;
+    [SerializeField][Range(0, 3)] private float _blindingDuration;
+    [SerializeField] private AudioClip _blindingAudio;
+
     [Header("Animation")]
     private Sequence _idleAnimation;
     private Tween _levitationAnimation;
 
     const float T = 0.05f;
-
 
     void Start()
     {
@@ -54,8 +62,6 @@ public class CubeAnimation : MonoBehaviour
     {
         _idleAnimation = DOTween.Sequence();
 
-        _idleAnimation.Append(_piece[0].Object.DOLocalMove(Vector3.zero, 0));
-
         for (byte i = 0; i < _piece.Length; i++)
         {
             Vector3 endPos = _piece[i].Object.localPosition + _piece[i].Direction * T;
@@ -65,10 +71,10 @@ public class CubeAnimation : MonoBehaviour
         _idleAnimation.PrependInterval(_prependInterval);
         _idleAnimation.AppendInterval(_appendInterval);
         _idleAnimation.SetLoops(-1, LoopType.Yoyo);
-        _idleAnimation.SetEase(_movingCurve);
+        _idleAnimation.SetEase(Ease.InOutSine);
     }
 
-   void Levitation()
+    void Levitation()
     {
         float endPos = _cube.transform.position.y + _levitationAmplitude;
 
@@ -77,24 +83,44 @@ public class CubeAnimation : MonoBehaviour
         _levitationAnimation.SetLoops(-1, LoopType.Yoyo);
     }
 
-    private AsyncOperation async;
     public void Interact(string scene)
     {
+        _levitationAnimation.Pause();
+
         _idleAnimation.Kill();
+        _idleAnimation = DOTween.Sequence();
 
         for (byte i = 0; i < _piece.Length; i++)
         {
-
+            Vector3 endPos = _piece[i].StartLocalPosition + _piece[i].Direction * T;
+            _idleAnimation.Join(_piece[i].Object.DOLocalMove(endPos, _blindingDuration));
         }
-            //_idleAnimation.Append(_piece[i].Object.DOLocalMove(endPos, _piece[i].duration));
-        _idleAnimation.SetEase(_movingCurve);
-        //SceneManager.LoadScene(scene);
-        //_idleAnimation.OnStepComplete(() => LoadLevel(scene));
+
+        _idleAnimation.SetEase(Ease.InOutSine);
+
+        _menuManager.AmbientSource.DOFade(0, _blindingDuration);
+
+        BlindEffect(scene);
+    }
+
+    private void BlindEffect(string scene)
+    {
+        Tween blindTween;
+        Material mat = Instantiate(_blindImage.material);
+
+        blindTween = mat.DOFade(_maxAlpha / 255, _blindingDuration);
+        blindTween.SetEase(Ease.InOutSine);
+        blindTween.OnComplete(() => LoadLevel(scene));
+
+        _blindImage.material = mat;
+
+        _audioSource.clip = _blindingAudio;
+        _audioSource.Play();
     }
 
     private void LoadLevel(string scene)
     {
-        DOTween.KillAll();
-        SceneManager.LoadScene(scene);
+        //DOTween.KillAll();
+        //SceneManager.LoadScene(scene);
     }
 }
