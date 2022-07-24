@@ -19,10 +19,20 @@ public class GenerationSide
     private LightColor[] _lightColor;
     private LanguageSettings _languageSettings;
 
+    private bool IsOneSide()
+    {
+        if (_difficult == DifficultsEnum.Easy)
+        {
+            return true;
+        }
+
+        // 0 = false, 1 = true
+        return Random.Range(0, 2) == 1;
+    }
+
     private void InitializeSideEnum(out SidesEnum side, out bool isOneRightSide)
     {
-        // 0 = false, 1 = true
-        isOneRightSide = Random.Range(0, 2) == 1;
+        isOneRightSide = IsOneSide();
 
         //get index of selected value
         System.Array values = System.Enum.GetValues(typeof(SidesEnum));
@@ -34,15 +44,14 @@ public class GenerationSide
         if (isOneRightSide)
         {
             side = (SidesEnum)values.GetValue(IndexOfSelectedSide);
+            return;
         }
-        else
+
+        for (byte i = 0; i < values.Length; i++)
         {
-            for (byte i = 0; i < values.Length; i++)
+            if (i != IndexOfSelectedSide)
             {
-                if (i != IndexOfSelectedSide)
-                {
-                    side |= (SidesEnum)values.GetValue(i);
-                }
+                side |= (SidesEnum)values.GetValue(i);
             }
         }
     }
@@ -70,12 +79,6 @@ public class GenerationSide
     }
     private string ChipherColor(bool isOneRightSide)
     {
-        //Prepare to next generation
-        for (byte i = 0; i < _lightColor.Length; i++)
-        {
-            _lightColor[i].IsSelected = false;
-        }
-
         int randColor = Random.Range(0, _lightColor.Length);
         //Expamle output: "Red" or "Not Not Red"
         if (isOneRightSide)
@@ -117,7 +120,7 @@ public class GenerationSide
                 return ChipherColor(isOneRightSide);
 
             case DifficultsEnum.HardPlus:
-                return "";
+                return ChipherText(isOneRightSide);
 
             case DifficultsEnum.Madness:
                 return "";
@@ -125,7 +128,7 @@ public class GenerationSide
         return "";
     }
 
-    private void DeselectedLightColors()
+    private void DeselectLightColors()
     {
         for (byte i = 0; i < _lightColor.Length; i++)
         {
@@ -140,7 +143,7 @@ public class GenerationSide
         _languageSettings = languageSettings;
 
         InitializeSideEnum(out side, out isOneRightSide);
-        DeselectedLightColors();
+        DeselectLightColors();
         return GetCipher(isOneRightSide);
     }
 }

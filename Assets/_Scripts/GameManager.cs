@@ -5,39 +5,67 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameData _gameData;
+    public GameData GameData { get; private set; }
+    private GenerationSide _generationSide;
     [SerializeField] private LightsManager _lightsManager;
-    [SerializeField] private Timer _timer;
+
+    [SerializeField] private TextMeshProUGUI DifficultTMP;
 
     [SerializeField] private TextMeshProUGUI CipherTMP;
     private string CipherSide;
-    private GenerationSide _generationSide;
+
+    [SerializeField] private Timer _timer;
     private LanguageSettings _languageSettings;
 
     private void Start()
     {
         _generationSide = new GenerationSide();
         _languageSettings = new LanguageSettings();
+        GameData = new GameData();
+
+        GameData.GameDifficult.GetXP(50);
 
         _languageSettings.SetLanguage(LanguagesEnum.Russian);
         CreateNewSide();
     }
 
+    private int GetIndexOfDifficult(DifficultsEnum sidesEnum)
+    {
+        System.Array values = System.Enum.GetValues(typeof(DifficultsEnum));
+        return System.Array.IndexOf(DifficultsEnum.GetValues(sidesEnum.GetType()), sidesEnum);
+    }
+
+    private DifficultsEnum GetDifficultByIndex(int index)
+    {
+        System.Array values = System.Enum.GetValues(typeof(DifficultsEnum));
+        return (DifficultsEnum)values.GetValue(index);
+    }
+
+    private void UpdateText()
+    {
+        int indexDifficult = GetIndexOfDifficult(GameData.GameDifficult.Difficult);
+        DifficultTMP.text = _languageSettings.Difficult + " " + GetDifficultByIndex(indexDifficult).ToString();
+
+        CipherTMP.text = CipherSide;
+    }
+
     public void CreateNewSide()
     {
-        print(_gameData.difficult);
-        CipherSide = _generationSide.GenerateSide(_gameData.difficult, _lightsManager.lightColor, _languageSettings, out _gameData.Side, out _gameData.OneRightSide);
-        CipherTMP.text = CipherSide;
+        CipherSide = _generationSide.GenerateSide(GameData.GameDifficult.Difficult, _lightsManager.lightColor, _languageSettings, out GameData.Side, out GameData.OneRightSide);
 
-        print(_gameData.difficult);
-
-        if (_gameData.difficult >= DifficultsEnum.Hard)
+        if (GameData.GameDifficult.Difficult == DifficultsEnum.Hard)
         {
-            _lightsManager.ChangeArrowMaterials();
+            _lightsManager.ChangeArrowColors();
+        }
+        else
+        {
+            _lightsManager.ResetArrowColors();
         }
 
-        print(_gameData.Side);
+        print(GameData.Side);
+        print(GameData.GameDifficult.XP);
 
+        UpdateText();
         _timer.ResetTimerBar();
     }
     public void Loos()

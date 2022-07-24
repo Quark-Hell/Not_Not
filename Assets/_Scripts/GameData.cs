@@ -2,29 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum DifficultsEnum
-{
-    Easy,
-    Medium,
-    Hard,
-    HardPlus,
-    Madness
-}
 
-public class GameData : MonoBehaviour
+
+public class GameData
 {
-    public DifficultsEnum difficult { get; private set; }
+    public GameDifficult GameDifficult = new GameDifficult();
 
     public SidesEnum Side;
     public bool OneRightSide;
-
-    private void Start()
-    {
-        IncreaseDifficult();
-    }
-
-    void IncreaseDifficult()
-    {
-        difficult += 2;
-    }
 }

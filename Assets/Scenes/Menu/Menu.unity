@@ -921,38 +921,23 @@ MonoBehaviour:
   _piece:
   - Object: {fileID: 1055091108}
     Direction: {x: 1, y: 1, z: -1}
-    duration: 1
-    Delay: 0
   - Object: {fileID: 785642431}
     Direction: {x: -1, y: -1, z: 1}
-    duration: 1
-    Delay: 0
   - Object: {fileID: 1924311048}
     Direction: {x: 1, y: -1, z: 1}
-    duration: 1
-    Delay: 0
   - Object: {fileID: 509935497}
     Direction: {x: -1, y: -1, z: -1}
-    duration: 1
-    Delay: 0
   - Object: {fileID: 303172162}
     Direction: {x: 1, y: -1, z: -1}
-    duration: 1
-    Delay: 1
   - Object: {fileID: 1501470630}
     Direction: {x: -1, y: 1, z: 1}
-    duration: 1
-    Delay: 1
   - Object: {fileID: 263420676}
     Direction: {x: 1, y: 1, z: 1}
-    duration: 1
-    Delay: 1
   - Object: {fileID: 1602172822}
     Direction: {x: -1, y: 1, z: -1}
-    duration: 1
-    Delay: 1
-  _prependInterval: 5
-  _appendInterval: 0.7
+  _startInterval: 7
+  _endInterval: 0
+  _idleDuration: 1.6
   _cube: {fileID: 1697856646}
   _levitationSpeed: 150
   _levitationAmplitude: 0.2

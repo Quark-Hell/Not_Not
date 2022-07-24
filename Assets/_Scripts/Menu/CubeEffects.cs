@@ -13,8 +13,6 @@ public class CubeEffects : MonoBehaviour
     {
         public Transform Object;
         public Vector3 Direction;
-        public float duration;
-        public float Delay;
 
         public Vector3 StartLocalPosition { get; set; }
 
@@ -30,10 +28,15 @@ public class CubeEffects : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private MenuManager _menuManager;
 
+    [Header("Effects")]
+    private bool _hasIdleAnimation;
+    private bool _hasLevitationAnimation;
+
     [Header("Pieces Animation")]
     [SerializeField] private Piece[] _piece;
-    [SerializeField] [Range(0,10)] private float _prependInterval;
-    [SerializeField] [Range(0, 1)] private float _appendInterval;
+    [SerializeField] [Range(0,10)] private float _startInterval;
+    [SerializeField] [Range(0, 3)] private float _endInterval;
+    [SerializeField][Range(0, 3)] private float _idleDuration;
 
     [Header("Levitation Animation")]
     [SerializeField] private GameObject _cube;
@@ -54,22 +57,28 @@ public class CubeEffects : MonoBehaviour
 
     void Start()
     {
+        if(_hasIdleAnimation)
         IdleAnimation();
+
+        if(_hasLevitationAnimation)
         Levitation();
     }
 
     void IdleAnimation()
     {
         _idleAnimation = DOTween.Sequence();
+        _idleAnimation.PrependInterval(_startInterval);
 
-        for (byte i = 0; i < _piece.Length; i++)
+        Vector3 endPos = _piece[0].Object.localPosition + _piece[0].Direction * T;
+        _idleAnimation.Append(_piece[0].Object.DOLocalMove(endPos, _idleDuration));
+
+        for (byte i = 1; i < _piece.Length; i++)
         {
-            Vector3 endPos = _piece[i].Object.localPosition + _piece[i].Direction * T;
-            _idleAnimation.Join(_piece[i].Object.DOLocalMove(endPos, _piece[i].duration));
+            endPos = _piece[i].Object.localPosition + _piece[i].Direction * T;
+            _idleAnimation.Join(_piece[i].Object.DOLocalMove(endPos, _idleDuration));
         }
 
-        _idleAnimation.PrependInterval(_prependInterval);
-        _idleAnimation.AppendInterval(_appendInterval);
+        _idleAnimation.AppendInterval(_endInterval);
         _idleAnimation.SetLoops(-1, LoopType.Yoyo);
         _idleAnimation.SetEase(Ease.InOutSine);
     }
@@ -120,7 +129,7 @@ public class CubeEffects : MonoBehaviour
 
     private void LoadLevel(string scene)
     {
-        //DOTween.KillAll();
-        //SceneManager.LoadScene(scene);
+        DOTween.KillAll();
+        SceneManager.LoadScene(scene);
     }
 }

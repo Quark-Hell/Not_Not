@@ -16,7 +16,7 @@ public class LightsManager : MonoBehaviour
 {
     public LightColor[] lightColor = new LightColor[4];
 
-    [SerializeField] private GameData _gameData;
+    [SerializeField] private GameManager _gameManager;
     [SerializeField] private GameObject[] _arrows = new GameObject[4];
 
     private Image[] _linkToImage = new Image[4];
@@ -45,18 +45,17 @@ public class LightsManager : MonoBehaviour
         }
 }
 
-    private void ResetColorOfMaterials(Image[] materials)
+    public void ResetArrowColors()
     {
-        for (byte i = 0; i < materials.Length; i++)
+        for (byte i = 0; i < _linkToImage.Length; i++)
         {
             _linkToImage[i].color = Color.white;
         }
     }
 
-    int GetIndexOfSide(SidesEnum sidesEnum)
+    private int GetIndexOfSide(SidesEnum sidesEnum)
     {
         System.Array values = System.Enum.GetValues(typeof(SidesEnum));
-
         return System.Array.IndexOf(SidesEnum.GetValues(sidesEnum.GetType()), sidesEnum);
     }
 
@@ -81,12 +80,20 @@ public class LightsManager : MonoBehaviour
         {
             if (lightColor[i].IsSelected == false)
             {
-                colors[t] = lightColor[i].ColorOfLight;
-                t++;
+                try
+                {
+                    colors[t] = lightColor[i].ColorOfLight;
+                    t++;
+                }
+                catch
+                {
+                    print(colors.Length + " colors");
+                    print(lightColor.Length + " light color");
+                    print(t + " t");
+                }
             }
         }
         t = 0;
-
 
         Shuffle(colors);
 
@@ -112,20 +119,20 @@ public class LightsManager : MonoBehaviour
         }
     }
 
-    public void ChangeArrowMaterials()
+    public void ChangeArrowColors()
     {
-        ResetColorOfMaterials(_linkToImage);
+        ResetArrowColors();
 
-        if (_gameData.OneRightSide)
+        if (_gameManager.GameData.OneRightSide)
         {
-            int indexOfSelected = GetIndexOfSide(_gameData.Side);
+            int indexOfSelected = GetIndexOfSide(_gameManager.GameData.Side);
             ChangeWrongArrowsMaterial(indexOfSelected);
             ChangeRightArrowMaterial(indexOfSelected);
         }
         else
         {
             SidesEnum all = SidesEnum.Up | SidesEnum.Down | SidesEnum.Left | SidesEnum.Right;
-            SidesEnum invertedEnum = ~all ^ ~_gameData.Side;
+            SidesEnum invertedEnum = ~all ^ ~_gameManager.GameData.Side;
 
             int indexOfNotSelected = GetIndexOfSide(invertedEnum);
             ChangeWrongArrowsMaterial(indexOfNotSelected);
