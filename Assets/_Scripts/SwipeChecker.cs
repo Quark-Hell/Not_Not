@@ -5,6 +5,7 @@ using UnityEngine;
 public class SwipeChecker : MonoBehaviour
 {
     [SerializeField] private GameManager _gameManager;
+    [SerializeField] private CubeMovement _cubeMovement;
 
     public void SwipeUp()
     {
@@ -12,7 +13,10 @@ public class SwipeChecker : MonoBehaviour
         {
             if (_gameManager.GameData.Side == SidesEnum.Up)
             {
-                _gameManager.GameData.GameDifficult.GetXP(10);
+                //_gameManager.GameData.GameDifficult.GetXP(10);
+                _cubeMovement.OnSwipeUp();
+                _gameManager._cubeEffects.BlindEffect(true);
+                _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
                 _gameManager.CreateNewSide();
                 return;
             }
@@ -20,12 +24,16 @@ public class SwipeChecker : MonoBehaviour
 
         if ((_gameManager.GameData.Side & SidesEnum.Up) == SidesEnum.Up)
         {
-            _gameManager.GameData.GameDifficult.GetXP(10);
+            //_gameManager.GameData.GameDifficult.GetXP(10);
+            _cubeMovement.OnSwipeUp();
+            _gameManager._cubeEffects.BlindEffect(true);
+            _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
             _gameManager.CreateNewSide();
             return;
         }
 
-        _gameManager.Loos();
+        _gameManager.CreateNewSide();
+        _gameManager.WrongSide();
     }
 
     public void SwipeDown()
@@ -34,7 +42,10 @@ public class SwipeChecker : MonoBehaviour
         {
             if (_gameManager.GameData.Side == SidesEnum.Down)
             {
-                _gameManager.GameData.GameDifficult.GetXP(10);
+                //_gameManager.GameData.GameDifficult.GetXP(10);
+                _cubeMovement.OnSwipeDown();
+                _gameManager._cubeEffects.BlindEffect(true);
+                _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
                 _gameManager.CreateNewSide();
                 return;
             }
@@ -42,12 +53,16 @@ public class SwipeChecker : MonoBehaviour
 
         if ((_gameManager.GameData.Side & SidesEnum.Down) == SidesEnum.Down)
         {
-            _gameManager.GameData.GameDifficult.GetXP(10);
+            //_gameManager.GameData.GameDifficult.GetXP(10);
+            _cubeMovement.OnSwipeDown();
+            _gameManager._cubeEffects.BlindEffect(true);
+            _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
             _gameManager.CreateNewSide();
             return;
         }
 
-        _gameManager.Loos();
+        _gameManager.CreateNewSide();
+        _gameManager.WrongSide();
     }
 
     public void SwipeLeft()
@@ -56,7 +71,10 @@ public class SwipeChecker : MonoBehaviour
         {
             if (_gameManager.GameData.Side == SidesEnum.Left)
             {
-                _gameManager.GameData.GameDifficult.GetXP(10);
+                //_gameManager.GameData.GameDifficult.GetXP(10);
+                _cubeMovement.OnSwipeLeft();
+                _gameManager._cubeEffects.BlindEffect(true);
+                _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
                 _gameManager.CreateNewSide();
                 return;
             }
@@ -64,12 +82,16 @@ public class SwipeChecker : MonoBehaviour
 
         if ((_gameManager.GameData.Side & SidesEnum.Left) == SidesEnum.Left)
         {
-            _gameManager.GameData.GameDifficult.GetXP(10);
+            //_gameManager.GameData.GameDifficult.GetXP(10);
+            _cubeMovement.OnSwipeLeft();
+            _gameManager._cubeEffects.BlindEffect(true);
+            _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
             _gameManager.CreateNewSide();
             return;
         }
 
-        _gameManager.Loos();
+        _gameManager.CreateNewSide();
+        _gameManager.WrongSide();
     }
 
     public void SwipeRight()
@@ -78,7 +100,10 @@ public class SwipeChecker : MonoBehaviour
         {
             if (_gameManager.GameData.Side == SidesEnum.Right)
             {
-                _gameManager.GameData.GameDifficult.GetXP(10);
+                //_gameManager.GameData.GameDifficult.GetXP(10);
+                _cubeMovement.OnSwipeRight();
+                _gameManager._cubeEffects.BlindEffect(true);
+                _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
                 _gameManager.CreateNewSide();
                 return;
             }
@@ -86,11 +111,15 @@ public class SwipeChecker : MonoBehaviour
 
         if ((_gameManager.GameData.Side & SidesEnum.Right) == SidesEnum.Right)
         {
-            _gameManager.GameData.GameDifficult.GetXP(10);
+            //_gameManager.GameData.GameDifficult.GetXP(10);
+            _cubeMovement.OnSwipeRight();
+            _gameManager._cubeEffects.BlindEffect(true);
+            _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
             _gameManager.CreateNewSide();
             return;
         }
 
-        _gameManager.Loos();
+        _gameManager.CreateNewSide();
+        _gameManager.WrongSide();
     }
 }

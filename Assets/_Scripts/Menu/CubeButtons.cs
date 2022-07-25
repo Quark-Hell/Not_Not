@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 using UnityEngine;
 
 
@@ -24,11 +25,6 @@ public class CubeButtons : MonoBehaviour
         CurrentButton = _buttonsCoordinate[0];
     }
 
-    private void Update()
-    {
-
-    }
-
     public void Click()
     {
         switch (CurrentButton)
@@ -45,11 +41,11 @@ public class CubeButtons : MonoBehaviour
                 CreditsButton();
                 break;
 
-            case Vector2 v when v.Equals(Vector2.up):
+            case Vector2 v when v.Equals(Vector2.down):
                 ExitButton();
                 break;
 
-            case Vector2 v when v.Equals(Vector2.down):
+            case Vector2 v when v.Equals(Vector2.up):
                 SettingsButton();
                 break;
 
@@ -61,7 +57,8 @@ public class CubeButtons : MonoBehaviour
 
     private void PlayButton()
     {
-        _cubeEffects.Interact("Game");
+        _cubeEffects.OpenCube();
+        _cubeEffects.BlindEffect(false).OnComplete(() => _cubeEffects.LoadLevel("Game"));
         //Start Game
     }
 
@@ -77,7 +74,8 @@ public class CubeButtons : MonoBehaviour
 
     private void ExitButton()
     {
-        //Exit
+        _cubeEffects.OpenCube();
+        _cubeEffects.BlindEffect(false).OnComplete(() => Application.Quit());
     }
     private void SettingsButton()
     {

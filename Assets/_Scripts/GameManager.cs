@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public Color32[] ColorListForBackround;
+    public RawImage Background;
+
     public GameData GameData { get; private set; }
+    public CubeEffects _cubeEffects;
     private GenerationSide _generationSide;
     [SerializeField] private LightsManager _lightsManager;
 
@@ -13,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI CipherTMP;
     private string CipherSide;
+
+    [SerializeField] private TextMeshProUGUI HealthTMP;
 
     [SerializeField] private Timer _timer;
     private LanguageSettings _languageSettings;
@@ -23,7 +30,8 @@ public class GameManager : MonoBehaviour
         _languageSettings = new LanguageSettings();
         GameData = new GameData();
 
-        GameData.GameDifficult.GetXP(50);
+        GameData.GameDifficult.GetXP(50);//Cheat
+        GameData.PlayerHealth.Hit(-3);
 
         _languageSettings.SetLanguage(LanguagesEnum.Russian);
         CreateNewSide();
@@ -44,7 +52,12 @@ public class GameManager : MonoBehaviour
     private void UpdateText()
     {
         int indexDifficult = GetIndexOfDifficult(GameData.GameDifficult.Difficult);
-        DifficultTMP.text = _languageSettings.Difficult + " " + GetDifficultByIndex(indexDifficult).ToString();
+        DifficultTMP.text = _languageSettings.Difficult + " " + _languageSettings.DifficultTypes[indexDifficult];
+
+        if (GameData.GameDifficult.Difficult >= DifficultsEnum.Hard)
+        {
+            _lightsManager.ChangeTextColors(CipherTMP);
+        }
 
         CipherTMP.text = CipherSide;
     }
@@ -53,7 +66,7 @@ public class GameManager : MonoBehaviour
     {
         CipherSide = _generationSide.GenerateSide(GameData.GameDifficult.Difficult, _lightsManager.lightColor, _languageSettings, out GameData.Side, out GameData.OneRightSide);
 
-        if (GameData.GameDifficult.Difficult == DifficultsEnum.Hard)
+        if (GameData.GameDifficult.Difficult >= DifficultsEnum.Hard)
         {
             _lightsManager.ChangeArrowColors();
         }
@@ -68,7 +81,18 @@ public class GameManager : MonoBehaviour
         UpdateText();
         _timer.ResetTimerBar();
     }
-    public void Loos()
+
+    public void WrongSide()
+    {
+        _cubeEffects.Shake();
+        GameData.PlayerHealth.Hit(1);
+        HealthTMP.text = GameData.PlayerHealth.HealthPoints.ToString();
+
+        if (GameData.PlayerHealth.HealthPoints <= 0)
+            Loos();
+    }
+
+    private void Loos()
     {
         print("Nope");
     }

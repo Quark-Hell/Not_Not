@@ -29,8 +29,8 @@ public class CubeEffects : MonoBehaviour
     [SerializeField] private MenuManager _menuManager;
 
     [Header("Effects")]
-    private bool _hasIdleAnimation;
-    private bool _hasLevitationAnimation;
+    [SerializeField] private bool _hasIdleAnimation;
+    [SerializeField] private bool _hasLevitationAnimation;
 
     [Header("Pieces Animation")]
     [SerializeField] private Piece[] _piece;
@@ -49,9 +49,14 @@ public class CubeEffects : MonoBehaviour
     [SerializeField][Range(0, 3)] private float _blindingDuration;
     [SerializeField] private AudioClip _blindingAudio;
 
+    [Header("Shake Animation")]
+    [SerializeField] private float _shakeDuration;
+    [SerializeField] private AudioClip _shakeAudio;
+
     [Header("Animation")]
     private Sequence _idleAnimation;
     private Tween _levitationAnimation;
+    private Tween _shakeAnimation;
 
     const float T = 0.05f;
 
@@ -85,6 +90,8 @@ public class CubeEffects : MonoBehaviour
 
     void Levitation()
     {
+        Sequence s = DOTween.Sequence();
+
         float endPos = _cube.transform.position.y + _levitationAmplitude;
 
         _levitationAnimation = _cube.transform.DOMoveY(endPos,_levitationSpeed * Time.deltaTime);
@@ -92,7 +99,7 @@ public class CubeEffects : MonoBehaviour
         _levitationAnimation.SetLoops(-1, LoopType.Yoyo);
     }
 
-    public void Interact(string scene)
+    public void OpenCube()
     {
         _levitationAnimation.Pause();
 
@@ -108,28 +115,65 @@ public class CubeEffects : MonoBehaviour
         _idleAnimation.SetEase(Ease.InOutSine);
 
         _menuManager.AmbientSource.DOFade(0, _blindingDuration);
-
-        BlindEffect(scene);
     }
 
-    private void BlindEffect(string scene)
+    public Tween BlindEffect(bool Fade)
     {
         Tween blindTween;
         Material mat = Instantiate(_blindImage.material);
 
         blindTween = mat.DOFade(_maxAlpha / 255, _blindingDuration);
         blindTween.SetEase(Ease.InOutSine);
-        blindTween.OnComplete(() => LoadLevel(scene));
+
+        if (Fade)
+        {
+            blindTween.OnComplete(() => mat.DOFade(0, _blindingDuration));
+        }
+
+        if (_audioSource != null)
+        {
+            _audioSource.clip = _blindingAudio;
+            _audioSource.Play();
+        }
 
         _blindImage.material = mat;
-
-        _audioSource.clip = _blindingAudio;
-        _audioSource.Play();
+        return blindTween;
     }
 
-    private void LoadLevel(string scene)
+    public void LoadLevel(string scene)
     {
         DOTween.KillAll();
         SceneManager.LoadScene(scene);
+    }
+
+    public void RandomChangeColorBackround(Color32[] colorList, RawImage background)
+    {
+        int index = Random.Range(0, colorList.Length);
+        background.color = colorList[index];
+    }
+
+    public void Shake()
+    {
+        if (_shakeAnimation == null)
+        {
+            if (_hasLevitationAnimation)
+            {
+
+                _levitationAnimation.Pause();
+                _audioSource.PlayOneShot(_shakeAudio);
+                _shakeAnimation = _cube.transform.DOShakePosition(_shakeDuration).OnComplete(() => ShakeComplete());
+                return;
+
+            }
+
+            _cube.transform.DOShakePosition(_shakeDuration);
+        }
+    }
+
+    private void ShakeComplete()
+    {
+        _levitationAnimation.Play();
+        _shakeAnimation.Kill();
+        _shakeAnimation = null;
     }
 }

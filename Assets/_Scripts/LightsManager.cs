@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine;
 
 [System.Serializable]
@@ -137,6 +138,26 @@ public class LightsManager : MonoBehaviour
             int indexOfNotSelected = GetIndexOfSide(invertedEnum);
             ChangeWrongArrowsMaterial(indexOfNotSelected);
             ChangeRightArrowMaterial(indexOfNotSelected);
+        }
+    }
+
+    public void ChangeTextColors(TextMeshProUGUI text)
+    {
+        if (_gameManager.GameData.GameDifficult.Difficult == DifficultsEnum.HardPlus)
+        {
+            text.color = lightColor[Random.Range(0,lightColor.Length)].ColorOfLight;
+        }
+
+        if (_gameManager.GameData.GameDifficult.Difficult == DifficultsEnum.Hard)
+        {
+            for (byte i = 0; i < lightColor.Length; i++)
+            {
+                if (lightColor[i].IsSelected)
+                {
+                    text.color = lightColor[i].ColorOfLight;
+                    return;
+                }
+            }
         }
     }
 }

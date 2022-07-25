@@ -56,7 +56,7 @@ public class GenerationSide
         }
     }
 
-    private string ChipherText(bool isOneRightSide)
+    private string CihpherText(bool isOneRightSide)
     {
         //Expamle output: "Right" or "Not Not Right"
         if (isOneRightSide)
@@ -77,7 +77,7 @@ public class GenerationSide
             return _languageSettings.Negation + " " + _languageSettings.NamesOfSides[IndexOfSelectedSide];
         }
     }
-    private string ChipherColor(bool isOneRightSide)
+    private string CihpherColor(bool isOneRightSide)
     {
         int randColor = Random.Range(0, _lightColor.Length);
         //Expamle output: "Red" or "Not Not Red"
@@ -114,13 +114,13 @@ public class GenerationSide
                 return _languageSettings.NamesOfSides[IndexOfSelectedSide];
 
             case DifficultsEnum.Medium:
-                return ChipherText(isOneRightSide);
+                return CihpherText(isOneRightSide);
 
             case DifficultsEnum.Hard:
-                return ChipherColor(isOneRightSide);
+                return CihpherColor(isOneRightSide);
 
             case DifficultsEnum.HardPlus:
-                return ChipherText(isOneRightSide);
+                return CihpherColor(isOneRightSide);
 
             case DifficultsEnum.Madness:
                 return "";
