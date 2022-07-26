@@ -46,7 +46,7 @@ public class CubeEffects : MonoBehaviour
     [Header("Blind Animation")]
     [SerializeField] private Image _blindImage;
     [SerializeField] [Range(0, 255)] private float _maxAlpha;
-    [SerializeField][Range(0, 3)] private float _blindingDuration;
+    [SerializeField] [Range(0, 3)] private float _blindingDuration;
     [SerializeField] private AudioClip _blindingAudio;
 
     [Header("Shake Animation")]

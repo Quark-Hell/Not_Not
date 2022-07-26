@@ -33,11 +33,11 @@ public class CubeButtons : MonoBehaviour
                 PlayButton();
                 break;
 
-            case Vector2 v when v.Equals(Vector2.left):
+            case Vector2 v when v.Equals(Vector2.right):
                 MarketButton();
                 break;
 
-            case Vector2 v when v.Equals(Vector2.right):
+            case Vector2 v when v.Equals(Vector2.left):
                 CreditsButton();
                 break;
 
@@ -69,7 +69,8 @@ public class CubeButtons : MonoBehaviour
 
     private void CreditsButton()
     {
-        //Open Credits
+        _cubeEffects.OpenCube();
+        _cubeEffects.BlindEffect(false).OnComplete(() => _cubeEffects.LoadLevel("Credits"));
     }
 
     private void ExitButton()
