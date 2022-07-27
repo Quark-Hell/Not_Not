@@ -198,8 +198,8 @@ MonoBehaviour:
   _levitationSpeed: 50
   _levitationAmplitude: 0.4
   _blindImage: {fileID: 768320305}
-  _maxAlpha: 100
-  _blindingDuration: 0.1
+  _maxAlpha: 50
+  _blindingDuration: 0.12
   _blindingAudio: {fileID: 0}
   _shakeDuration: 0.5
   _shakeAudio: {fileID: 8300000, guid: daf8e20be349ba846b1794623c8cecc7, type: 3}
@@ -336,7 +336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05911111, y: 0.20513676}
   m_AnchorMax: {x: 0.9388889, y: 0.8}
-  m_AnchoredPosition: {x: -90.0189, y: -756.83813}
+  m_AnchoredPosition: {x: -90.0189, y: -756.8377}
   m_SizeDelta: {x: 815.1813, y: 1307.2656}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &93623536
@@ -928,7 +928,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.82000005, y: 0.0064188037}
   m_AnchorMax: {x: 1, y: 0.08457265}
-  m_AnchoredPosition: {x: -302.22028, y: 86.0304}
+  m_AnchoredPosition: {x: -302.22028, y: 86.03046}
   m_SizeDelta: {x: -11.141979, y: 133.12874}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &438922482
