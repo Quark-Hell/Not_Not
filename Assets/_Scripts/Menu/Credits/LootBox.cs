@@ -26,8 +26,7 @@ public class LootBox : MonoBehaviour
     private Vector3 _startSkinPreviewScale;
 
     [Header("Animation")]
-    [SerializeField] private AnimationClip _animationClip;
-    [SerializeField] private Animation _animation;
+    [SerializeField] private Animator _animator;
 
     [Header("Check Mark")]
     [SerializeField] private GameObject _checkMark;
@@ -72,13 +71,12 @@ public class LootBox : MonoBehaviour
 
     private void OpenBox()
     {
-        _animation = GetComponent<Animation>();
-        _animation.clip = _animationClip;
+        _animator = GetComponent<Animator>();
 
         TakeMoneyAnimation();
 
         float endPos = Box.transform.position.y - 4.9f;
-        Box.transform.DOLocalMoveY(endPos, _duration).SetEase(Ease.OutBack).OnComplete(() => _animation.Play());
+        Box.transform.DOLocalMoveY(endPos, _duration).SetEase(Ease.OutBack).OnComplete(() => _animator.SetTrigger("Open"));
     }
 
     private void ShowNewSkin()
@@ -124,6 +122,6 @@ public class LootBox : MonoBehaviour
         Box.transform.rotation = _startBoxRotation;
         Box.transform.localScale = _startBoxScale;
 
-        _animation.Rewind();
+        _animator.SetTrigger("Close");
     }
 }
