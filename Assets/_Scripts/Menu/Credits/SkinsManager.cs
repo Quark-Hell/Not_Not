@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SkinsManager : MonoBehaviour
@@ -11,11 +12,22 @@ public class SkinsManager : MonoBehaviour
 
     public Skin CurrentSkin { get; private set; }
 
+    private LanguageSettings _languageSettings;
+
     private void Start()
     {
         foreach (Skin skin in GeneralSkins)
         {
             NotBoughtSkins.Add(skin);
+        }
+
+        if (CurrentSkin == null)
+        {
+            _languageSettings = new LanguageSettings();
+
+            BoughtSkins.Add(GeneralSkins[0]);
+            CurrentSkin = BoughtSkins[0];
+            BoughtSkins[0].BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _languageSettings.Selected;
         }
     }
 

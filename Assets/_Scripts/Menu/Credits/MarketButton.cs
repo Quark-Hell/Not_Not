@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine.EventSystems;
+using TMPro;
 using UnityEngine;
 
 public class MarketButton : MonoBehaviour
@@ -24,17 +25,30 @@ public class MarketButton : MonoBehaviour
     private float _elapsed;
 
     private EventSystem _eventSystem;
+    private LanguageSettings _languageSettings;
 
     private void Awake()
     {
         _eventSystem = EventSystem.current;
 
         _elapsed = _animationDelay;
+
+        _languageSettings = new LanguageSettings();
+
+        InitializeBoughtInfo();
     }
 
     private void Update()
     {
         Timer();
+    }
+
+    private void InitializeBoughtInfo()
+    {
+        for (byte i = 0; i < _skinsManger.GeneralSkins.Length;i++)
+        {
+            _skinsManger.GeneralSkins[i].BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _languageSettings.Bought;
+        }
     }
 
     private void Timer()
@@ -81,9 +95,11 @@ public class MarketButton : MonoBehaviour
                     selectAnimation.SetEase(Ease.InBack);
                     selectAnimation.OnComplete(() => clickedButton.DOScale(1, _duration).SetEase(Ease.OutBack));
 
+                    _skinsManger.CurrentSkin.BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _languageSettings.Bought;
+
                     _skinsManger.SetCurrentSkin(skin);
 
-                    print(skin.IdSkin);
+                    clickedButton.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = _languageSettings.Selected;
 
                     _elapsed = 0;
                 }
