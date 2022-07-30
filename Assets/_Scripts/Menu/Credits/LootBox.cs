@@ -42,6 +42,9 @@ public class LootBox : MonoBehaviour
     [Header("Close Loot Box")]
     [SerializeField] private float _closeDuration;
 
+    [Header("Cover")]
+    [SerializeField] private GameObject _cover;
+
     private Skin _skinBuff;
 
     private void Awake()
@@ -70,6 +73,8 @@ public class LootBox : MonoBehaviour
         int id = Random.Range(0, skins.Count);
         Skin skin = skins[id];
         _skinPreview.GetComponent<Image>().sprite = skin.Icon;
+
+        _cover.SetActive(true);
 
         OpenBox();
 
@@ -138,6 +143,8 @@ public class LootBox : MonoBehaviour
         Box.transform.position = _startBoxPosition;
         Box.transform.rotation = _startBoxRotation;
         Box.transform.localScale = _startBoxScale;
+
+        _cover.SetActive(false);
 
         DOTween.Complete(_checkMark);
     }

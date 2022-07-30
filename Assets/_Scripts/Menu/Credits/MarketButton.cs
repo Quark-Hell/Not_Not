@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 
@@ -23,6 +24,18 @@ public class MarketButton : MonoBehaviour
     [Header("Animation Delay")]
     [SerializeField] private float _animationDelay;
     private float _elapsed;
+
+    [Header("Pages")]
+    [SerializeField] private int _currentPage;
+    [SerializeField] private GameObject[] _pages;
+    [SerializeField] private GameObject _leftArrow;
+    [SerializeField] private GameObject _rightArrow;
+    [SerializeField] [Range(0, 255)] private float _normalAplha;
+    [SerializeField] [Range(0, 255)] private float _hideAlpha;
+    [SerializeField] private float _fadeDuration;
+    [SerializeField] private float _pageXCenter;
+    [SerializeField] private float _pageXShift;
+    [SerializeField] private float _pageShiftDuration;
 
     private EventSystem _eventSystem;
     private LanguageSettings _languageSettings;
@@ -48,6 +61,54 @@ public class MarketButton : MonoBehaviour
         for (byte i = 0; i < _skinsManger.GeneralSkins.Length;i++)
         {
             _skinsManger.GeneralSkins[i].BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _languageSettings.Bought;
+        }
+    }
+
+    public void NextPage()
+    {
+        if (_currentPage + 1 < _pages.Length && _elapsed == _animationDelay)
+        {
+            _pages[_currentPage].transform.DOMoveX(_pageXShift, _pageShiftDuration).SetEase(Ease.InOutBack);
+            _pages[_currentPage + 1].transform.DOMoveX(_pageXCenter, _pageShiftDuration).SetEase(Ease.InOutBack);
+
+            _currentPage++;
+            HideArrow();
+
+            _elapsed = 0;
+        }
+    }
+
+    public void PreviousPage()
+    {
+        if (_currentPage - 1 >= 0 && _elapsed == _animationDelay)
+        {
+            _pages[_currentPage].transform.DOMoveX(-_pageXShift, _pageShiftDuration).SetEase(Ease.InOutBack);
+            _pages[_currentPage - 1].transform.DOMoveX(_pageXCenter, _pageShiftDuration).SetEase(Ease.InOutBack);
+
+            _currentPage--;
+            HideArrow();
+
+            _elapsed = 0;
+        }
+    }
+
+    private void HideArrow()
+    {
+        int lastPage = _pages.Length;
+        if (_currentPage == 0)
+        {
+            _leftArrow.GetComponent<Image>().DOFade(_hideAlpha / 255, _fadeDuration);
+            _rightArrow.GetComponent<Image>().DOFade(_normalAplha / 255, _fadeDuration);
+        }
+        else if(_currentPage == _pages.Length - 1)
+        {
+            _rightArrow.GetComponent<Image>().DOFade(_hideAlpha / 255, _fadeDuration);
+            _leftArrow.GetComponent<Image>().DOFade(_normalAplha / 255, _fadeDuration);
+        }
+        else
+        {
+            _leftArrow.GetComponent<Image>().DOFade(_normalAplha / 255, _fadeDuration);
+            _rightArrow.GetComponent<Image>().DOFade(_normalAplha / 255, _fadeDuration);
         }
     }
 
