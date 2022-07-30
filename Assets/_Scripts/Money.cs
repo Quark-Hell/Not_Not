@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Money
+public static class Money
 {
-    public int Coins { get; private set; }
+    public static int Coins { get; private set; }
 
-    public void GiveMoney(int coins)
+    public static void GiveMoney(int coins)
     {
         Coins += coins;
     }
 
-    public void TakeMoney(int coins)
+    public static void TakeMoney(int coins)
     {
         Coins -= coins;
     }

@@ -23,6 +23,7 @@ public class LootBox : MonoBehaviour
     [Header("Skin Icon")]
     [SerializeField] private GameObject _skinPreview;
     [SerializeField] private float _showSkinDuration;
+    private Vector3 _startSkinPreviewPosition;
     private Vector3 _startSkinPreviewScale;
 
     [Header("Animation")]
@@ -35,27 +36,28 @@ public class LootBox : MonoBehaviour
     private Vector3 _startCheckMarkScale;
 
     [Header("Money")]
-    [SerializeField] private Money _money;
     [SerializeField] private TextMeshProUGUI _moneyTMP;
     [SerializeField] private float _moneyTextDuration;
 
     [Header("Close Loot Box")]
     [SerializeField] private float _closeDuration;
 
+    private Skin _skinBuff;
+
     private void Awake()
     {
         Price = _price;
-        _money = new Money();
 
         _startBoxPosition = Box.transform.position;
         _startBoxRotation = Box.transform.rotation;
         _startBoxScale = Box.transform.localScale;
 
         _startCheckMarkScale = _checkMark.transform.lossyScale;
+
+        _startSkinPreviewPosition = _skinPreview.transform.position;
         _startSkinPreviewScale = _skinPreview.transform.localScale;
 
-
-        _money.GiveMoney(1500);
+        Money.GiveMoney(1500);
     }
 
     public Skin GetRandomSkin(List<Skin> skins)
@@ -66,6 +68,7 @@ public class LootBox : MonoBehaviour
 
         OpenBox();
 
+        _skinBuff = skin;
         return skin;
     }
 
@@ -97,11 +100,11 @@ public class LootBox : MonoBehaviour
 
     private void TakeMoneyAnimation()
     {
-        DOVirtual.Float(_money.Coins, _money.Coins - Price, _moneyTextDuration, money => {
+        DOVirtual.Float(Money.Coins, Money.Coins - Price, _moneyTextDuration, money => {
             _moneyTMP.text = ((int)money).ToString();
         }).SetEase(Ease.OutCirc);
 
-        _money.TakeMoney(_money.Coins - Price);
+        Money.TakeMoney(Price);
     }
 
     public void Close()
@@ -109,11 +112,17 @@ public class LootBox : MonoBehaviour
         Box.transform.DOScale(Vector3.zero, _closeDuration).SetEase(Ease.InBack);
         _checkMark.transform.DOScale(Vector3.zero, _closeDuration).SetEase(Ease.InBack);
         _skinPreview.transform.DOScale(Vector3.zero, _closeDuration).SetEase(Ease.InBack).OnComplete(() => EndAnimation());
+
+        _skinBuff.BoughtInfo.SetActive(true);
+        _skinBuff = null;
     }
 
     private void EndAnimation()
     {
+        _animator.SetTrigger("Close");
+
         _skinPreview.SetActive(false);
+        _skinPreview.transform.position = _startSkinPreviewPosition;
         _skinPreview.transform.localScale = _startSkinPreviewScale;
 
         _checkMark.transform.localScale = _startCheckMarkScale;
@@ -121,7 +130,5 @@ public class LootBox : MonoBehaviour
         Box.transform.position = _startBoxPosition;
         Box.transform.rotation = _startBoxRotation;
         Box.transform.localScale = _startBoxScale;
-
-        _animator.SetTrigger("Close");
     }
 }
