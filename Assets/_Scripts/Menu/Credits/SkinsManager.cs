@@ -20,6 +20,7 @@ public class SkinsManager : MonoBehaviour
         {
             NotBoughtSkins.Add(skin);
         }
+        NotBoughtSkins.RemoveAt(0);
 
         if (CurrentSkin == null)
         {

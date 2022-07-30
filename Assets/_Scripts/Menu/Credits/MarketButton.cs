@@ -70,7 +70,7 @@ public class MarketButton : MonoBehaviour
 
     public void TryBuy()
     {
-        if (_lootBox.Price <= Money.Coins)
+        if (_lootBox.Price <= Money.Coins && _elapsed == _animationDelay)
         {
             //Hide Icon
             _icon.transform.DOLocalMoveX(_xShift, _duration).SetEase(Ease.InBack);
@@ -78,6 +78,19 @@ public class MarketButton : MonoBehaviour
             Skin skin = _lootBox.GetRandomSkin(_skinsManger.NotBoughtSkins);
             _skinsManger.BoughtSkins.Add(skin);
             _skinsManger.NotBoughtSkins.Remove(skin);
+
+            _elapsed = 0;
+        }
+    }
+
+    public void CancelBuy()
+    {
+        if (_elapsed == _animationDelay)
+        {
+            //Hide Icon
+            _icon.transform.DOLocalMoveX(_xShift, _duration).SetEase(Ease.InBack);
+
+            _elapsed = 0;
         }
     }
 
@@ -91,9 +104,9 @@ public class MarketButton : MonoBehaviour
                 {
                     Transform clickedButton = _eventSystem.currentSelectedGameObject.transform;
 
-                    Tween selectAnimation = clickedButton.DOScale(_minScale, _duration);
+                    Tween selectAnimation = clickedButton.DOScale(_minScale, _selectDuration);
                     selectAnimation.SetEase(Ease.InBack);
-                    selectAnimation.OnComplete(() => clickedButton.DOScale(1, _duration).SetEase(Ease.OutBack));
+                    selectAnimation.OnComplete(() => clickedButton.DOScale(1, _selectDuration).SetEase(Ease.OutBack));
 
                     _skinsManger.CurrentSkin.BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _languageSettings.Bought;
 

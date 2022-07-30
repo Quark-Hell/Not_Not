@@ -581,7 +581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &262881079
 RectTransform:
   m_ObjectHideFlags: 0
@@ -866,7 +866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &352401960
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1944,7 +1944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idSkin: 1
-  BoughtInfo: {fileID: 0}
+  BoughtInfo: {fileID: 1638986503}
   Icon: {fileID: 21300000, guid: f2334ccb6f9ac7d43965cc854cf4a0b8, type: 3}
 --- !u!114 &857598778
 MonoBehaviour:
@@ -2111,7 +2111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idSkin: 4
-  BoughtInfo: {fileID: 0}
+  BoughtInfo: {fileID: 1720638440}
   Icon: {fileID: 21300000, guid: a4bc91c63fca44740a181b2d002bdec2, type: 3}
 --- !u!114 &871542154
 MonoBehaviour:
@@ -2168,7 +2168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &876492786
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2512,7 +2512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &972498443
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3844,7 +3844,7 @@ MonoBehaviour:
   _xCenter: 0
   _xShift: -1000
   _minScale: 0.9
-  _selectDuration: 0.87
+  _selectDuration: 0.4
   _animationDelay: 0.5
 --- !u!114 &1342978166
 MonoBehaviour:
@@ -3864,6 +3864,8 @@ MonoBehaviour:
   - {fileID: 1675009352}
   - {fileID: 871542153}
   - {fileID: 1359087069}
+  - {fileID: 2092482391}
+  - {fileID: 1358780574}
   BoughtSkins: []
   NotBoughtSkins: []
 --- !u!1 &1358780571
@@ -3975,7 +3977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idSkin: 7
-  BoughtInfo: {fileID: 0}
+  BoughtInfo: {fileID: 352401959}
   Icon: {fileID: 21300000, guid: 375cbc22981d9064781c839248e96395, type: 3}
 --- !u!114 &1358780575
 MonoBehaviour:
@@ -4124,7 +4126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idSkin: 5
-  BoughtInfo: {fileID: 0}
+  BoughtInfo: {fileID: 972498442}
   Icon: {fileID: 21300000, guid: d886ef820deb83945a6a269b2abbd4d5, type: 3}
 --- !u!114 &1359087070
 MonoBehaviour:
@@ -5238,7 +5240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idSkin: 2
-  BoughtInfo: {fileID: 0}
+  BoughtInfo: {fileID: 876492785}
   Icon: {fileID: 21300000, guid: b1d61036bcc80164489d2f3d25c52095, type: 3}
 --- !u!114 &1619709734
 MonoBehaviour:
@@ -5425,7 +5427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idSkin: 3
-  BoughtInfo: {fileID: 0}
+  BoughtInfo: {fileID: 262881078}
   Icon: {fileID: 21300000, guid: 101837767310e5247810cb8748d75ce9, type: 3}
 --- !u!114 &1675009353
 MonoBehaviour:
@@ -5538,7 +5540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1720638441
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5933,7 +5935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1889306231
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6438,7 +6440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idSkin: 6
-  BoughtInfo: {fileID: 0}
+  BoughtInfo: {fileID: 1889306230}
   Icon: {fileID: 21300000, guid: 74103e63c6bfe8f429e2c56b37b290d4, type: 3}
 --- !u!114 &2092482392
 MonoBehaviour:

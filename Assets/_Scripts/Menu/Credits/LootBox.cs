@@ -98,9 +98,10 @@ public class LootBox : MonoBehaviour
         _skinPreview.transform.DOLocalMoveY(endPos, _showSkinDuration).SetEase(Ease.OutElastic).OnComplete(() => CheckMarkAnimation());
     }
 
+    private Tween _checkMarkAnim;
     private void CheckMarkAnimation()
     {
-        _checkMark.transform.DOScale(_endScaleCheckMark, _checkMarkDuration).SetEase(Ease.OutElastic);
+        _checkMarkAnim = _checkMark.transform.DOScale(_endScaleCheckMark, _checkMarkDuration).SetEase(Ease.OutElastic);
     }
 
     private void TakeMoneyAnimation()
@@ -114,6 +115,8 @@ public class LootBox : MonoBehaviour
 
     public void Close()
     {
+        _checkMarkAnim.Complete();
+
         Box.transform.DOScale(Vector3.zero, _closeDuration).SetEase(Ease.InBack);
         _checkMark.transform.DOScale(Vector3.zero, _closeDuration).SetEase(Ease.InBack);
         _skinPreview.transform.DOScale(Vector3.zero, _closeDuration).SetEase(Ease.InBack).OnComplete(() => EndAnimation());
@@ -135,5 +138,7 @@ public class LootBox : MonoBehaviour
         Box.transform.position = _startBoxPosition;
         Box.transform.rotation = _startBoxRotation;
         Box.transform.localScale = _startBoxScale;
+
+        DOTween.Complete(_checkMark);
     }
 }
