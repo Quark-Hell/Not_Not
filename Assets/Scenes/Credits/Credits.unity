@@ -4212,6 +4212,7 @@ MonoBehaviour:
   _moneyTMP: {fileID: 1274986058}
   _moneyTextDuration: 4
   _closeDuration: 0.7
+  _animationDelay: 1
   _cover: {fileID: 1195387906}
 --- !u!1 &1047230428
 GameObject:

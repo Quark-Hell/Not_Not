@@ -42,6 +42,10 @@ public class LootBox : MonoBehaviour
     [Header("Close Loot Box")]
     [SerializeField] private float _closeDuration;
 
+    [Header("Animation Delay")]
+    [SerializeField] private float _animationDelay;
+    private float _elapsed;
+
     [Header("Cover")]
     [SerializeField] private GameObject _cover;
 
@@ -66,6 +70,23 @@ public class LootBox : MonoBehaviour
     private void Start()
     {
         _moneyTMP.text = Money.Coins.ToString();
+    }
+
+    private void Update()
+    {
+        Timer();
+    }
+
+    private void Timer()
+    {
+        if (_elapsed + Time.deltaTime < _animationDelay)
+        {
+            _elapsed += Time.deltaTime;
+        }
+        else
+        {
+            _elapsed = _animationDelay;
+        }
     }
 
     public Skin GetRandomSkin(List<Skin> skins)
@@ -120,14 +141,19 @@ public class LootBox : MonoBehaviour
 
     public void Close()
     {
-        _checkMarkAnim.Complete();
+        if (_elapsed == _animationDelay)
+        {
+            _checkMarkAnim.Complete();
 
-        Box.transform.DOScale(Vector3.zero, _closeDuration).SetEase(Ease.InBack);
-        _checkMark.transform.DOScale(Vector3.zero, _closeDuration).SetEase(Ease.InBack);
-        _skinPreview.transform.DOScale(Vector3.zero, _closeDuration).SetEase(Ease.InBack).OnComplete(() => EndAnimation());
+            Box.transform.DOScale(Vector3.zero, _closeDuration).SetEase(Ease.InBack);
+            _checkMark.transform.DOScale(Vector3.zero, _closeDuration).SetEase(Ease.InBack);
+            _skinPreview.transform.DOScale(Vector3.zero, _closeDuration).SetEase(Ease.InBack).OnComplete(() => EndAnimation());
 
-        _skinBuff.BoughtInfo.SetActive(true);
-        _skinBuff = null;
+            _skinBuff.BoughtInfo.SetActive(true);
+            _skinBuff = null;
+
+            _elapsed = 0;
+        }
     }
 
     private void EndAnimation()
