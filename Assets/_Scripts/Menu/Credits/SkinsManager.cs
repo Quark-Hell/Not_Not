@@ -52,7 +52,7 @@ public class SkinsManager : MonoBehaviour
     {
         //Save in file
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/SaveData.dat");
+        FileStream file = File.Create(Application.persistentDataPath + "/Skins.dat");
         SaveData data = new SaveData();
 
         data.BoughtSkinsID.Clear();
@@ -82,13 +82,13 @@ public class SkinsManager : MonoBehaviour
 
     public void LoadSkins()
     {
-        if (File.Exists(Application.persistentDataPath + "/SaveData.dat"))
+        if (File.Exists(Application.persistentDataPath + "/Skins.dat"))
         {
             BoughtSkins.Clear();
             NotBoughtSkins.Clear();
 
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/SaveData.dat", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/Skins.dat", FileMode.Open);
             SaveData data = (SaveData)bf.Deserialize(file);
             file.Close();
 
