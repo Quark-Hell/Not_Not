@@ -176,8 +176,9 @@ public class MarketButton : MonoBehaviour
                     clickedButton.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = _languageSettings.Selected;
 
                     _elapsed = 0;
-                }
 
+                    return;
+                }
             }
         }
     }

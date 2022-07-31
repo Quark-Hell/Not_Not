@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72507eb8727e82d40adfcc766f2e7051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idSkin: 5
+  idSkin: 0
   BoughtInfo: {fileID: 500421095}
   Icon: {fileID: 21300000, guid: d886ef820deb83945a6a269b2abbd4d5, type: 3}
 --- !u!114 &25818349
@@ -4606,7 +4606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72507eb8727e82d40adfcc766f2e7051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idSkin: 4
+  idSkin: 0
   BoughtInfo: {fileID: 1055330802}
   Icon: {fileID: 21300000, guid: a4bc91c63fca44740a181b2d002bdec2, type: 3}
 --- !u!114 &1082649296
@@ -7066,7 +7066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72507eb8727e82d40adfcc766f2e7051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idSkin: 6
+  idSkin: 0
   BoughtInfo: {fileID: 650405462}
   Icon: {fileID: 21300000, guid: 74103e63c6bfe8f429e2c56b37b290d4, type: 3}
 --- !u!114 &1553778062

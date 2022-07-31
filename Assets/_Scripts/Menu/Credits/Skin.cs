@@ -13,8 +13,13 @@ public class Skin : MonoBehaviour
     public GameObject BoughtInfo;
     public Sprite Icon;
 
-    private void Start()
+    public void Awake()
     {
         IdSkin = idSkin;
+    }
+
+    public void SetHave(bool have)
+    {
+        IsHave = have;
     }
 }
