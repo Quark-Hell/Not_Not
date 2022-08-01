@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: e86187f03f9ceec429f9a760cb876b5d
+  m_SerializeEntries:
+  - m_GUID: 85b79febd7138354f899bba96c96c2af
+    m_Address: Assets/Models/Cube 1/Skin 1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1ab11bae1bdba61419b6fc57563578ee
+    m_Address: Assets/Models/Cube 2/Skin 2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 74e36cb1447116941889dbce510265d6
+    m_Address: Assets/Models/Cube 3/Skin 3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7b0c3f8a04a8f3e48bd858d3e4d9640a
+    m_Address: Assets/Models/Cube Test/Skin 4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 56b1ba8e2d6995848a454f01f961d652
+    m_Address: Assets/Models/Floppa Cube/Skin 5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 2dbed8ab010aef944834e477b83cfb0f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6694da415704ba647bf273041a2ec8be, type: 2}
+    - {fileID: 11400000, guid: c52c21422dc0e174c97126bccfd44489, type: 2}

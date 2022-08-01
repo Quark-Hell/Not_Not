@@ -172,6 +172,7 @@ public class MarketButton : MonoBehaviour
                     _skinsManger.CurrentSkin.BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _languageSettings.Bought;
 
                     _skinsManger.SetCurrentSkin(skin);
+                    _skinsManger.SaveSkins();
 
                     clickedButton.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = _languageSettings.Selected;
 

@@ -336,7 +336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05911111, y: 0.20513676}
   m_AnchorMax: {x: 0.9388889, y: 0.8}
-  m_AnchoredPosition: {x: -90.0189, y: -756.83716}
+  m_AnchoredPosition: {x: -90.0189, y: -756.83655}
   m_SizeDelta: {x: 815.1813, y: 1307.2656}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &93623536
@@ -928,7 +928,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.82000005, y: 0.0064188037}
   m_AnchorMax: {x: 1, y: 0.08457265}
-  m_AnchoredPosition: {x: -302.22028, y: 86.030525}
+  m_AnchoredPosition: {x: -302.22028, y: 86.0306}
   m_SizeDelta: {x: -11.141979, y: 133.12874}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &438922482
@@ -3167,6 +3167,7 @@ GameObject:
   - component: {fileID: 1897533273}
   - component: {fileID: 1897533275}
   - component: {fileID: 1897533274}
+  - component: {fileID: 1897533276}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -3230,6 +3231,40 @@ MonoBehaviour:
   CipherTMP: {fileID: 1544440389}
   HealthTMP: {fileID: 1806637271}
   _timer: {fileID: 279012475}
+--- !u!114 &1897533276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897533272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6172f836e14512843937d4140c7e6481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cubeParent: {fileID: 2451228}
+  _skins:
+  - m_AssetGUID: 85b79febd7138354f899bba96c96c2af
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 1ab11bae1bdba61419b6fc57563578ee
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 74e36cb1447116941889dbce510265d6
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 7b0c3f8a04a8f3e48bd858d3e4d9640a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 56b1ba8e2d6995848a454f01f961d652
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!1 &1900851463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3652,7 +3687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1783204032570337006, guid: 77419c20dc3cdf44a89cc99e44411e72, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77419c20dc3cdf44a89cc99e44411e72, type: 3}
