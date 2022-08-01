@@ -13,35 +13,9 @@ public class SkinsManager : MonoBehaviour
     public List<Skin> BoughtSkins = new List<Skin>();
     public List<Skin> NotBoughtSkins = new List<Skin>();
 
-    public Skin CurrentSkin { get; private set; }
+    public Skin CurrentSkin;
 
     private LanguageSettings _languageSettings;
-
-    private void Start()
-    {
-        LoadSkins();
-
-        if (BoughtSkins.Count == 0)
-        {
-            foreach (Skin skin in GeneralSkins)
-            {
-                NotBoughtSkins.Add(skin);
-            }
-            NotBoughtSkins.RemoveAt(0);
-            BoughtSkins.Add(GeneralSkins[0]);
-        }
-
-        if (CurrentSkin == null)
-        {
-            _languageSettings = new LanguageSettings();
-
-            BoughtSkins[0].SetHave(true);
-            CurrentSkin = BoughtSkins[0];
-            BoughtSkins[0].BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _languageSettings.Selected;
-        }
-
-        SaveSkins();
-    }
 
     public void SetCurrentSkin(Skin skin)
     {
@@ -75,7 +49,6 @@ public class SkinsManager : MonoBehaviour
                 break;
             }
         }
-
         bf.Serialize(file, data);
         file.Close();
     }
@@ -91,6 +64,8 @@ public class SkinsManager : MonoBehaviour
             FileStream file = File.Open(Application.persistentDataPath + "/Skins.dat", FileMode.Open);
             SaveData data = (SaveData)bf.Deserialize(file);
             file.Close();
+
+            print(data.BoughtSkinsID.Count);
 
             for (int i = 0; i < GeneralSkins.Length; i++)
             {
@@ -111,6 +86,8 @@ public class SkinsManager : MonoBehaviour
                     }
                 }
             }
+
+            print(BoughtSkins.Count);
 
             for (int i = 0; i < BoughtSkins.Count; i++)
             {

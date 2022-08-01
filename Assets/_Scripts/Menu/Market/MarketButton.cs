@@ -47,21 +47,11 @@ public class MarketButton : MonoBehaviour
         _elapsed = _animationDelay;
 
         _languageSettings = new LanguageSettings();
-
-        InitializeBoughtInfo();
     }
 
     private void Update()
     {
         Timer();
-    }
-
-    private void InitializeBoughtInfo()
-    {
-        for (byte i = 0; i < _skinsManger.GeneralSkins.Length;i++)
-        {
-            _skinsManger.GeneralSkins[i].BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _languageSettings.Bought;
-        }
     }
 
     public void NextPage()
