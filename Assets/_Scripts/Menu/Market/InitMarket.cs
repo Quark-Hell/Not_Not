@@ -39,6 +39,11 @@ public class InitMarket : MonoBehaviour
             Debug.LogWarning("Current skin was null");
         }
 
+        foreach (Skin skin in _skinsManager.NotBoughtSkins)
+        {
+            skin.BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _languageSettings.Bought;
+        }
+
         foreach (Skin skin in _skinsManager.BoughtSkins)
         {
             skin.BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _languageSettings.Bought;
