@@ -22,18 +22,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI HealthTMP;
 
     [SerializeField] private Timer _timer;
-    private LanguageSettings _languageSettings;
 
     private void Start()
     {
         _generationSide = new GenerationSide();
-        _languageSettings = new LanguageSettings();
         GameData = new GameData();
 
         GameData.GameDifficult.GetXP(50);//Cheat
         GameData.PlayerHealth.Hit(-3);
 
-        _languageSettings.SetLanguage(LanguagesEnum.Russian);
+        LanguageSettings.LoadLanguage();
+        LanguageSettings.SetLanguage(LanguageSettings.Languages);
+
+        Money.LoadMoney();
+
         CreateNewSide();
     }
 
@@ -52,7 +54,7 @@ public class GameManager : MonoBehaviour
     private void UpdateText()
     {
         int indexDifficult = GetIndexOfDifficult(GameData.GameDifficult.Difficult);
-        DifficultTMP.text = _languageSettings.Difficult + " " + _languageSettings.DifficultTypes[indexDifficult];
+        DifficultTMP.text = LanguageSettings.Difficult + " " + LanguageSettings.DifficultTypes[indexDifficult];
 
         if (GameData.GameDifficult.Difficult >= DifficultsEnum.Hard)
         {
@@ -64,7 +66,7 @@ public class GameManager : MonoBehaviour
 
     public void CreateNewSide()
     {
-        CipherSide = _generationSide.GenerateSide(GameData.GameDifficult.Difficult, _lightsManager.lightColor, _languageSettings, out GameData.Side, out GameData.OneRightSide);
+        CipherSide = _generationSide.GenerateSide(GameData.GameDifficult.Difficult, _lightsManager.lightColor, out GameData.Side, out GameData.OneRightSide);
 
         if (GameData.GameDifficult.Difficult >= DifficultsEnum.Hard)
         {

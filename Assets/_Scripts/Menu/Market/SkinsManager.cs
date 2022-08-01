@@ -15,18 +15,11 @@ public class SkinsManager : MonoBehaviour
 
     public Skin CurrentSkin;
 
-    private LanguageSettings _languageSettings;
-
-    public void SetCurrentSkin(Skin skin)
-    {
-        CurrentSkin = skin;
-    }
-
     public void SaveSkins()
     {
         //Save in file
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/Skins.dat");
+        FileStream file = File.Create(Application.persistentDataPath + "/SaveData.dat");
         SaveData data = new SaveData();
 
         data.BoughtSkinsID.Clear();
@@ -55,13 +48,13 @@ public class SkinsManager : MonoBehaviour
 
     public void LoadSkins()
     {
-        if (File.Exists(Application.persistentDataPath + "/Skins.dat"))
+        if (File.Exists(Application.persistentDataPath + "/SaveData.dat"))
         {
             BoughtSkins.Clear();
             NotBoughtSkins.Clear();
 
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/Skins.dat", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/SaveData.dat", FileMode.Open);
             SaveData data = (SaveData)bf.Deserialize(file);
             file.Close();
 
@@ -99,21 +92,4 @@ public class SkinsManager : MonoBehaviour
             }
         }
     }
-
-    public void ResetData()
-    {
-        if (File.Exists(Application.persistentDataPath + "/SaveData.dat"))
-        {
-            File.Delete(Application.persistentDataPath + "/SaveData.dat");
-        }
-    }
-}
-
-[Serializable]
-class SaveData
-{
-    public List<int> BoughtSkinsID = new List<int>();
-    public List<int> NotBoughtSkinsID = new List<int>();
-
-    public int CurrentSkinID;
 }

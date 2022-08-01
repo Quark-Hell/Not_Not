@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 using UnityEngine;
 
 public enum LanguagesEnum
@@ -8,30 +11,25 @@ public enum LanguagesEnum
     Russian
 }
 
-public class LanguageSettings
+public static class LanguageSettings
 {
     public static LanguagesEnum Languages { get; private set; }
 
-    public string[] NamesOfSides { get; private set; }
-    public string[] NamesOfColors { get; private set; }
-    public string Negation { get; private set; }
+    public static string[] NamesOfSides { get; private set; }
+    public static string[] NamesOfColors { get; private set; }
+    public static string Negation { get; private set; }
 
-    public string Difficult { get; private set; }
+    public static string Difficult { get; private set; }
 
-    public string[] DifficultTypes { get; private set; }
+    public static string[] DifficultTypes { get; private set; }
 
-    public  string Bought { get; private set; }
-    public  string Selected { get; private set; }
+    public static string Bought { get; private set; }
+    public static string Selected { get; private set; }
 
-    private EnglishLanguage _eng = new EnglishLanguage();
-    private RussianLanguage _rus = new RussianLanguage();
+    private static EnglishLanguage _eng = new EnglishLanguage();
+    private static RussianLanguage _rus = new RussianLanguage();
 
-    public LanguageSettings()
-    {
-        SetLanguage(Languages);
-    }
-
-    public void SetLanguage(LanguagesEnum toLanguage)
+    public static void SetLanguage(LanguagesEnum toLanguage)
     {
         if (toLanguage == LanguagesEnum.English)
         {
@@ -59,6 +57,31 @@ public class LanguageSettings
         }
 
         Languages = toLanguage;
+    }
+
+    public static void SaveLanguage()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/SaveData.dat");
+        SaveData data = new SaveData();
+
+        data.Language = Languages;
+
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+    public static void LoadLanguage()
+    {
+        if (File.Exists(Application.persistentDataPath + "/SaveData.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/SaveData.dat", FileMode.Open);
+            SaveData data = (SaveData)bf.Deserialize(file);
+            file.Close();
+
+            Languages = data.Language;
+        }
     }
 }
 

@@ -1,5 +1,8 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 using UnityEngine;
 
 public class GameData
@@ -9,4 +12,25 @@ public class GameData
 
     public SidesEnum Side;
     public bool OneRightSide;
+
+    public void ResetData()
+    {
+        if (File.Exists(Application.persistentDataPath + "/SaveData.dat"))
+        {
+            File.Delete(Application.persistentDataPath + "/SaveData.dat");
+        }
+    }
+}
+
+[Serializable]
+public class SaveData
+{
+    public List<int> BoughtSkinsID = new List<int>();
+    public List<int> NotBoughtSkinsID = new List<int>();
+
+    public int CurrentSkinID;
+
+    public int Coins;
+
+    public LanguagesEnum Language;
 }

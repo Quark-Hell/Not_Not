@@ -38,7 +38,6 @@ public class MarketButton : MonoBehaviour
     [SerializeField] private float _pageShiftDuration;
 
     private EventSystem _eventSystem;
-    private LanguageSettings _languageSettings;
 
     private void Awake()
     {
@@ -46,7 +45,6 @@ public class MarketButton : MonoBehaviour
 
         _elapsed = _animationDelay;
 
-        _languageSettings = new LanguageSettings();
     }
 
     private void Update()
@@ -159,12 +157,12 @@ public class MarketButton : MonoBehaviour
                     selectAnimation.SetEase(Ease.InBack);
                     selectAnimation.OnComplete(() => clickedButton.DOScale(1, _selectDuration).SetEase(Ease.OutBack));
 
-                    _skinsManger.CurrentSkin.BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _languageSettings.Bought;
+                    _skinsManger.CurrentSkin.BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = LanguageSettings.Bought;
 
-                    _skinsManger.SetCurrentSkin(skin);
+                    _skinsManger.CurrentSkin = skin;
                     _skinsManger.SaveSkins();
 
-                    clickedButton.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = _languageSettings.Selected;
+                    clickedButton.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = LanguageSettings.Selected;
 
                     _elapsed = 0;
 

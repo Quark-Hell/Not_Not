@@ -17,7 +17,6 @@ public class GenerationSide
 
     private DifficultsEnum _difficult;
     private LightColor[] _lightColor;
-    private LanguageSettings _languageSettings;
 
     private bool IsOneSide()
     {
@@ -66,15 +65,15 @@ public class GenerationSide
             //Expamle output: "Right"
             if (hasAdditionalNegation)
             {
-                return _languageSettings.NamesOfSides[IndexOfSelectedSide];
+                return LanguageSettings.NamesOfSides[IndexOfSelectedSide];
             }
             //Expamle output: "Not Not Right"
-            return _languageSettings.Negation + " " + _languageSettings.Negation + " " + _languageSettings.NamesOfSides[IndexOfSelectedSide];
+            return LanguageSettings.Negation + " " + LanguageSettings.Negation + " " + LanguageSettings.NamesOfSides[IndexOfSelectedSide];
         }
         //Expamle output: "Not Right"
         else
         {
-            return _languageSettings.Negation + " " + _languageSettings.NamesOfSides[IndexOfSelectedSide];
+            return LanguageSettings.Negation + " " + LanguageSettings.NamesOfSides[IndexOfSelectedSide];
         }
     }
     private string CihpherColor(bool isOneRightSide)
@@ -91,16 +90,16 @@ public class GenerationSide
             //Expamle output: "Red"
             if (hasAdditionalNegation)
             {
-                return _languageSettings.NamesOfColors[randColor];
+                return LanguageSettings.NamesOfColors[randColor];
             }
             //Expamle output: "Not Not Red"
-            return _languageSettings.Negation + " " + _languageSettings.Negation + " " + _languageSettings.NamesOfColors[randColor];
+            return LanguageSettings.Negation + " " + LanguageSettings.Negation + " " + LanguageSettings.NamesOfColors[randColor];
         }
         //Expamle output: "Not Red"
         else
         {
             _lightColor[randColor].IsSelected = true;
-            return _languageSettings.Negation + " " + _languageSettings.NamesOfColors[randColor];
+            return LanguageSettings.Negation + " " + LanguageSettings.NamesOfColors[randColor];
         }
     }
 
@@ -111,7 +110,7 @@ public class GenerationSide
             //TODO: Language
 
             case DifficultsEnum.Easy:
-                return _languageSettings.NamesOfSides[IndexOfSelectedSide];
+                return LanguageSettings.NamesOfSides[IndexOfSelectedSide];
 
             case DifficultsEnum.Medium:
                 return CihpherText(isOneRightSide);
@@ -136,11 +135,10 @@ public class GenerationSide
         }
     }
 
-    public string GenerateSide(DifficultsEnum difficultsEnum, LightColor[] lightColor, LanguageSettings languageSettings, out SidesEnum side, out bool isOneRightSide)
+    public string GenerateSide(DifficultsEnum difficultsEnum, LightColor[] lightColor, out SidesEnum side, out bool isOneRightSide)
     {
         _difficult = difficultsEnum;
         _lightColor = lightColor;
-        _languageSettings = languageSettings;
 
         InitializeSideEnum(out side, out isOneRightSide);
         DeselectLightColors();
