@@ -33,4 +33,9 @@ public class SaveData
     public int Coins;
 
     public LanguagesEnum Language;
+
+    public bool FlashEffect;
+
+    public float MusicVolume;
+    public float SoundVolume;
 }
