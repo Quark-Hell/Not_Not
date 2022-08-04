@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System;
+﻿using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
@@ -30,6 +28,8 @@ public static class LanguageSettings
     public static string Music { get; private set; }
     public static string Sound { get; private set; }
 
+
+    public static string Settings { get; private set; }
     public static string FlashEffect { get; private set; }
     public static string Language { get; private set; }
     public static string Save { get; private set; }
@@ -51,6 +51,8 @@ public static class LanguageSettings
             Bought = _eng.Bought;
             Selected = _eng.Selected;
 
+            Settings = _eng.Settings;
+
             Music = _eng.Music;
             Sound = _eng.Sound;
 
@@ -70,6 +72,8 @@ public static class LanguageSettings
 
             Bought = _rus.Bought;
             Selected = _rus.Selected;
+
+            Settings = _rus.Settings;
 
             Music = _rus.Music;
             Sound = _rus.Sound;
@@ -121,6 +125,8 @@ public class EnglishLanguage
     public readonly string Bought = "Bought";
     public readonly string Selected = "Selected";
 
+    public readonly string Settings = "Settings";
+
     public readonly string Music = "Music";
     public readonly string Sound = "Sound";
 
@@ -141,6 +147,8 @@ public class RussianLanguage
 
     public readonly string Bought = "Куплен";
     public readonly string Selected = "Выбран";
+
+    public readonly string Settings = "Настройки";
 
     public readonly string Music = "Музыка";
     public readonly string Sound = "Звуки";

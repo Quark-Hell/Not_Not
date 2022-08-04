@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class InitSettings : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI _settingsTMP;
+
     [SerializeField] private TextMeshProUGUI _musicTMP;
     [SerializeField] private TextMeshProUGUI _soundTMP;
 
@@ -11,6 +13,8 @@ public class InitSettings : MonoBehaviour
 
     public void InitLanguage()
     {
+        _settingsTMP.text = LanguageSettings.Settings;
+
         _musicTMP.text = LanguageSettings.Music;
         _soundTMP.text = LanguageSettings.Sound;
 

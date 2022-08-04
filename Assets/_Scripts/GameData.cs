@@ -13,6 +13,11 @@ public class GameData
     public SidesEnum Side;
     public bool OneRightSide;
 
+    public bool FlashEffect { get; private set; }
+
+    public float MusicVolume { get; private set; }
+    public float SoundVolume { get; private set; }
+
     public void ResetData()
     {
         if (File.Exists(Application.persistentDataPath + "/SaveData.dat"))

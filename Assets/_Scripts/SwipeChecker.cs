@@ -1,11 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 using UnityEngine;
 
 public class SwipeChecker : MonoBehaviour
 {
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private CubeMovement _cubeMovement;
+
+    private bool _hasFlashEffect;
+
+    private void Start()
+    {
+        if (File.Exists(Application.persistentDataPath + "/SaveData.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/SaveData.dat", FileMode.Open);
+            SaveData data = (SaveData)bf.Deserialize(file);
+            file.Close();
+
+            _hasFlashEffect = data.FlashEffect;
+        }
+    }
 
     public void SwipeUp()
     {
@@ -15,7 +31,10 @@ public class SwipeChecker : MonoBehaviour
             {
                 //_gameManager.GameData.GameDifficult.GetXP(10);
                 _cubeMovement.OnSwipeUp();
-                _gameManager._cubeEffects.BlindEffect(true);
+                if (_hasFlashEffect)
+                {
+                    _gameManager._cubeEffects.BlindEffect(true);
+                }
                 _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
                 _gameManager.CreateNewSide();
                 return;
@@ -26,7 +45,10 @@ public class SwipeChecker : MonoBehaviour
         {
             //_gameManager.GameData.GameDifficult.GetXP(10);
             _cubeMovement.OnSwipeUp();
-            _gameManager._cubeEffects.BlindEffect(true);
+            if (_hasFlashEffect)
+            {
+                _gameManager._cubeEffects.BlindEffect(true);
+            }
             _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
             _gameManager.CreateNewSide();
             return;
@@ -44,7 +66,10 @@ public class SwipeChecker : MonoBehaviour
             {
                 //_gameManager.GameData.GameDifficult.GetXP(10);
                 _cubeMovement.OnSwipeDown();
-                _gameManager._cubeEffects.BlindEffect(true);
+                if (_hasFlashEffect)
+                {
+                    _gameManager._cubeEffects.BlindEffect(true);
+                }
                 _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
                 _gameManager.CreateNewSide();
                 return;
@@ -55,7 +80,10 @@ public class SwipeChecker : MonoBehaviour
         {
             //_gameManager.GameData.GameDifficult.GetXP(10);
             _cubeMovement.OnSwipeDown();
-            _gameManager._cubeEffects.BlindEffect(true);
+            if (_hasFlashEffect)
+            {
+                _gameManager._cubeEffects.BlindEffect(true);
+            }
             _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
             _gameManager.CreateNewSide();
             return;
@@ -73,7 +101,10 @@ public class SwipeChecker : MonoBehaviour
             {
                 //_gameManager.GameData.GameDifficult.GetXP(10);
                 _cubeMovement.OnSwipeLeft();
-                _gameManager._cubeEffects.BlindEffect(true);
+                if (_hasFlashEffect)
+                {
+                    _gameManager._cubeEffects.BlindEffect(true);
+                }
                 _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
                 _gameManager.CreateNewSide();
                 return;
@@ -84,7 +115,10 @@ public class SwipeChecker : MonoBehaviour
         {
             //_gameManager.GameData.GameDifficult.GetXP(10);
             _cubeMovement.OnSwipeLeft();
-            _gameManager._cubeEffects.BlindEffect(true);
+            if (_hasFlashEffect)
+            {
+                _gameManager._cubeEffects.BlindEffect(true);
+            }
             _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
             _gameManager.CreateNewSide();
             return;
@@ -102,7 +136,10 @@ public class SwipeChecker : MonoBehaviour
             {
                 //_gameManager.GameData.GameDifficult.GetXP(10);
                 _cubeMovement.OnSwipeRight();
-                _gameManager._cubeEffects.BlindEffect(true);
+                if (_hasFlashEffect)
+                {
+                    _gameManager._cubeEffects.BlindEffect(true);
+                }
                 _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
                 _gameManager.CreateNewSide();
                 return;
@@ -113,7 +150,10 @@ public class SwipeChecker : MonoBehaviour
         {
             //_gameManager.GameData.GameDifficult.GetXP(10);
             _cubeMovement.OnSwipeRight();
-            _gameManager._cubeEffects.BlindEffect(true);
+            if (_hasFlashEffect)
+            {
+                _gameManager._cubeEffects.BlindEffect(true);
+            }
             _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
             _gameManager.CreateNewSide();
             return;
