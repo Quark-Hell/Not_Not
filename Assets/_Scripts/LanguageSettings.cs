@@ -153,7 +153,7 @@ public class RussianLanguage
     public readonly string Music = "Музыка";
     public readonly string Sound = "Звуки";
 
-    public readonly string FlashEffect = "Эффект Вспышки";
+    public readonly string FlashEffect = "Вспышка";
     public readonly string Language = "Русский";
 
     public readonly string Save = "Сохранить";
