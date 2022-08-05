@@ -69,7 +69,7 @@ public class CubeEffects : MonoBehaviour
         Levitation();
     }
 
-    void IdleAnimation()
+    public void IdleAnimation()
     {
         _idleAnimation = DOTween.Sequence();
         _idleAnimation.PrependInterval(_startInterval);
@@ -88,7 +88,7 @@ public class CubeEffects : MonoBehaviour
         _idleAnimation.SetEase(Ease.InOutSine);
     }
 
-    void Levitation()
+    public void Levitation()
     {
         Sequence s = DOTween.Sequence();
 

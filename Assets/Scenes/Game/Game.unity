@@ -189,13 +189,13 @@ MonoBehaviour:
   _audioSource: {fileID: 2451231}
   _menuManager: {fileID: 0}
   _hasIdleAnimation: 0
-  _hasLevitationAnimation: 1
+  _hasLevitationAnimation: 0
   _piece: []
   _startInterval: 0
   _endInterval: 0
   _idleDuration: 0
   _cube: {fileID: 2451227}
-  _levitationSpeed: 50
+  _levitationSpeed: 130
   _levitationAmplitude: 0.4
   _blindImage: {fileID: 768320305}
   _maxAlpha: 50
@@ -336,7 +336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05911111, y: 0.20513676}
   m_AnchorMax: {x: 0.9388889, y: 0.8}
-  m_AnchoredPosition: {x: -90.0189, y: -756.8264}
+  m_AnchoredPosition: {x: -90.0189, y: -756.8172}
   m_SizeDelta: {x: 815.1813, y: 1307.2656}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &93623536
@@ -520,7 +520,7 @@ VideoPlayer:
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 1
-  m_WaitForFirstFrame: 1
+  m_WaitForFirstFrame: 0
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
 --- !u!82 &165654814
@@ -928,7 +928,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.82000005, y: 0.0064188037}
   m_AnchorMax: {x: 1, y: 0.08457265}
-  m_AnchoredPosition: {x: -302.22028, y: 86.03187}
+  m_AnchoredPosition: {x: -302.22028, y: 86.03302}
   m_SizeDelta: {x: -11.141979, y: 133.12874}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &438922482
@@ -3279,9 +3279,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _volume: {fileID: 2014760254}
+  _cubeEffects: {fileID: 2451230}
   _zero: -100
   _normal: 27
-  _grayscaleDuration: 1
+  _grayscaleDuration: 1.5
 --- !u!1 &1900851463
 GameObject:
   m_ObjectHideFlags: 0
