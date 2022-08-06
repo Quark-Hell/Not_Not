@@ -35,29 +35,16 @@ public class SwipeChecker : MonoBehaviour
         {
             if (_gameManager.GameData.Side == SidesEnum.Up)
             {
-                //_gameManager.GameData.GameDifficult.GetXP(10);
                 _cubeMovement.OnSwipeUp();
-                if (_hasFlashEffect)
-                {
-                    _gameManager._cubeEffects.BlindEffect(true);
-                }
-                _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
-                _gameManager.CreateNewSide();
+                NextSie();
                 return;
             }
         }
 
         if ((_gameManager.GameData.Side & SidesEnum.Up) == SidesEnum.Up)
         {
-            //_gameManager.GameData.GameDifficult.GetXP(10);
             _cubeMovement.OnSwipeUp();
-            if (_hasFlashEffect)
-            {
-                _gameManager._cubeEffects.BlindEffect(true);
-            }
-            _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
-            _gameManager.CreateNewSide();
-            return;
+            NextSie();
         }
 
         _gameManager.CreateNewSide();
@@ -75,28 +62,16 @@ public class SwipeChecker : MonoBehaviour
         {
             if (_gameManager.GameData.Side == SidesEnum.Down)
             {
-                //_gameManager.GameData.GameDifficult.GetXP(10);
                 _cubeMovement.OnSwipeDown();
-                if (_hasFlashEffect)
-                {
-                    _gameManager._cubeEffects.BlindEffect(true);
-                }
-                _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
-                _gameManager.CreateNewSide();
+                NextSie();
                 return;
             }
         }
 
         if ((_gameManager.GameData.Side & SidesEnum.Down) == SidesEnum.Down)
         {
-            //_gameManager.GameData.GameDifficult.GetXP(10);
             _cubeMovement.OnSwipeDown();
-            if (_hasFlashEffect)
-            {
-                _gameManager._cubeEffects.BlindEffect(true);
-            }
-            _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
-            _gameManager.CreateNewSide();
+            NextSie();
             return;
         }
 
@@ -115,28 +90,16 @@ public class SwipeChecker : MonoBehaviour
         {
             if (_gameManager.GameData.Side == SidesEnum.Left)
             {
-                //_gameManager.GameData.GameDifficult.GetXP(10);
                 _cubeMovement.OnSwipeLeft();
-                if (_hasFlashEffect)
-                {
-                    _gameManager._cubeEffects.BlindEffect(true);
-                }
-                _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
-                _gameManager.CreateNewSide();
+                NextSie();
                 return;
             }
         }
 
         if ((_gameManager.GameData.Side & SidesEnum.Left) == SidesEnum.Left)
         {
-            //_gameManager.GameData.GameDifficult.GetXP(10);
             _cubeMovement.OnSwipeLeft();
-            if (_hasFlashEffect)
-            {
-                _gameManager._cubeEffects.BlindEffect(true);
-            }
-            _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
-            _gameManager.CreateNewSide();
+            NextSie();
             return;
         }
 
@@ -155,32 +118,31 @@ public class SwipeChecker : MonoBehaviour
         {
             if (_gameManager.GameData.Side == SidesEnum.Right)
             {
-                //_gameManager.GameData.GameDifficult.GetXP(10);
                 _cubeMovement.OnSwipeRight();
-                if (_hasFlashEffect)
-                {
-                    _gameManager._cubeEffects.BlindEffect(true);
-                }
-                _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
-                _gameManager.CreateNewSide();
+                NextSie();
                 return;
             }
         }
 
         if ((_gameManager.GameData.Side & SidesEnum.Right) == SidesEnum.Right)
         {
-            //_gameManager.GameData.GameDifficult.GetXP(10);
             _cubeMovement.OnSwipeRight();
-            if (_hasFlashEffect)
-            {
-                _gameManager._cubeEffects.BlindEffect(true);
-            }
-            _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
-            _gameManager.CreateNewSide();
+            NextSie();
             return;
         }
 
         _gameManager.CreateNewSide();
         _gameManager.WrongSide();
+    }
+
+    private void NextSie()
+    {
+        if (_hasFlashEffect)
+        {
+            _gameManager._cubeEffects.BlindEffect(true);
+        }
+        _gameManager.GameData.GameDifficult.GetXP(1);
+        _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
+        _gameManager.CreateNewSide();
     }
 }

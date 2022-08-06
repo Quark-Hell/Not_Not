@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI DifficultTMP;
 
+    [SerializeField] private TextMeshProUGUI ScoreTMP;
+
     [SerializeField] private TextMeshProUGUI CipherTMP;
     private string CipherSide;
 
@@ -28,7 +30,7 @@ public class GameManager : MonoBehaviour
         _generationSide = new GenerationSide();
         GameData = new GameData();
 
-        GameData.GameDifficult.GetXP(50);//Cheat
+        //GameData.GameDifficult.GetXP(50);//Cheat
         GameData.PlayerHealth.Hit(-3);
 
         LanguageSettings.LoadLanguage();
@@ -60,6 +62,8 @@ public class GameManager : MonoBehaviour
         {
             _lightsManager.ChangeTextColors(CipherTMP);
         }
+
+        ScoreTMP.text = GameData.GameDifficult.XP.ToString();
 
         CipherTMP.text = CipherSide;
     }

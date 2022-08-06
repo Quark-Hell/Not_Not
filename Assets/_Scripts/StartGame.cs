@@ -12,6 +12,7 @@ public class StartGame : MonoBehaviour
     [SerializeField] private Volume _volume;
     [SerializeField] private CubeEffects _cubeEffects;
     [SerializeField] private GameManager _gameManager;
+    [SerializeField] private Timer _timer;
 
     public bool IsStartingGame { get; private set;}
 
@@ -50,6 +51,7 @@ public class StartGame : MonoBehaviour
     {
         IsStartingGame = true;
 
+        _timer.IsRunning = true;
         _gameManager.CreateNewSide();
         _getReady.DOFontSize(0, _changeScaleDuration).SetEase(Ease.InBack);
         _cubeEffects.Levitation();

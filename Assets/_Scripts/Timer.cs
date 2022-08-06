@@ -6,6 +6,7 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private Image TimerBar;
+    public bool IsRunning;
 
     public float TimeToFall;
     private float _elapsed;
@@ -18,9 +19,11 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(IsRunning)
         ChangeTimerBar();
     }
-     
+
+
     public void ResetTimerBar()
     {
         TimerBar.fillAmount = 1;

@@ -20,9 +20,9 @@ public class GameDifficult
     [SerializeField] private float maxHardXP = 100;
     [SerializeField] private float maxHardPlusXP = 300;
 
-    public float XP { get; private set; }
+    public int XP { get; private set; }
 
-    public void GetXP(float xp)
+    public void GetXP(int xp)
     {
         XP += xp;
 
