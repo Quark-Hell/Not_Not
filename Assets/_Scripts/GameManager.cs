@@ -35,9 +35,9 @@ public class GameManager : MonoBehaviour
         LanguageSettings.SetLanguage(LanguageSettings.Languages);
 
         Money.LoadMoney();
-
-        CreateNewSide();
     }
+
+
 
     private int GetIndexOfDifficult(DifficultsEnum sidesEnum)
     {

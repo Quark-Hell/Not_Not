@@ -11,6 +11,8 @@ public class StartGame : MonoBehaviour
 {
     [SerializeField] private Volume _volume;
     [SerializeField] private CubeEffects _cubeEffects;
+    [SerializeField] private GameManager _gameManager;
+
     public bool IsStartingGame { get; private set;}
 
     [Header("Black And White Effect")]
@@ -19,8 +21,14 @@ public class StartGame : MonoBehaviour
     [SerializeField] private float _grayscaleDuration;
     private ColorAdjustments _colorAdjustments;
 
+    [Header("Get Ready Text")]
+    [SerializeField] private TextMeshProUGUI _getReady;
+    [SerializeField] private float normalSize;
+    [SerializeField] private float _changeScaleDuration;
+
     void Start()
     {
+        _getReady.DOFontSize(normalSize, _changeScaleDuration).SetEase(Ease.OutBack);
         GrayscaleEffect();
     }
 
@@ -42,6 +50,8 @@ public class StartGame : MonoBehaviour
     {
         IsStartingGame = true;
 
+        _gameManager.CreateNewSide();
+        _getReady.DOFontSize(0, _changeScaleDuration).SetEase(Ease.InBack);
         _cubeEffects.Levitation();
     }
 }

@@ -7,6 +7,7 @@ public class SwipeChecker : MonoBehaviour
 {
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private CubeMovement _cubeMovement;
+    [SerializeField] private StartGame _startGame;
 
     private bool _hasFlashEffect;
 
@@ -25,6 +26,11 @@ public class SwipeChecker : MonoBehaviour
 
     public void SwipeUp()
     {
+        if (!_startGame.IsStartingGame)
+        {
+            return;
+        }
+
         if (_gameManager.GameData.OneRightSide)
         {
             if (_gameManager.GameData.Side == SidesEnum.Up)
@@ -60,6 +66,11 @@ public class SwipeChecker : MonoBehaviour
 
     public void SwipeDown()
     {
+        if (!_startGame.IsStartingGame)
+        {
+            return;
+        }
+
         if (_gameManager.GameData.OneRightSide)
         {
             if (_gameManager.GameData.Side == SidesEnum.Down)
@@ -95,6 +106,11 @@ public class SwipeChecker : MonoBehaviour
 
     public void SwipeLeft()
     {
+        if (!_startGame.IsStartingGame)
+        {
+            return;
+        }
+
         if (_gameManager.GameData.OneRightSide)
         {
             if (_gameManager.GameData.Side == SidesEnum.Left)
@@ -130,6 +146,11 @@ public class SwipeChecker : MonoBehaviour
 
     public void SwipeRight()
     {
+        if (!_startGame.IsStartingGame)
+        {
+            return;
+        }
+
         if (_gameManager.GameData.OneRightSide)
         {
             if (_gameManager.GameData.Side == SidesEnum.Right)
