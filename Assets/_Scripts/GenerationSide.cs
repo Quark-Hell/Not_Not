@@ -105,8 +105,6 @@ public class GenerationSide
     {
         switch (_difficult)
         {
-            //TODO: Language
-
             case DifficultsEnum.Easy:
                 return LanguageSettings.NamesOfSides[IndexOfSelectedSide];
 
@@ -116,11 +114,13 @@ public class GenerationSide
             case DifficultsEnum.Hard:
                 return CihpherColor(isOneRightSide);
 
+            //TODO:
             case DifficultsEnum.HardPlus:
                 return CihpherColor(isOneRightSide);
 
+            //TODO:
             case DifficultsEnum.Madness:
-                return "";
+                return CihpherColor(isOneRightSide);
         }
         return "";
     }

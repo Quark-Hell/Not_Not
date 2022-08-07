@@ -13,7 +13,7 @@ public class ShowFPS : MonoBehaviour
         style.fontSize = 32;
         style.fontStyle = FontStyle.Bold;
 
-        Application.targetFrameRate = 300;
+        Application.targetFrameRate = 1000;
     }
 
     void OnGUI()
