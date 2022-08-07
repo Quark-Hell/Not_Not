@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI HealthTMP;
 
-    [SerializeField] private Timer _timer;
+    [SerializeField] private TimerGUI _timer;
 
     private void Start()
     {

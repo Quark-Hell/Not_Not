@@ -1,46 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine;
+using DG.Tweening;
 
-public class Timer : MonoBehaviour
+public class Timer
 {
-    [SerializeField] private Image TimerBar;
-    public bool IsRunning;
+    public float Duration { get; private set; }
+    public float Elapsed { get; private set; }
 
-    public float TimeToFall;
-    private float _elapsed;
+    public delegate void EndTimerHandler();
+    public event EndTimerHandler? EndTimer;
 
-    void Start()
+    private Tween _timerTween;
+
+    public void SetTimerDuration(float duration)
     {
-        _elapsed = TimeToFall;
+        Duration = duration;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ResetTimer()
     {
-        if(IsRunning)
-        ChangeTimerBar();
+        _timerTween.Kill();
+        SetTimer();
     }
 
-
-    public void ResetTimerBar()
+    public void CompleteTimer()
     {
-        TimerBar.fillAmount = 1;
-        _elapsed = TimeToFall;
+        OnCompleteTimer();
+        _timerTween.Complete();
     }
 
-    private void ChangeTimerBar()
+    private void SetTimer()
     {
-        if (_elapsed - Time.deltaTime >=0)
+        _timerTween = DOVirtual.Float(0, Duration, Duration, t =>
         {
-            _elapsed -= Time.deltaTime;
-        }
-        else
-        {
-            _elapsed = 0;
-        }
+            Elapsed = t;
+        }).SetEase(Ease.Linear).OnComplete(() => OnCompleteTimer());
+    }
 
-        TimerBar.fillAmount = Mathf.Lerp(0, 1, _elapsed / TimeToFall);
+    private void OnCompleteTimer()
+    {
+        EndTimer?.Invoke();
     }
 }

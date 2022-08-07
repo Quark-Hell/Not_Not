@@ -195,7 +195,7 @@ MonoBehaviour:
   _endInterval: 0
   _idleDuration: 0
   _cube: {fileID: 2451227}
-  _levitationSpeed: 130
+  _levitationSpeed: 200
   _levitationAmplitude: 0.4
   _blindImage: {fileID: 768320305}
   _maxAlpha: 50
@@ -336,7 +336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05911111, y: 0.20513676}
   m_AnchorMax: {x: 0.9388889, y: 0.8}
-  m_AnchoredPosition: {x: -90.0189, y: -756.81116}
+  m_AnchoredPosition: {x: -90.0189, y: -756.80804}
   m_SizeDelta: {x: 815.1813, y: 1307.2656}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &93623536
@@ -833,8 +833,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 351.57, y: -127.7}
-  m_SizeDelta: {x: 300.2, y: 102.6}
+  m_AnchoredPosition: {x: 348.05, y: -127.7}
+  m_SizeDelta: {x: 293.17, y: 102.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &416394194
 MonoBehaviour:
@@ -973,7 +973,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.82000005, y: 0.0064188037}
   m_AnchorMax: {x: 1, y: 0.08457265}
-  m_AnchoredPosition: {x: -302.22028, y: 86.033775}
+  m_AnchoredPosition: {x: -302.22028, y: 86.034164}
   m_SizeDelta: {x: -11.141979, y: 133.12874}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &438922482
@@ -2498,12 +2498,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1038876804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5945da9424ff1c54eaca4474d5416f63, type: 3}
+  m_Script: {fileID: 11500000, guid: ebeaddbb86fd711469cfb0f6d5ea9503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TimerBar: {fileID: 351121255}
-  IsRunning: 0
-  TimeToFall: 3.81
+  _timerDiration: 2
 --- !u!114 &1038876807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3654,7 +3653,6 @@ MonoBehaviour:
   _volume: {fileID: 2014760254}
   _cubeEffects: {fileID: 2451230}
   _gameManager: {fileID: 1897533275}
-  _timer: {fileID: 1038876806}
   _zero: -100
   _normal: 27
   _grayscaleDuration: 1.5

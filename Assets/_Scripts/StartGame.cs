@@ -51,7 +51,6 @@ public class StartGame : MonoBehaviour
     {
         IsStartingGame = true;
 
-        _timer.IsRunning = true;
         _gameManager.CreateNewSide();
         _getReady.DOFontSize(0, _changeScaleDuration).SetEase(Ease.InBack);
         _cubeEffects.Levitation();
