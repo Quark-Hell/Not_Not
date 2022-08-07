@@ -12,8 +12,6 @@ public class ShowFPS : MonoBehaviour
         style.normal.textColor = Color.white;
         style.fontSize = 32;
         style.fontStyle = FontStyle.Bold;
-
-        Application.targetFrameRate = 1000;
     }
 
     void OnGUI()
