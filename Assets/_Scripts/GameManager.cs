@@ -25,6 +25,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TimerGUI _timerGUI;
 
+    [SerializeField] private GameObject _loosMenu;
+
+    [Header("Black And White Effect")]
+    [SerializeField] private StartGame _startGame;
+    [SerializeField] private float _zero;
+    [SerializeField] private float _normal;
+    [SerializeField] private float _grayscaleDuration;
+
     private void Start()
     {
         _generationSide = new GenerationSide();
@@ -40,7 +48,6 @@ public class GameManager : MonoBehaviour
 
         _timerGUI._timer.EndTimer += WrongSide;
     }
-
 
     private int GetIndexOfDifficult(DifficultsEnum sidesEnum)
     {
@@ -91,17 +98,30 @@ public class GameManager : MonoBehaviour
 
     public void WrongSide()
     {
+        if (GameData.PlayerHealth.HealthPoints <= 0)
+        {
+            Loos();
+            return;
+        }
+
         _cubeEffects.Shake();
         GameData.PlayerHealth.Hit(1);
         HealthTMP.text = GameData.PlayerHealth.HealthPoints.ToString();
-
-        if (GameData.PlayerHealth.HealthPoints <= 0)
-            Loos();
+        CreateNewSide();
     }
 
     private void Loos()
     {
         _timerGUI._timer.EndTimer -= WrongSide;
+        _timerGUI._timer.EndTimer -= _timerGUI.ResetTimerBar;
+        _timerGUI._timer.CompleteTimer();
+
+        _startGame.IsStartingGame = false;
+
+        _loosMenu.SetActive(true);
+        _cubeEffects.StopLevitation();
+        _cubeEffects.FallCube();
+        _startGame.BlackAndWhiteEffect(_zero, _normal, _grayscaleDuration);
         print("Nope");
     }
 }

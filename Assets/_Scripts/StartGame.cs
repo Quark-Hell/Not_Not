@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine.Rendering;
@@ -14,7 +12,7 @@ public class StartGame : MonoBehaviour
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private Timer _timer;
 
-    public bool IsStartingGame { get; private set;}
+    public bool IsStartingGame;
 
     [Header("Black And White Effect")]
     [SerializeField] private float _zero;
@@ -27,10 +25,24 @@ public class StartGame : MonoBehaviour
     [SerializeField] private float normalSize;
     [SerializeField] private float _changeScaleDuration;
 
-    void Start()
+    private void Start()
     {
         _getReady.DOFontSize(normalSize, _changeScaleDuration).SetEase(Ease.OutBack);
         GrayscaleEffect();
+    }
+
+    public void BlackAndWhiteEffect(float zero, float normal, float duration)
+    {
+        if (_volume.profile.TryGet<ColorAdjustments>(out _colorAdjustments))
+        {
+            ClampedFloatParameter tmp = _colorAdjustments.saturation;
+
+            DOVirtual.Float(zero, normal, duration, t =>
+            {
+                tmp.value = t;
+                _colorAdjustments.saturation = tmp;
+            }).SetEase(Ease.InSine);
+        }
     }
 
     private void GrayscaleEffect()

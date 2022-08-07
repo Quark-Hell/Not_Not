@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
@@ -42,6 +40,7 @@ public class CubeEffects : MonoBehaviour
     [SerializeField] private GameObject _cube;
     [SerializeField] private float _levitationSpeed;
     [SerializeField] private float _levitationAmplitude;
+    private float _startYPos;
 
     [Header("Blind Animation")]
     [SerializeField] private Image _blindImage;
@@ -52,6 +51,10 @@ public class CubeEffects : MonoBehaviour
     [Header("Shake Animation")]
     [SerializeField] private float _shakeDuration;
     [SerializeField] private AudioClip _shakeAudio;
+
+    [Header("Fall Cube")]
+    [SerializeField] private float _fallRange;
+    [SerializeField] private float _fallDuration;
 
     [Header("Animation")]
     private Sequence _idleAnimation;
@@ -90,13 +93,23 @@ public class CubeEffects : MonoBehaviour
 
     public void Levitation()
     {
-        Sequence s = DOTween.Sequence();
-
+        _startYPos = _cube.transform.position.y;
         float endPos = _cube.transform.position.y + _levitationAmplitude;
 
         _levitationAnimation = _cube.transform.DOMoveY(endPos,_levitationSpeed * Time.deltaTime);
         _levitationAnimation.SetEase(Ease.InOutSine);
         _levitationAnimation.SetLoops(-1, LoopType.Yoyo);
+    }
+
+    public void StopLevitation()
+    {
+        _levitationAnimation.Kill();
+    }
+
+    public void FallCube()
+    {
+        _levitationAnimation = _cube.transform.DOMoveY(_fallRange, _fallDuration);
+        _levitationAnimation.SetEase(Ease.InBack);
     }
 
     public void OpenCube()

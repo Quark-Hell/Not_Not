@@ -203,6 +203,8 @@ MonoBehaviour:
   _blindingAudio: {fileID: 0}
   _shakeDuration: 0.5
   _shakeAudio: {fileID: 8300000, guid: daf8e20be349ba846b1794623c8cecc7, type: 3}
+  _fallRange: -15
+  _fallDuration: 1
 --- !u!82 &2451231
 AudioSource:
   m_ObjectHideFlags: 0
@@ -336,7 +338,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05911111, y: 0.20513676}
   m_AnchorMax: {x: 0.9388889, y: 0.8}
-  m_AnchoredPosition: {x: -90.0189, y: -756.8068}
+  m_AnchoredPosition: {x: -90.0189, y: -756.8042}
   m_SizeDelta: {x: 815.1813, y: 1307.2656}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &93623536
@@ -973,7 +975,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.82000005, y: 0.0064188037}
   m_AnchorMax: {x: 1, y: 0.08457265}
-  m_AnchoredPosition: {x: -302.22028, y: 86.03432}
+  m_AnchoredPosition: {x: -302.22028, y: 86.034645}
   m_SizeDelta: {x: -11.141979, y: 133.12874}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &438922482
@@ -2726,7 +2728,7 @@ GameObject:
   - component: {fileID: 1329928422}
   - component: {fileID: 1329928421}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Loos Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3604,6 +3606,11 @@ MonoBehaviour:
   CipherTMP: {fileID: 1544440389}
   HealthTMP: {fileID: 1806637271}
   _timerGUI: {fileID: 1038876806}
+  _loosMenu: {fileID: 1329928419}
+  _startGame: {fileID: 1897533277}
+  _zero: 27
+  _normal: -100
+  _grayscaleDuration: 1
 --- !u!114 &1897533276
 MonoBehaviour:
   m_ObjectHideFlags: 0

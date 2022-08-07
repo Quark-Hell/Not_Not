@@ -47,7 +47,6 @@ public class SwipeChecker : MonoBehaviour
             NextSide();
         }
 
-        _gameManager.CreateNewSide();
         _gameManager.WrongSide();
     }
 
@@ -75,7 +74,6 @@ public class SwipeChecker : MonoBehaviour
             return;
         }
 
-        _gameManager.CreateNewSide();
         _gameManager.WrongSide();
     }
 
@@ -103,7 +101,6 @@ public class SwipeChecker : MonoBehaviour
             return;
         }
 
-        _gameManager.CreateNewSide();
         _gameManager.WrongSide();
     }
 
@@ -131,7 +128,6 @@ public class SwipeChecker : MonoBehaviour
             return;
         }
 
-        _gameManager.CreateNewSide();
         _gameManager.WrongSide();
     }
 
