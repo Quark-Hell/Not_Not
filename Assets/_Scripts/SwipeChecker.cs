@@ -36,7 +36,7 @@ public class SwipeChecker : MonoBehaviour
             if (_gameManager.GameData.Side == SidesEnum.Up)
             {
                 _cubeMovement.OnSwipeUp();
-                NextSie();
+                NextSide();
                 return;
             }
         }
@@ -44,7 +44,7 @@ public class SwipeChecker : MonoBehaviour
         if ((_gameManager.GameData.Side & SidesEnum.Up) == SidesEnum.Up)
         {
             _cubeMovement.OnSwipeUp();
-            NextSie();
+            NextSide();
         }
 
         _gameManager.CreateNewSide();
@@ -63,7 +63,7 @@ public class SwipeChecker : MonoBehaviour
             if (_gameManager.GameData.Side == SidesEnum.Down)
             {
                 _cubeMovement.OnSwipeDown();
-                NextSie();
+                NextSide();
                 return;
             }
         }
@@ -71,7 +71,7 @@ public class SwipeChecker : MonoBehaviour
         if ((_gameManager.GameData.Side & SidesEnum.Down) == SidesEnum.Down)
         {
             _cubeMovement.OnSwipeDown();
-            NextSie();
+            NextSide();
             return;
         }
 
@@ -91,7 +91,7 @@ public class SwipeChecker : MonoBehaviour
             if (_gameManager.GameData.Side == SidesEnum.Left)
             {
                 _cubeMovement.OnSwipeLeft();
-                NextSie();
+                NextSide();
                 return;
             }
         }
@@ -99,7 +99,7 @@ public class SwipeChecker : MonoBehaviour
         if ((_gameManager.GameData.Side & SidesEnum.Left) == SidesEnum.Left)
         {
             _cubeMovement.OnSwipeLeft();
-            NextSie();
+            NextSide();
             return;
         }
 
@@ -119,7 +119,7 @@ public class SwipeChecker : MonoBehaviour
             if (_gameManager.GameData.Side == SidesEnum.Right)
             {
                 _cubeMovement.OnSwipeRight();
-                NextSie();
+                NextSide();
                 return;
             }
         }
@@ -127,7 +127,7 @@ public class SwipeChecker : MonoBehaviour
         if ((_gameManager.GameData.Side & SidesEnum.Right) == SidesEnum.Right)
         {
             _cubeMovement.OnSwipeRight();
-            NextSie();
+            NextSide();
             return;
         }
 
@@ -135,7 +135,7 @@ public class SwipeChecker : MonoBehaviour
         _gameManager.WrongSide();
     }
 
-    private void NextSie()
+    private void NextSide()
     {
         if (_hasFlashEffect)
         {

@@ -336,7 +336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05911111, y: 0.20513676}
   m_AnchorMax: {x: 0.9388889, y: 0.8}
-  m_AnchoredPosition: {x: -90.0189, y: -756.80804}
+  m_AnchoredPosition: {x: -90.0189, y: -756.8068}
   m_SizeDelta: {x: 815.1813, y: 1307.2656}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &93623536
@@ -973,7 +973,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.82000005, y: 0.0064188037}
   m_AnchorMax: {x: 1, y: 0.08457265}
-  m_AnchoredPosition: {x: -302.22028, y: 86.034164}
+  m_AnchoredPosition: {x: -302.22028, y: 86.03432}
   m_SizeDelta: {x: -11.141979, y: 133.12874}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &438922482
@@ -3603,7 +3603,7 @@ MonoBehaviour:
   ScoreTMP: {fileID: 416394194}
   CipherTMP: {fileID: 1544440389}
   HealthTMP: {fileID: 1806637271}
-  _timer: {fileID: 1038876806}
+  _timerGUI: {fileID: 1038876806}
 --- !u!114 &1897533276
 MonoBehaviour:
   m_ObjectHideFlags: 0

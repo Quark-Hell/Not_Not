@@ -156,17 +156,9 @@ public class CubeEffects : MonoBehaviour
     {
         if (_shakeAnimation == null)
         {
-            if (_hasLevitationAnimation)
-            {
-
-                _levitationAnimation.Pause();
-                _audioSource.PlayOneShot(_shakeAudio);
-                _shakeAnimation = _cube.transform.DOShakePosition(_shakeDuration).OnComplete(() => ShakeComplete());
-                return;
-
-            }
-
-            _cube.transform.DOShakePosition(_shakeDuration);
+            _levitationAnimation.Pause();
+            _audioSource.PlayOneShot(_shakeAudio);
+            _shakeAnimation = _cube.transform.DOShakePosition(_shakeDuration).OnComplete(() => ShakeComplete());
         }
     }
 

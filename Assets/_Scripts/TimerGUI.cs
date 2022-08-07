@@ -6,7 +6,7 @@ public class TimerGUI : MonoBehaviour
     [SerializeField] private Image TimerBar;
     [SerializeField] private float _timerDiration;
 
-    private Timer _timer;
+    public Timer _timer { get; private set; }
 
     private void Start()
     {

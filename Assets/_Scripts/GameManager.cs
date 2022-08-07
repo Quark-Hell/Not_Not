@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI HealthTMP;
 
-    [SerializeField] private TimerGUI _timer;
+    [SerializeField] private TimerGUI _timerGUI;
 
     private void Start()
     {
@@ -37,8 +37,9 @@ public class GameManager : MonoBehaviour
         LanguageSettings.SetLanguage(LanguageSettings.Languages);
 
         Money.LoadMoney();
-    }
 
+        _timerGUI._timer.EndTimer += WrongSide;
+    }
 
 
     private int GetIndexOfDifficult(DifficultsEnum sidesEnum)
@@ -85,7 +86,7 @@ public class GameManager : MonoBehaviour
         print(GameData.GameDifficult.XP);
 
         UpdateText();
-        _timer.ResetTimerBar();
+        _timerGUI.ResetTimerBar();
     }
 
     public void WrongSide()
@@ -100,6 +101,7 @@ public class GameManager : MonoBehaviour
 
     private void Loos()
     {
+        _timerGUI._timer.EndTimer -= WrongSide;
         print("Nope");
     }
 }
