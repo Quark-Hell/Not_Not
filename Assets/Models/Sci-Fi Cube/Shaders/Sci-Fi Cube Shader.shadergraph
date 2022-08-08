@@ -746,20 +746,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "aee844a9e8a24119abb700a8cd591683"
-                },
-                "m_SlotId": 1
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "85cfba178dfd4669be39d1a913aefae7"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "b7cd597bc0474a3c9e3bfbd7cd731024"
                 },
                 "m_SlotId": 0
@@ -984,7 +970,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Strength",
     "m_StageCapability": 3,
-    "m_Value": 1.0,
+    "m_Value": 0.4000000059604645,
     "m_DefaultValue": 1.0,
     "m_Labels": []
 }
@@ -1173,7 +1159,7 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -58.0,
+            "x": -57.99997329711914,
             "y": 438.0,
             "width": 56.0,
             "height": 24.0
@@ -4629,9 +4615,9 @@
     },
     "m_Color": {
         "color": {
-            "r": 3.843087673187256,
-            "g": 1.2251267433166505,
-            "b": 0.23566113412380219,
+            "r": 0.12072526663541794,
+            "g": 1.921543836593628,
+            "b": 1.338038444519043,
             "a": 0.0
         },
         "mode": 1
@@ -4735,9 +4721,9 @@
     },
     "m_Color": {
         "color": {
-            "r": 47.937255859375,
-            "g": 2.9664080142974855,
-            "b": 0.2509808838367462,
+            "r": 0.24418459832668305,
+            "g": 3.0804827213287355,
+            "b": 3.5876352787017824,
             "a": 1.0
         },
         "mode": 1
@@ -6127,7 +6113,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Smoothness",
     "m_StageCapability": 2,
-    "m_Value": 0.0,
+    "m_Value": 0.5,
     "m_DefaultValue": 0.5,
     "m_Labels": []
 }

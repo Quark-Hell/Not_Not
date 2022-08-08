@@ -64,7 +64,8 @@ public class CubeButtons : MonoBehaviour
 
     private void MarketButton()
     {
-        //Open Market
+       _cubeEffects.OpenCube();
+        _cubeEffects.BlindEffect(false).OnComplete(() => _cubeEffects.LoadLevel("Market"));
     }
 
     private void CreditsButton()
@@ -80,6 +81,7 @@ public class CubeButtons : MonoBehaviour
     }
     private void SettingsButton()
     {
-        //Open Settings
+        _cubeEffects.OpenCube();
+        _cubeEffects.BlindEffect(false).OnComplete(() => _cubeEffects.LoadLevel("Settings"));
     }
 }
