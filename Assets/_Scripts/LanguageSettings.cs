@@ -110,6 +110,7 @@ public static class LanguageSettings
 
             Languages = data.Language;
         }
+        SetLanguage(Languages);
     }
 }
 

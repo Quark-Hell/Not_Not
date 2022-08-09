@@ -44,7 +44,7 @@ public class InitMarket : MonoBehaviour
 
         foreach (Skin skin in _skinsManager.NotBoughtSkins)
         {
-            skin.BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = LanguageSettings.Bought;
+            skin.BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = LanguageSettings.Bought;           
         }
 
         foreach (Skin skin in _skinsManager.BoughtSkins)
