@@ -120,7 +120,7 @@ public class EnglishLanguage
     public readonly string Negation = "Not";
 
     public readonly string Difficult = "Difficult:";
-    public readonly string[] DifficultTypes = { "Easy", "Medium,", "Hard", "Hard+", "Madness" };
+    public readonly string[] DifficultTypes = { "Easy", "Medium", "Hard", "Hard+", "Madness" };
 
     public readonly string Bought = "Bought";
     public readonly string Selected = "Selected";

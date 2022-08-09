@@ -137,7 +137,7 @@ public class SwipeChecker : MonoBehaviour
         {
             _gameManager._cubeEffects.BlindEffect(true);
         }
-        _gameManager.GameData.GameDifficult.GetXP(1);
+        _gameManager.GameData.GameDifficult.GetXP(1, _gameManager._timerGUI);
         _gameManager._cubeEffects.RandomChangeColorBackround(_gameManager.ColorListForBackround, _gameManager.Background);
         _gameManager.CreateNewSide();
     }

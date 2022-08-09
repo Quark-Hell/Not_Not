@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -15,6 +13,7 @@ public class SpawnSkin : MonoBehaviour
     void Awake()
     {
         Addressables.InstantiateAsync(LoadSkins(), _cubeParent);
+        print(_currentSkinID);
     }
 
     public AssetReferenceGameObject LoadSkins()

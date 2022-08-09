@@ -31,32 +31,12 @@ public class StartGame : MonoBehaviour
         GrayscaleEffect();
     }
 
-    public void BlackAndWhiteEffect(float zero, float normal, float duration)
-    {
-        if (_volume.profile.TryGet<ColorAdjustments>(out _colorAdjustments))
-        {
-            ClampedFloatParameter tmp = _colorAdjustments.saturation;
-
-            DOVirtual.Float(zero, normal, duration, t =>
-            {
-                tmp.value = t;
-                _colorAdjustments.saturation = tmp;
-            }).SetEase(Ease.InSine);
-        }
-    }
-
     private void GrayscaleEffect()
     {
-        if (_volume.profile.TryGet<ColorAdjustments>(out _colorAdjustments))
+        DOVirtual.Float(_zero, _normal, _grayscaleDuration, t =>
         {
-            ClampedFloatParameter tmp = _colorAdjustments.saturation;
 
-            DOVirtual.Float(_zero, _normal, _grayscaleDuration, t =>
-            {
-                tmp.value = t;
-                _colorAdjustments.saturation = tmp;
-            }).SetEase(Ease.InSine).OnComplete(() => StartGameAnimations()) ;
-        }
+        }).SetEase(Ease.InSine).OnComplete(() => StartGameAnimations());
     }
 
     private void StartGameAnimations()

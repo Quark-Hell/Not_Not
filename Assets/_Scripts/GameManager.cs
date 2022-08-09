@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
@@ -23,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI HealthTMP;
 
-    [SerializeField] private TimerGUI _timerGUI;
+    public TimerGUI _timerGUI;
 
     [SerializeField] private GameObject _loosMenu;
 
@@ -90,7 +88,6 @@ public class GameManager : MonoBehaviour
         }
 
         print(GameData.Side);
-        print(GameData.GameDifficult.XP);
 
         UpdateText();
         _timerGUI.ResetTimerBar();
@@ -121,7 +118,6 @@ public class GameManager : MonoBehaviour
         _loosMenu.SetActive(true);
         _cubeEffects.StopLevitation();
         _cubeEffects.FallCube();
-        _startGame.BlackAndWhiteEffect(_zero, _normal, _grayscaleDuration);
         print("Nope");
     }
 }
