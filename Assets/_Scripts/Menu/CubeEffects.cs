@@ -96,7 +96,7 @@ public class CubeEffects : MonoBehaviour
         _startYPos = _cube.transform.position.y;
         float endPos = _cube.transform.position.y + _levitationAmplitude;
 
-        _levitationAnimation = _cube.transform.DOMoveY(endPos,_levitationSpeed * Time.deltaTime);
+        _levitationAnimation = _cube.transform.DOMoveY(endPos,_levitationSpeed);
         _levitationAnimation.SetEase(Ease.InOutSine);
         _levitationAnimation.SetLoops(-1, LoopType.Yoyo);
     }
@@ -155,7 +155,7 @@ public class CubeEffects : MonoBehaviour
 
     public void LoadLevel(string scene)
     {
-        DOTween.KillAll();
+        DOTween.Clear();
         SceneManager.LoadScene(scene);
     }
 

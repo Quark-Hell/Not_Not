@@ -43,7 +43,7 @@ public class CreditsButton : MonoBehaviour
 
     public void LoadLevel(string scene)
     {
-        DOTween.KillAll();
+        DOTween.Clear();
         SceneManager.LoadScene(scene);
     }
 }

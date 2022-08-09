@@ -18,6 +18,6 @@ public class ViewAnimation : MonoBehaviour
 
     void Animation()
     {
-        transform.DOLocalMoveY(_yShift, _animationDuration * Time.deltaTime).SetDelay(_animationDelay);
+        transform.DOLocalMoveY(_yShift, _animationDuration).SetDelay(_animationDelay);
     }
 }
