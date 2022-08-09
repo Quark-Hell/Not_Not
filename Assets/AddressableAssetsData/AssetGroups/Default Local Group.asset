@@ -37,6 +37,30 @@ MonoBehaviour:
     m_Address: Assets/Models/Floppa Cube/Skin 5.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 9c64c8133f7e8834abe957e434b2e6a5
+    m_Address: Assets/Models/Impossible cube/Cube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 566f5ad12b4b6b7458395ff13a9251b7
+    m_Address: Assets/Models/Maze Cube/Cube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5427cf4a0a94a3d429c69ffe81613821
+    m_Address: Assets/Models/Mysterious cube/Cube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 929b63162f6ce9544b55e492768a0b0d
+    m_Address: Assets/Models/Obsidian Cube/Cube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 11229dd16b8d0a74a9ecbb6ab6b72f0f
+    m_Address: Assets/Models/Portal Weighted Cimpanion Cube/Cube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a7a8c67711769ba46ae869548f7672af
+    m_Address: Assets/Models/Rubiks cube 3x3/Cube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 2dbed8ab010aef944834e477b83cfb0f, type: 2}
   m_SchemaSet:

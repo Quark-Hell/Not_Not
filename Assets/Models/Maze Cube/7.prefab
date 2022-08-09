@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8098903882599105150}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,15 +44,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d6c94956caba0a34ca7751ab0c6c0533, type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d6c94956caba0a34ca7751ab0c6c0533, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d6c94956caba0a34ca7751ab0c6c0533, type: 3}
       propertyPath: m_LocalScale.z
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d6c94956caba0a34ca7751ab0c6c0533, type: 3}
       propertyPath: m_LocalPosition.x

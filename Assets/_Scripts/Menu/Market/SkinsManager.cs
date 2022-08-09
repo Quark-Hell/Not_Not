@@ -39,6 +39,7 @@ public class SkinsManager : MonoBehaviour
             if (BoughtSkins[i].IdSkin == CurrentSkin.IdSkin)
             {
                 data.CurrentSkinID = BoughtSkins[i].IdSkin;
+                print(data.CurrentSkinID);
                 break;
             }
         }

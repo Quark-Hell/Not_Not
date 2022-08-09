@@ -20,7 +20,7 @@ public class GameDifficult
     [SerializeField] private float HardPlusXP = 100;
     [SerializeField] private float MadnessXP = 150;
 
-    [SerializeField] private float MediumTimer = 1.5f;
+    [SerializeField] private float MediumTimer = 1.75f;
     [SerializeField] private float HardTimer = 1.25f;
     [SerializeField] private float HardPlusTimer = 1;
     [SerializeField] private float Madness = 0.5f;
