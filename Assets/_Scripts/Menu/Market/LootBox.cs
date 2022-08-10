@@ -48,6 +48,9 @@ public class LootBox : MonoBehaviour
 
     [Header("Cover")]
     [SerializeField] private GameObject _cover;
+    [SerializeField] private float _showCoverDuration;
+    [SerializeField] private float _zeroAlpha;
+    [SerializeField] private float _normalAlpha;
 
     private Skin _skinBuff;
 
@@ -95,6 +98,7 @@ public class LootBox : MonoBehaviour
         Skin skin = skins[id];
         _skinPreview.GetComponent<Image>().sprite = skin.Icon;
 
+        _cover.GetComponent<Image>().DOFade(_normalAlpha / 255,_showCoverDuration).SetEase(Ease.InCirc);
         _cover.SetActive(true);
 
         OpenBox();
@@ -170,7 +174,7 @@ public class LootBox : MonoBehaviour
         Box.transform.rotation = _startBoxRotation;
         Box.transform.localScale = _startBoxScale;
 
-        _cover.SetActive(false);
+        _cover.GetComponent<Image>().DOFade(_zeroAlpha / 255, _showCoverDuration).SetEase(Ease.InCirc).OnComplete(() => _cover.SetActive(false));
 
         DOTween.Complete(_checkMark);
     }
