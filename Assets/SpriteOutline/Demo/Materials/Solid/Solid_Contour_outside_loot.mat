@@ -91,10 +91,10 @@ Material:
     - _Weight: 0.556
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.46219245, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GradientOutline1: {r: 0, g: 0.04827571, b: 1, a: 1}
     - _GradientOutline2: {r: 0.7461073, g: 0.8591039, b: 1, a: 1}
     - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0.99215686, g: 0.41340923, b: 0, a: 1}
   m_BuildTextureStacks: []

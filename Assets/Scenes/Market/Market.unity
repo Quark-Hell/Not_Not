@@ -6489,7 +6489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skinsManger: {fileID: 862744575}
   Box: {fileID: 1498693553}
-  _duration: 0.7
+  _duration: 0.8
   _price: 1500
   _skinPreview: {fileID: 1456331917}
   _showSkinDuration: 2

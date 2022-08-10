@@ -8,6 +8,7 @@ using UnityEngine;
 public class LootBox : MonoBehaviour
 {
     [SerializeField] private SkinsManager _skinsManger;
+    [SerializeField] private MarketButton _marketButton;
 
     [Header("Loot Box")]
     [SerializeField] private GameObject Box;
@@ -156,6 +157,9 @@ public class LootBox : MonoBehaviour
             _skinBuff.BoughtInfo.SetActive(true);
             _skinBuff = null;
 
+            _cover.GetComponent<Image>().DOFade(_zeroAlpha / 255, _showCoverDuration).SetEase(Ease.InCirc);
+            _marketButton.IsBuying = false;
+
             _elapsed = 0;
         }
     }
@@ -174,7 +178,7 @@ public class LootBox : MonoBehaviour
         Box.transform.rotation = _startBoxRotation;
         Box.transform.localScale = _startBoxScale;
 
-        _cover.GetComponent<Image>().DOFade(_zeroAlpha / 255, _showCoverDuration).SetEase(Ease.InCirc).OnComplete(() => _cover.SetActive(false));
+        _cover.SetActive(false);
 
         DOTween.Complete(_checkMark);
     }

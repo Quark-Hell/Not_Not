@@ -16,6 +16,7 @@ public class MarketButton : MonoBehaviour
     [SerializeField] private float _duration;
     [SerializeField] private float _xCenter;
     [SerializeField] private float _xShift;
+    [HideInInspector] public bool IsBuying;
 
     [Header("Select Object")]
     [SerializeField] private float _minScale;
@@ -54,6 +55,9 @@ public class MarketButton : MonoBehaviour
 
     public void NextPage()
     {
+        if (IsBuying)
+            return;
+
         if (_currentPage + 1 < _pages.Length && _elapsed == _animationDelay)
         {
             _pages[_currentPage].transform.DOMoveX(_pageXShift, _pageShiftDuration).SetEase(Ease.InOutBack);
@@ -68,6 +72,9 @@ public class MarketButton : MonoBehaviour
 
     public void PreviousPage()
     {
+        if (IsBuying)
+            return;
+
         if (_currentPage - 1 >= 0 && _elapsed == _animationDelay)
         {
             _pages[_currentPage].transform.DOMoveX(-_pageXShift, _pageShiftDuration).SetEase(Ease.InOutBack);
@@ -127,6 +134,8 @@ public class MarketButton : MonoBehaviour
             Skin skin = _lootBox.GetRandomSkin(_skinsManger.NotBoughtSkins);
             _skinsManger.BoughtSkins.Add(skin);
             _skinsManger.NotBoughtSkins.Remove(skin);
+
+            IsBuying = true;
 
             _elapsed = 0;
         }
