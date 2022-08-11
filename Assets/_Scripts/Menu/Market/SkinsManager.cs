@@ -59,8 +59,6 @@ public class SkinsManager : MonoBehaviour
             SaveData data = (SaveData)bf.Deserialize(file);
             file.Close();
 
-            print(data.BoughtSkinsID.Count);
-
             for (int i = 0; i < GeneralSkins.Length; i++)
             {
                 for (int k = 0; k < data.BoughtSkinsID.Count; k++)

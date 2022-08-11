@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.Purchasing;
 using DG.Tweening;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -38,10 +37,16 @@ public class MarketButton : MonoBehaviour
     [SerializeField] private float _pageXShift;
     [SerializeField] private float _pageShiftDuration;
 
+
+    [Header("Money")]
+    [SerializeField] private TextMeshProUGUI moneyTMP;
+
     private EventSystem _eventSystem;
 
     private void Awake()
     {
+        PurchaseManager.OnPurchaseConsumable += MoneyPurchase;
+
         _eventSystem = EventSystem.current;
 
         _elapsed = _animationDelay;
@@ -179,5 +184,31 @@ public class MarketButton : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void MoneyPurchase(PurchaseEventArgs args)
+    {
+        switch (args.purchasedProduct.definition.id)
+        {
+            case "FirstPack":
+                BuyMoney(3000);
+                break;
+
+            case "SecondPack":
+                BuyMoney(7500);
+                break;
+
+            case "ThirdPack":
+                BuyMoney(15000);
+                break;
+        }
+    }
+
+    private void BuyMoney(int money)
+    {
+        Money.GiveMoney(money);
+        Money.SaveMoney();
+
+        moneyTMP.text = Money.Coins.ToString();
     }
 }

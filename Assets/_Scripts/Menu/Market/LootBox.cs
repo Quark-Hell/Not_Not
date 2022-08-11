@@ -67,8 +67,6 @@ public class LootBox : MonoBehaviour
 
         _startSkinPreviewPosition = _skinPreview.transform.position;
         _startSkinPreviewScale = _skinPreview.transform.localScale;
-
-        Money.GiveMoney(5500);
     }
 
     private void Start()
