@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -10,18 +8,15 @@ public class InitMarket : MonoBehaviour
     private void Awake()
     {
         LanguageSettings.LoadLanguage();
-    }
+        Money.LoadMoney();
+        _skinsManager.LoadSkins();
 
-    private void Start()
-    {
         Initialize();
         _skinsManager.SaveSkins();
     }
 
     void Initialize()
     {
-        _skinsManager.LoadSkins();
-
         if (_skinsManager.BoughtSkins.Count == 0)
         {
             foreach (Skin skin in _skinsManager.GeneralSkins)

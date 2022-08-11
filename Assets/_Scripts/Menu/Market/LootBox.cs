@@ -69,11 +69,6 @@ public class LootBox : MonoBehaviour
         _startSkinPreviewScale = _skinPreview.transform.localScale;
     }
 
-    private void Start()
-    {
-        _moneyTMP.text = Money.Coins.ToString();
-    }
-
     private void Update()
     {
         Timer();
@@ -96,9 +91,6 @@ public class LootBox : MonoBehaviour
         int id = Random.Range(0, skins.Count);
         Skin skin = skins[id];
         _skinPreview.GetComponent<Image>().sprite = skin.Icon;
-
-        _cover.GetComponent<Image>().DOFade(_normalAlpha / 255,_showCoverDuration).SetEase(Ease.InCirc);
-        _cover.SetActive(true);
 
         OpenBox();
 

@@ -39,7 +39,6 @@ public class SkinsManager : MonoBehaviour
             if (BoughtSkins[i].IdSkin == CurrentSkin.IdSkin)
             {
                 data.CurrentSkinID = BoughtSkins[i].IdSkin;
-                print(data.CurrentSkinID);
                 break;
             }
         }
@@ -58,6 +57,8 @@ public class SkinsManager : MonoBehaviour
             FileStream file = File.Open(Application.persistentDataPath + "/SaveData.dat", FileMode.Open);
             SaveData data = (SaveData)bf.Deserialize(file);
             file.Close();
+
+            print(data.BoughtSkinsID.Count);
 
             for (int i = 0; i < GeneralSkins.Length; i++)
             {
@@ -78,8 +79,6 @@ public class SkinsManager : MonoBehaviour
                     }
                 }
             }
-
-            print(BoughtSkins.Count);
 
             for (int i = 0; i < BoughtSkins.Count; i++)
             {

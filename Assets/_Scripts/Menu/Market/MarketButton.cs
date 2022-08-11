@@ -18,6 +18,7 @@ public class MarketButton : MonoBehaviour
     [HideInInspector] public bool IsBuying;
 
     [Header("Select Object")]
+    [SerializeField] private float _normalScale;
     [SerializeField] private float _minScale;
     [SerializeField] private float _selectDuration;
 
@@ -37,20 +38,32 @@ public class MarketButton : MonoBehaviour
     [SerializeField] private float _pageXShift;
     [SerializeField] private float _pageShiftDuration;
 
+    [Header("Purchase")]
+    [SerializeField] private GameObject _purchaseMenu;
+    [SerializeField] private float _showPurchaseDuration;
+    [SerializeField] private float _purchaseYCenter;
+    [SerializeField] private float _purchaseYShift;
+
+    [Header("Cover")]
+    [SerializeField] private GameObject _cover;
+    [SerializeField] private float _showCoverDuration;
+    [SerializeField] private float _zeroAlpha;
+    [SerializeField] private float _normalAlpha;
 
     [Header("Money")]
-    [SerializeField] private TextMeshProUGUI moneyTMP;
+    [SerializeField] private TextMeshProUGUI _moneyTMP;
 
     private EventSystem _eventSystem;
 
-    private void Awake()
+    private void Start()
     {
         PurchaseManager.OnPurchaseConsumable += MoneyPurchase;
+
+        _moneyTMP.text = Money.Coins.ToString();
 
         _eventSystem = EventSystem.current;
 
         _elapsed = _animationDelay;
-
     }
 
     private void Update()
@@ -126,7 +139,15 @@ public class MarketButton : MonoBehaviour
 
     public void OpenBuyMenu()
     {
-        _icon.transform.DOLocalMoveX(_xCenter, _duration).SetEase(Ease.OutBack);
+        if (_elapsed == _animationDelay)
+        {
+            _icon.transform.DOLocalMoveX(_xCenter, _duration).SetEase(Ease.OutBack);
+
+            _cover.GetComponent<Image>().DOFade(_normalAlpha / 255, _showCoverDuration).SetEase(Ease.OutCirc);
+            _cover.SetActive(true);
+
+            _elapsed = 0;
+        }
     }
 
     public void TryBuy()
@@ -153,6 +174,8 @@ public class MarketButton : MonoBehaviour
             //Hide Icon
             _icon.transform.DOLocalMoveX(_xShift, _duration).SetEase(Ease.InBack);
 
+            _cover.GetComponent<Image>().DOFade(_zeroAlpha / 255, _showCoverDuration).SetEase(Ease.OutCirc).OnComplete(() => _cover.SetActive(false));
+
             _elapsed = 0;
         }
     }
@@ -169,7 +192,7 @@ public class MarketButton : MonoBehaviour
 
                     Tween selectAnimation = clickedButton.DOScale(_minScale, _selectDuration);
                     selectAnimation.SetEase(Ease.InBack);
-                    selectAnimation.OnComplete(() => clickedButton.DOScale(1, _selectDuration).SetEase(Ease.OutBack));
+                    selectAnimation.OnComplete(() => clickedButton.DOScale(_normalScale, _selectDuration).SetEase(Ease.OutBack));
 
                     _skinsManger.CurrentSkin.BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = LanguageSettings.Bought;
 
@@ -183,6 +206,31 @@ public class MarketButton : MonoBehaviour
                     return;
                 }
             }
+        }
+    }
+
+    public void OpenPurchaseMenu()
+    {
+        if (_elapsed == _animationDelay)
+        {
+            _purchaseMenu.transform.DOLocalMoveY(_purchaseYCenter, _showPurchaseDuration).SetEase(Ease.OutBack);
+
+            _cover.GetComponent<Image>().DOFade(_normalAlpha / 255, _showCoverDuration).SetEase(Ease.OutCirc);
+            _cover.SetActive(true);
+
+            _elapsed = 0;
+        }
+    }
+
+    public void ClosePurchaseMenu()
+    {
+        if (_elapsed == _animationDelay)
+        {
+            _purchaseMenu.transform.DOLocalMoveY(_purchaseYShift, _showPurchaseDuration).SetEase(Ease.InBack);
+
+            _cover.GetComponent<Image>().DOFade(_zeroAlpha / 255, _showCoverDuration).SetEase(Ease.InCirc).OnComplete(() => _cover.SetActive(false));
+
+            _elapsed = 0;
         }
     }
 
@@ -204,11 +252,12 @@ public class MarketButton : MonoBehaviour
         }
     }
 
-    private void BuyMoney(int money)
+    public void BuyMoney(int money)
     {
         Money.GiveMoney(money);
         Money.SaveMoney();
 
-        moneyTMP.text = Money.Coins.ToString();
+        print(Money.Coins);
+        _moneyTMP.text = Money.Coins.ToString();
     }
 }

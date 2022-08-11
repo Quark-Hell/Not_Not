@@ -37,6 +37,7 @@ public static class Money
             SaveData data = (SaveData)bf.Deserialize(file);
             file.Close();
 
+            Debug.Log(data.Coins + " Coins");
             Coins = data.Coins;
         }
     }
