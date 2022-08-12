@@ -28,6 +28,10 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
 
     private void Awake()
     {
+        OnPurchaseConsumable = null;
+        OnPurchaseNonConsumable = null;
+        PurchaseFailed = null;
+
         InitializePurchasing();
     }
     /// <summary>

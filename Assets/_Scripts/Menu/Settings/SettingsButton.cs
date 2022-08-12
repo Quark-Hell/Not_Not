@@ -20,6 +20,7 @@ public class SettingsButton : MonoBehaviour
     private void Awake()
     {
         LoadSettings();
+        SaveSettings();
         _initSettings.InitLanguage();
     }
 
@@ -40,8 +41,8 @@ public class SettingsButton : MonoBehaviour
     public void SaveSettings()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/SaveData.dat");
-        SaveData data = new SaveData();
+        FileStream file = File.Create(Application.persistentDataPath + "/SettingsData.dat");
+        SettingsData data = new SettingsData();
 
         LanguageSettings.SetLanguage(_languages);
         data.Language = _languages;
@@ -60,11 +61,11 @@ public class SettingsButton : MonoBehaviour
 
     private void LoadSettings()
     {
-        if (File.Exists(Application.persistentDataPath + "/SaveData.dat"))
+        if (File.Exists(Application.persistentDataPath + "/SettingsData.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/SaveData.dat", FileMode.Open);
-            SaveData data = (SaveData)bf.Deserialize(file);
+            FileStream file = File.Open(Application.persistentDataPath + "/SettingsData.dat", FileMode.Open);
+            SettingsData data = (SettingsData)bf.Deserialize(file);
             file.Close();
 
             _languages = data.Language;

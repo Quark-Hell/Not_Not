@@ -20,11 +20,11 @@ public class SpawnSkin : MonoBehaviour
 
     public AssetReferenceGameObject LoadSkins()
     {
-        if (File.Exists(Application.persistentDataPath + "/SaveData.dat"))
+        if (File.Exists(Application.persistentDataPath + "/SkinsData.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/SaveData.dat", FileMode.Open);
-            SaveData data = (SaveData)bf.Deserialize(file);
+            FileStream file = File.Open(Application.persistentDataPath + "/SkinsData.dat", FileMode.Open);
+            SkinsData data = (SkinsData)bf.Deserialize(file);
             file.Close();
 
             _currentSkinID = data.CurrentSkinID;

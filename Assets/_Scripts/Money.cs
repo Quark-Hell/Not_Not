@@ -18,11 +18,14 @@ public static class Money
 
     public static void SaveMoney()
     {
+        //Save in file
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/SaveData.dat");
-        SaveData data = new SaveData();
+        FileStream file = File.Create(Application.persistentDataPath + "/MoneyData.dat");
+        MoneyData data = new MoneyData();
 
         data.Coins = Coins;
+
+        Debug.Log(data.Coins + " Coins" + " Save");
 
         bf.Serialize(file, data);
         file.Close();
@@ -30,11 +33,11 @@ public static class Money
 
     public static void LoadMoney()
     {
-        if (File.Exists(Application.persistentDataPath + "/SaveData.dat"))
+        if (File.Exists(Application.persistentDataPath + "/MoneyData.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/SaveData.dat", FileMode.Open);
-            SaveData data = (SaveData)bf.Deserialize(file);
+            FileStream file = File.Open(Application.persistentDataPath + "/MoneyData.dat", FileMode.Open);
+            MoneyData data = (MoneyData)bf.Deserialize(file);
             file.Close();
 
             Debug.Log(data.Coins + " Coins");

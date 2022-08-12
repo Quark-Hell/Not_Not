@@ -52,8 +52,6 @@ public class InitMarket : MonoBehaviour
             skin.BoughtInfo.SetActive(true);
         }
 
-        print(_skinsManager.BoughtSkins.Count);
-
         _skinsManager.CurrentSkin.BoughtInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = LanguageSettings.Selected;
     }
 }

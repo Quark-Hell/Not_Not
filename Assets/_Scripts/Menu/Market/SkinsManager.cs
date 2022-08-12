@@ -16,8 +16,8 @@ public class SkinsManager : MonoBehaviour
     {
         //Save in file
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/SaveData.dat");
-        SaveData data = new SaveData();
+        FileStream file = File.Create(Application.persistentDataPath + "/Skins.dat");
+        SkinsData data = new SkinsData();
 
         data.BoughtSkinsID.Clear();
         data.NotBoughtSkinsID.Clear();
@@ -39,23 +39,24 @@ public class SkinsManager : MonoBehaviour
                 break;
             }
         }
+
+        print("Save Skins");
+
         bf.Serialize(file, data);
         file.Close();
     }
 
     public void LoadSkins()
     {
-        if (File.Exists(Application.persistentDataPath + "/SaveData.dat"))
+        if (File.Exists(Application.persistentDataPath + "/Skins.dat"))
         {
             BoughtSkins.Clear();
             NotBoughtSkins.Clear();
 
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/SaveData.dat", FileMode.Open);
-            SaveData data = (SaveData)bf.Deserialize(file);
+            FileStream file = File.Open(Application.persistentDataPath + "/Skins.dat", FileMode.Open);
+            SkinsData data = (SkinsData)bf.Deserialize(file);
             file.Close();
-
-            print(data.BoughtSkinsID.Count);
 
             for (int i = 0; i < GeneralSkins.Length; i++)
             {
@@ -85,6 +86,8 @@ public class SkinsManager : MonoBehaviour
                     break;
                 }
             }
+
+            print("Load Skins");
         }
     }
 }

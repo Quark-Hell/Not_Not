@@ -28,19 +28,27 @@ public class GameData
 }
 
 [Serializable]
-public class SaveData
+public class SettingsData
 {
-    public List<int> BoughtSkinsID = new List<int>();
-    public List<int> NotBoughtSkinsID = new List<int>();
-
-    public int CurrentSkinID;
-
-    public int Coins;
-
     public LanguagesEnum Language;
 
     public bool FlashEffect;
 
     public float MusicVolume;
     public float SoundVolume;
+}
+
+[Serializable]
+public class MoneyData
+{
+    public int Coins;
+}
+
+[Serializable]
+public class SkinsData
+{
+    public List<int> BoughtSkinsID = new List<int>();
+    public List<int> NotBoughtSkinsID = new List<int>();
+
+    public int CurrentSkinID;
 }

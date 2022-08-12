@@ -87,25 +87,13 @@ public static class LanguageSettings
         Languages = toLanguage;
     }
 
-    public static void SaveLanguage()
-    {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/SaveData.dat");
-        SaveData data = new SaveData();
-
-        data.Language = Languages;
-
-        bf.Serialize(file, data);
-        file.Close();
-    }
-
     public static void LoadLanguage()
     {
-        if (File.Exists(Application.persistentDataPath + "/SaveData.dat"))
+        if (File.Exists(Application.persistentDataPath + "/SettingsData.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/SaveData.dat", FileMode.Open);
-            SaveData data = (SaveData)bf.Deserialize(file);
+            FileStream file = File.Open(Application.persistentDataPath + "/SettingsData.dat", FileMode.Open);
+            SettingsData data = (SettingsData)bf.Deserialize(file);
             file.Close();
 
             Languages = data.Language;
@@ -129,7 +117,7 @@ public class EnglishLanguage
     public readonly string Settings = "Settings";
 
     public readonly string Music = "Music";
-    public readonly string Sound = "Sound";
+    public readonly string Sound = "Sounds";
 
     public readonly string FlashEffect = "Flash Effect";
     public readonly string Language = "English";

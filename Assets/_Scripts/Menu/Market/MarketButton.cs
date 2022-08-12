@@ -161,6 +161,9 @@ public class MarketButton : MonoBehaviour
             _skinsManger.BoughtSkins.Add(skin);
             _skinsManger.NotBoughtSkins.Remove(skin);
 
+            _skinsManger.SaveSkins();
+            Money.SaveMoney();
+
             IsBuying = true;
 
             _elapsed = 0;

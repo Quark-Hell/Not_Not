@@ -13,11 +13,11 @@ public class SwipeChecker : MonoBehaviour
 
     private void Start()
     {
-        if (File.Exists(Application.persistentDataPath + "/SaveData.dat"))
+        if (File.Exists(Application.persistentDataPath + "/SettingsData.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/SaveData.dat", FileMode.Open);
-            SaveData data = (SaveData)bf.Deserialize(file);
+            FileStream file = File.Open(Application.persistentDataPath + "/SettingsData.dat", FileMode.Open);
+            SettingsData data = (SettingsData)bf.Deserialize(file);
             file.Close();
 
             _hasFlashEffect = data.FlashEffect;
