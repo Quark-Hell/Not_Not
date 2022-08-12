@@ -15,7 +15,6 @@ public class SpawnSkin : MonoBehaviour
     void Awake()
     {
         Addressables.InstantiateAsync(LoadSkins(), _cubeParent);
-
     }
 
     public AssetReferenceGameObject LoadSkins()
