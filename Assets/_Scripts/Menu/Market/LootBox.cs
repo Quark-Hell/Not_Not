@@ -55,7 +55,7 @@ public class LootBox : MonoBehaviour
 
     private Skin _skinBuff;
 
-    private void Awake()
+    private void Start()
     {
         Price = _price;
 

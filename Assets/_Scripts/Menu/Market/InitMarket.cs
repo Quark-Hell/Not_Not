@@ -9,6 +9,10 @@ public class InitMarket : MonoBehaviour
     {
         LanguageSettings.LoadLanguage();
         Money.LoadMoney();
+    }
+
+    private void Start()
+    {
         _skinsManager.LoadSkins();
 
         Initialize();
