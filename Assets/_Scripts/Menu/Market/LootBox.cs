@@ -168,6 +168,7 @@ public class LootBox : MonoBehaviour
         Box.transform.rotation = _startBoxRotation;
         Box.transform.localScale = _startBoxScale;
 
+        _marketButton.CanInteractPurchaseMenu = true;
         _cover.SetActive(false);
 
         DOTween.Complete(_checkMark);

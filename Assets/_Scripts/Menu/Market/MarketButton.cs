@@ -43,6 +43,7 @@ public class MarketButton : MonoBehaviour
     [SerializeField] private float _showPurchaseDuration;
     [SerializeField] private float _purchaseYCenter;
     [SerializeField] private float _purchaseYShift;
+    public bool CanInteractPurchaseMenu = true;
 
     [Header("Cover")]
     [SerializeField] private GameObject _cover;
@@ -146,6 +147,7 @@ public class MarketButton : MonoBehaviour
             _cover.GetComponent<Image>().DOFade(_normalAlpha / 255, _showCoverDuration).SetEase(Ease.OutCirc);
             _cover.SetActive(true);
 
+            CanInteractPurchaseMenu = false;
             _elapsed = 0;
         }
     }
@@ -177,8 +179,9 @@ public class MarketButton : MonoBehaviour
             //Hide Icon
             _icon.transform.DOLocalMoveX(_xShift, _duration).SetEase(Ease.InBack);
 
-            _cover.GetComponent<Image>().DOFade(_zeroAlpha / 255, _showCoverDuration).SetEase(Ease.OutCirc).OnComplete(() => _cover.SetActive(false));
+            _cover.GetComponent<Image>().DOFade(_zeroAlpha / 255, _showCoverDuration).SetEase(Ease.InCirc).OnComplete(() => _cover.SetActive(false));
 
+            CanInteractPurchaseMenu = true;
             _elapsed = 0;
         }
     }
@@ -214,7 +217,7 @@ public class MarketButton : MonoBehaviour
 
     public void OpenPurchaseMenu()
     {
-        if (_elapsed == _animationDelay)
+        if (_elapsed == _animationDelay  && CanInteractPurchaseMenu)
         {
             _purchaseMenu.transform.DOLocalMoveY(_purchaseYCenter, _showPurchaseDuration).SetEase(Ease.OutBack);
 
@@ -227,7 +230,7 @@ public class MarketButton : MonoBehaviour
 
     public void ClosePurchaseMenu()
     {
-        if (_elapsed == _animationDelay)
+        if (_elapsed == _animationDelay && CanInteractPurchaseMenu)
         {
             _purchaseMenu.transform.DOLocalMoveY(_purchaseYShift, _showPurchaseDuration).SetEase(Ease.InBack);
 
