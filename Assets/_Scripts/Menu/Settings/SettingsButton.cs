@@ -2,15 +2,28 @@ using UnityEngine.UI;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using TMPro;
+using DG.Tweening;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class SettingsButton : MonoBehaviour
 {
+    [Header("Settings")]
     [SerializeField] private Slider _musicVolume;
     [SerializeField] private Slider _soundVolume;
-
     [SerializeField] private Toggle _flashEffect;
     [SerializeField] private TMP_Dropdown _languageSelection;
+
+    [Header("Back To Menu")]
+    [SerializeField] private Image _blindImage;
+    [SerializeField][Range(0, 255)] private float _maxAlpha;
+    [SerializeField][Range(0, 3)] private float _blindingDuration;
+    [SerializeField] private AudioClip _blindingAudio;
+    [SerializeField] private AudioSource _audioSource;
+
+    [Header("Animation Delay")]
+    [SerializeField] private float _animationDelay;
+    private float _elapsed;
 
     [SerializeField] private InitSettings _initSettings;
 
@@ -22,6 +35,28 @@ public class SettingsButton : MonoBehaviour
         LoadSettings();
         SaveSettings();
         _initSettings.InitLanguage();
+    }
+
+    private void Start()
+    {
+        _elapsed = _animationDelay;
+    }
+
+    private void Update()
+    {
+        Timer();
+    }
+
+    private void Timer()
+    {
+        if (_elapsed + Time.deltaTime < _animationDelay)
+        {
+            _elapsed += Time.deltaTime;
+        }
+        else
+        {
+            _elapsed = _animationDelay;
+        }
     }
 
     public void ChangeLanguage()
@@ -85,5 +120,39 @@ public class SettingsButton : MonoBehaviour
 
             _flashEffect.isOn = data.FlashEffect;
         }
+    }
+
+    public void Back()
+    {
+        if (_elapsed == _animationDelay)
+        {
+            BlindEffect().OnComplete(() => LoadLevel("Menu"));
+
+            _elapsed = 0;
+        }
+    }
+
+    public Tween BlindEffect()
+    {
+        Tween blindTween;
+        Material mat = Instantiate(_blindImage.material);
+
+        blindTween = mat.DOFade(_maxAlpha / 255, _blindingDuration);
+        blindTween.SetEase(Ease.InOutSine);
+
+        if (_audioSource != null)
+        {
+            _audioSource.clip = _blindingAudio;
+            _audioSource.Play();
+        }
+
+        _blindImage.material = mat;
+        return blindTween;
+    }
+
+    public void LoadLevel(string scene)
+    {
+        DOTween.Clear();
+        SceneManager.LoadScene(scene);
     }
 }
