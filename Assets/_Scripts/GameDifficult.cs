@@ -25,6 +25,18 @@ public class GameDifficult
     [SerializeField] private float HardPlusTimer = 1;
     [SerializeField] private float Madness = 0.5f;
 
+    public delegate void ChangedToMeduimHandler();
+    public event ChangedToMeduimHandler ChangedToMeduim;
+
+    public delegate void ChangedToHardHandler();
+    public event ChangedToHardHandler ChangedToHard;
+
+    public delegate void ChangedToHardPlusHandler();
+    public event ChangedToHardPlusHandler ChangedToHardPlus;
+
+    public delegate void ChangedToMadnessHandler();
+    public event ChangedToMadnessHandler ChangedToMadness;
+
     public int XP { get; private set; }
 
     public void GetXP(int xp, TimerGUI timerGUI)
@@ -36,6 +48,7 @@ public class GameDifficult
             Difficult = DifficultsEnum.Medium;
             timerGUI._timer.SetTimerDuration(MediumTimer);
             timerGUI._timer.ResetTimer();
+            ChangedToMeduim?.Invoke();
             return;
         }
 
@@ -44,6 +57,7 @@ public class GameDifficult
             Difficult = DifficultsEnum.Hard;
             timerGUI._timer.SetTimerDuration(HardTimer);
             timerGUI._timer.ResetTimer();
+            ChangedToMeduim?.Invoke();
             return;
         }
 
@@ -52,6 +66,7 @@ public class GameDifficult
             Difficult = DifficultsEnum.HardPlus;
             timerGUI._timer.SetTimerDuration(HardPlusTimer);
             timerGUI._timer.ResetTimer();
+            ChangedToHardPlus?.Invoke();
             return;
         }
 
@@ -60,6 +75,7 @@ public class GameDifficult
             Difficult = DifficultsEnum.Madness;
             timerGUI._timer.SetTimerDuration(Madness);
             timerGUI._timer.ResetTimer();
+            ChangedToMadness?.Invoke();
             return;
         }
     }

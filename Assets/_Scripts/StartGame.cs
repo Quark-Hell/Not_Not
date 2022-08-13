@@ -18,16 +18,26 @@ public class StartGame : MonoBehaviour
     [SerializeField] private float _zero;
     [SerializeField] private float _normal;
     [SerializeField] private float _grayscaleDuration;
-    private ColorAdjustments _colorAdjustments;
 
     [Header("Get Ready Text")]
-    [SerializeField] private TextMeshProUGUI _getReady;
-    [SerializeField] private float normalSize;
+    [SerializeField] private TextMeshProUGUI _getReadyTMP;
+    [SerializeField] private TextMeshProUGUI _getReady2TMP;
+    [SerializeField] private float _normalSize;
     [SerializeField] private float _changeScaleDuration;
+
+    private void Awake()
+    {
+        LanguageSettings.LoadLanguage();
+        LanguageSettings.SetLanguage(LanguageSettings.Languages);
+        Money.LoadMoney();
+    }
 
     private void Start()
     {
-        _getReady.DOFontSize(normalSize, _changeScaleDuration).SetEase(Ease.OutBack);
+        _getReadyTMP.text = LanguageSettings.GetReady;
+        _getReady2TMP.text = LanguageSettings.GetReady;
+
+        _getReadyTMP.DOFontSize(_normalSize, _changeScaleDuration).SetEase(Ease.OutBack);
         GrayscaleEffect();
     }
 
@@ -44,7 +54,7 @@ public class StartGame : MonoBehaviour
         IsStartingGame = true;
 
         _gameManager.CreateNewSide();
-        _getReady.DOFontSize(0, _changeScaleDuration).SetEase(Ease.InBack);
+        _getReadyTMP.DOFontSize(0, _changeScaleDuration).SetEase(Ease.InBack);
         _cubeEffects.Levitation();
     }
 }

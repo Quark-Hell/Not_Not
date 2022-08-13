@@ -53,7 +53,7 @@ public class GenerationSide
         }
     }
 
-    private string CihpherText(bool isOneRightSide)
+    private string CihpherText(bool isOneRightSide, int indexSide)
     {
         //Expamle output: "Right" or "Not Not Right"
         if (isOneRightSide)
@@ -63,17 +63,47 @@ public class GenerationSide
             //Expamle output: "Right"
             if (hasAdditionalNegation)
             {
-                return LanguageSettings.NamesOfSides[IndexOfSelectedSide];
+                return LanguageSettings.NamesOfSides[indexSide];
             }
             //Expamle output: "Not Not Right"
-            return LanguageSettings.Negation + " " + LanguageSettings.Negation + " " + LanguageSettings.NamesOfSides[IndexOfSelectedSide];
+            return LanguageSettings.Negation + " " + LanguageSettings.Negation + " " + LanguageSettings.NamesOfSides[indexSide];
         }
         //Expamle output: "Not Right"
         else
         {
-            return LanguageSettings.Negation + " " + LanguageSettings.NamesOfSides[IndexOfSelectedSide];
+            return LanguageSettings.Negation + " " + LanguageSettings.NamesOfSides[indexSide];
         }
     }
+
+    private string InvertCihperText(bool isOneRightSide, int indexSide)
+    {
+        int shiftIndex = 0;
+        switch (indexSide)
+        {
+            //Up to down
+            case 0:
+                shiftIndex = 1;
+                break;
+
+            //Down to up
+            case 1:
+                shiftIndex = 0;
+                break;
+
+            //Left to right
+            case 2:
+                shiftIndex = 3;
+                break;
+
+            //Right to left
+            case 3:
+                shiftIndex = 2;
+                break;
+        }
+
+        return CihpherText(isOneRightSide, shiftIndex);
+    }
+
     private string CihpherColor(bool isOneRightSide)
     {
         int randColor = Random.Range(0, _lightColor.Length);
@@ -109,14 +139,13 @@ public class GenerationSide
                 return LanguageSettings.NamesOfSides[IndexOfSelectedSide];
 
             case DifficultsEnum.Medium:
-                return CihpherText(isOneRightSide);
+                return CihpherText(isOneRightSide, IndexOfSelectedSide);
 
             case DifficultsEnum.Hard:
                 return CihpherColor(isOneRightSide);
 
-            //TODO:
             case DifficultsEnum.HardPlus:
-                return CihpherColor(isOneRightSide);
+                return InvertCihperText(isOneRightSide, IndexOfSelectedSide);
 
             //TODO:
             case DifficultsEnum.Madness:

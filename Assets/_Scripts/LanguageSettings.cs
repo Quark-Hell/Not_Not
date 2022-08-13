@@ -34,6 +34,10 @@ public static class LanguageSettings
     public static string Language { get; private set; }
     public static string Save { get; private set; }
 
+    public static string Inversion { get; private set; }
+
+    public static string GetReady { get; private set; }
+
     private static EnglishLanguage _eng = new EnglishLanguage();
     private static RussianLanguage _rus = new RussianLanguage();
 
@@ -60,6 +64,10 @@ public static class LanguageSettings
             Language = _eng.Language;
 
             Save = _eng.Save;
+
+            Inversion = _eng.Inversion;
+
+            GetReady = _eng.GetReady;
         }
         else if (toLanguage == LanguagesEnum.Russian)
         {
@@ -82,6 +90,10 @@ public static class LanguageSettings
             Language = _rus.Language;
 
             Save = _rus.Save;
+
+            Inversion = _rus.Inversion;
+
+            GetReady = _rus.GetReady;
         }
 
         Languages = toLanguage;
@@ -123,6 +135,10 @@ public class EnglishLanguage
     public readonly string Language = "English";
 
     public readonly string Save = "Save";
+
+    public readonly string Inversion = "Inversion!!!";
+
+    public readonly string GetReady = "Get Ready!";
 }
 
 public class RussianLanguage
@@ -146,6 +162,10 @@ public class RussianLanguage
     public readonly string Language = "Русский";
 
     public readonly string Save = "Сохранить";
+
+    public readonly string Inversion = "Инверсия!!!";
+
+    public readonly string GetReady = "Приготовься!";
 }
 
 

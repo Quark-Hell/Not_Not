@@ -1,5 +1,6 @@
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -25,11 +26,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject _loosMenu;
 
-    [Header("Black And White Effect")]
     [SerializeField] private StartGame _startGame;
-    [SerializeField] private float _zero;
-    [SerializeField] private float _normal;
-    [SerializeField] private float _grayscaleDuration;
+
+    [Header("Inverting Time Text")]
+    [SerializeField] private TextMeshProUGUI _inversionTMP;
+    [SerializeField] private float _normalSize;
+    [SerializeField] private float _changeScaleDuration;
 
     private void Start()
     {
@@ -39,12 +41,9 @@ public class GameManager : MonoBehaviour
         //GameData.GameDifficult.GetXP(50);//Cheat
         GameData.PlayerHealth.Hit(-3);
 
-        LanguageSettings.LoadLanguage();
-        LanguageSettings.SetLanguage(LanguageSettings.Languages);
-
-        Money.LoadMoney();
-
         _timerGUI._timer.EndTimer += WrongSide;
+
+        UpdateText();
     }
 
     private int GetIndexOfDifficult(DifficultsEnum sidesEnum)
@@ -72,6 +71,14 @@ public class GameManager : MonoBehaviour
         ScoreTMP.text = GameData.GameDifficult.XP.ToString();
 
         CipherTMP.text = CipherSide;
+
+        GameData.GameDifficult.ChangedToHardPlus += InversionTextAniamtion;
+    }
+
+    private void InversionTextAniamtion()
+    {
+        _inversionTMP.text = LanguageSettings.Inversion;
+        _inversionTMP.DOFontSize(_normalSize, _changeScaleDuration).SetEase(Ease.OutBack).OnComplete(() => _inversionTMP.DOFontSize(0, _changeScaleDuration).SetEase(Ease.InBack));
     }
 
     public void CreateNewSide()
