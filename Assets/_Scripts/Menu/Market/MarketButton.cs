@@ -3,6 +3,7 @@ using DG.Tweening;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class MarketButton : MonoBehaviour
@@ -53,6 +54,13 @@ public class MarketButton : MonoBehaviour
 
     [Header("Money")]
     [SerializeField] private TextMeshProUGUI _moneyTMP;
+
+    [Header("Back To Menu")]
+    [SerializeField] private Image _blindImage;
+    [SerializeField][Range(0, 255)] private float _maxAlpha;
+    [SerializeField][Range(0, 3)] private float _blindingDuration;
+    [SerializeField] private AudioClip _blindingAudio;
+    [SerializeField] private AudioSource _audioSource;
 
     private EventSystem _eventSystem;
 
@@ -265,5 +273,39 @@ public class MarketButton : MonoBehaviour
 
         print(Money.Coins);
         _moneyTMP.text = Money.Coins.ToString();
+    }
+
+    public void Back()
+    {
+        if (_elapsed == _animationDelay)
+        {
+            BlindEffect().OnComplete(() => LoadLevel("Menu"));
+
+            _elapsed = 0;
+        }
+    }
+
+    public Tween BlindEffect()
+    {
+        Tween blindTween;
+        Material mat = Instantiate(_blindImage.material);
+
+        blindTween = mat.DOFade(_maxAlpha / 255, _blindingDuration);
+        blindTween.SetEase(Ease.InOutSine);
+
+        if (_audioSource != null)
+        {
+            _audioSource.clip = _blindingAudio;
+            _audioSource.Play();
+        }
+
+        _blindImage.material = mat;
+        return blindTween;
+    }
+
+    public void LoadLevel(string scene)
+    {
+        DOTween.Clear();
+        SceneManager.LoadScene(scene);
     }
 }

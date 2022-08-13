@@ -2881,8 +2881,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _blindImage: {fileID: 1047230430}
-  _maxAlpha: 184
-  _blindingDuration: 1.36
+  _maxAlpha: 180
+  _blindingDuration: 1
   _blindingAudio: {fileID: 8300000, guid: e5a47c1a9c3bf5a4494732ff54eaf191, type: 3}
   _audioSource: {fileID: 2090449423}
 --- !u!1 &1387265414

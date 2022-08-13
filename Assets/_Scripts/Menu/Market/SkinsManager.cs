@@ -10,7 +10,7 @@ public class SkinsManager : MonoBehaviour
     public List<Skin> BoughtSkins = new List<Skin>();
     public List<Skin> NotBoughtSkins = new List<Skin>();
 
-    public Skin CurrentSkin;
+    [HideInInspector] public Skin CurrentSkin;
 
     public void SaveSkins()
     {
