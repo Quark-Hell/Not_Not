@@ -145,7 +145,7 @@ public class GenerationSide
         switch (_difficult)
         {
             case DifficultsEnum.Easy:
-                return InvertCihperText(isOneRightSide, IndexOfSelectedSide);
+                return LanguageSettings.NamesOfSides[IndexOfSelectedSide];
 
             case DifficultsEnum.Medium:
                 return CihpherText(isOneRightSide, IndexOfSelectedSide);
