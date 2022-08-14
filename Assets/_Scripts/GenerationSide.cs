@@ -18,7 +18,7 @@ public class GenerationSide
 
     private bool IsOneSide()
     {
-        if (_difficult == DifficultsEnum.Easy)
+        if (_difficult == DifficultsEnum.Easy || _difficult == DifficultsEnum.HardPlus)
         {
             return true;
         }
@@ -77,6 +77,15 @@ public class GenerationSide
 
     private string InvertCihperText(bool isOneRightSide, int indexSide)
     {
+        // 0 = false, 1 = true
+        bool negation = Random.Range(0, 2) == 1;
+
+        //Not Left(equal is left)
+        if (negation)
+        {
+            return LanguageSettings.Negation + " " + LanguageSettings.NamesOfSides[IndexOfSelectedSide];
+        }
+
         int shiftIndex = 0;
         switch (indexSide)
         {
@@ -136,7 +145,7 @@ public class GenerationSide
         switch (_difficult)
         {
             case DifficultsEnum.Easy:
-                return LanguageSettings.NamesOfSides[IndexOfSelectedSide];
+                return InvertCihperText(isOneRightSide, IndexOfSelectedSide);
 
             case DifficultsEnum.Medium:
                 return CihpherText(isOneRightSide, IndexOfSelectedSide);
