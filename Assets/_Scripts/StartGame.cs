@@ -25,6 +25,10 @@ public class StartGame : MonoBehaviour
     [SerializeField] private float _normalSize;
     [SerializeField] private float _changeScaleDuration;
 
+    [Header("Game Over Text")]
+    [SerializeField] private TextMeshProUGUI _gameOver;
+
+
     private void Awake()
     {
         LanguageSettings.LoadLanguage();
@@ -34,6 +38,8 @@ public class StartGame : MonoBehaviour
 
     private void Start()
     {
+        _gameOver.text = LanguageSettings.GameOver;
+
         _getReadyTMP.text = LanguageSettings.GetReady;
         _getReady2TMP.text = LanguageSettings.GetReady;
 

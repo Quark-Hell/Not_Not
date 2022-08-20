@@ -38,6 +38,13 @@ public static class LanguageSettings
 
     public static string GetReady { get; private set; }
 
+    public  static string BuyIcon { get; private set; }
+
+    public static string Yes { get; private set; }
+    public static string No { get; private set; }
+
+    public static string GameOver { get; private set; }
+
     private static EnglishLanguage _eng = new EnglishLanguage();
     private static RussianLanguage _rus = new RussianLanguage();
 
@@ -68,6 +75,13 @@ public static class LanguageSettings
             Inversion = _eng.Inversion;
 
             GetReady = _eng.GetReady;
+
+            BuyIcon = _eng.BuyIcon;
+
+            Yes = _eng.Yes;
+            No = _eng.No;
+
+            GameOver = _eng.GameOver;
         }
         else if (toLanguage == LanguagesEnum.Russian)
         {
@@ -94,6 +108,13 @@ public static class LanguageSettings
             Inversion = _rus.Inversion;
 
             GetReady = _rus.GetReady;
+
+            BuyIcon = _rus.BuyIcon;
+
+            Yes = _rus.Yes;
+            No = _rus.No;
+
+            GameOver = _rus.GameOver;
         }
 
         Languages = toLanguage;
@@ -139,6 +160,14 @@ public class EnglishLanguage
     public readonly string Inversion = "Inversion!!!";
 
     public readonly string GetReady = "Get Ready!";
+
+    public readonly string BuyIcon = "Do you really want to buy a random skin for 1500?";
+
+    public readonly string Yes = "Yes";
+
+    public readonly string No = "No";
+
+    public readonly string GameOver = "Game Over!";
 }
 
 public class RussianLanguage
@@ -166,6 +195,14 @@ public class RussianLanguage
     public readonly string Inversion = "Инверсия!!!";
 
     public readonly string GetReady = "Приготовься!";
+
+    public readonly string BuyIcon = "Вы действительно хотите купить случайный скин за 1500?";
+
+    public readonly string Yes = "Да";
+
+    public readonly string No = "Нет";
+
+    public readonly string GameOver = "Игра окончена!";
 }
 
 

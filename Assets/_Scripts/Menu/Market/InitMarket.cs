@@ -5,6 +5,11 @@ public class InitMarket : MonoBehaviour
 {
     [SerializeField] private SkinsManager _skinsManager;
 
+    [Header("Buy Icon")]
+    [SerializeField] private TextMeshProUGUI _buyIconInfoTMP;
+    [SerializeField] private TextMeshProUGUI _buyIconYesTMP;
+    [SerializeField] private TextMeshProUGUI _buyIconNoTMP;
+
     private void Awake()
     {
         LanguageSettings.LoadLanguage();
@@ -13,6 +18,10 @@ public class InitMarket : MonoBehaviour
 
     private void Start()
     {
+        _buyIconInfoTMP.text = LanguageSettings.BuyIcon;
+        _buyIconYesTMP.text = LanguageSettings.Yes;
+        _buyIconNoTMP.text = LanguageSettings.No;
+
         _skinsManager.LoadSkins();
 
         Initialize();
