@@ -22,6 +22,10 @@ public class SwipeChecker : MonoBehaviour
 
             _hasFlashEffect = data.FlashEffect;
         }
+        else
+        {
+            _hasFlashEffect = true;
+        }
     }
 
     public void SwipeUp()

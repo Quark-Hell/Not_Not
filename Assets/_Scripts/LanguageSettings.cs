@@ -45,6 +45,9 @@ public static class LanguageSettings
 
     public static string GameOver { get; private set; }
 
+    public static string Reward { get; private set; }
+    public static string Scores { get; private set; }
+
     private static EnglishLanguage _eng = new EnglishLanguage();
     private static RussianLanguage _rus = new RussianLanguage();
 
@@ -82,6 +85,9 @@ public static class LanguageSettings
             No = _eng.No;
 
             GameOver = _eng.GameOver;
+
+            Reward = _eng.Reward;
+            Scores = _eng.Scores;
         }
         else if (toLanguage == LanguagesEnum.Russian)
         {
@@ -115,6 +121,9 @@ public static class LanguageSettings
             No = _rus.No;
 
             GameOver = _rus.GameOver;
+
+            Reward = _rus.Reward;
+            Scores = _rus.Scores;
         }
 
         Languages = toLanguage;
@@ -168,6 +177,9 @@ public class EnglishLanguage
     public readonly string No = "No";
 
     public readonly string GameOver = "Game Over!";
+
+    public readonly string Reward = "Reward:";
+    public readonly string Scores = "Scores:";
 }
 
 public class RussianLanguage
@@ -203,6 +215,9 @@ public class RussianLanguage
     public readonly string No = "Нет";
 
     public readonly string GameOver = "Игра окончена!";
+
+    public readonly string Reward = "Награда:";
+    public readonly string Scores = "Счёт:";
 }
 
 
