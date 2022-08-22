@@ -13,6 +13,10 @@ public class LooseMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _scoresTMP;
     [SerializeField] private float _scoresAnimationDuration;
 
+    [Header("Show Best Score Animation")]
+    [SerializeField] private TextMeshProUGUI _bestScoresTMP;
+    [SerializeField] private float _bestScoresAnimationDuration;
+
     [Header("Reward Scatter")]
     [SerializeField] [Range(0,100)] private int _rewardScatterPercent;
     [SerializeField] private Transform _coin;
@@ -29,6 +33,8 @@ public class LooseMenu : MonoBehaviour
         _scoresTMP.text = LanguageSettings.Scores;
 
         GetReward(160);
+        ShowScoresAnimation(70);
+        ShowBestScoresAnimation(300);
     }
 
     public void Restart()
@@ -44,10 +50,11 @@ public class LooseMenu : MonoBehaviour
     public void GetReward(int xp)
     {
         _reward = Random.Range((xp - (xp * _rewardScatterPercent / 100)) / 2, xp - (xp * _rewardScatterPercent / 100));
-        print((xp - (xp * _rewardScatterPercent / 100)) / 2 + " min");
-        print(xp - (xp * _rewardScatterPercent / 100) + " max");
 
         GetMoneyAnimation();
+
+        Money.GiveMoney(_reward);
+        //Money.SaveMoney();
     }
 
     private void GetMoneyAnimation()
@@ -61,8 +68,19 @@ public class LooseMenu : MonoBehaviour
                 _coin.transform.localPosition.z);
 
         }).SetEase(Ease.OutCirc);
+    }
 
-        Money.GiveMoney(_reward);
-        //Money.SaveMoney();
+    private void ShowScoresAnimation(int xp)
+    {
+        DOVirtual.Float(0, (float)xp, _scoresAnimationDuration, scores => {
+            _scoresTMP.text = LanguageSettings.Scores + ((int)scores).ToString();
+        }).SetEase(Ease.OutCirc);
+    }
+
+    private void ShowBestScoresAnimation(int xp)
+    {
+        DOVirtual.Float(0, (float)xp, _bestScoresAnimationDuration, scores => {
+            _bestScoresTMP.text = LanguageSettings.Best + ((int)scores).ToString();
+        }).SetEase(Ease.OutCirc);
     }
 }

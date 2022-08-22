@@ -432,7 +432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.055000003, y: 0.66389525}
   m_AnchorMax: {x: 0.781, y: 0.7345791}
-  m_AnchoredPosition: {x: -1.1340027, y: -0.39996338}
+  m_AnchoredPosition: {x: -1.1340332, y: -0.39996338}
   m_SizeDelta: {x: -0.5699997, y: 0.5999999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &89752941
@@ -469,7 +469,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.055000003, y: 0.485421}
   m_AnchorMax: {x: 0.99200004, y: 0.5571047}
-  m_AnchoredPosition: {x: -0.457489, y: 0.000030517578}
+  m_AnchoredPosition: {x: -0.45751953, y: 0.000030517578}
   m_SizeDelta: {x: 0.7810998, y: -0.4000001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &89752943
@@ -1445,7 +1445,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.055000003, y: 0.5761048}
   m_AnchorMax: {x: 0.99200004, y: 0.64773715}
-  m_AnchoredPosition: {x: -0.46499634, y: 0}
+  m_AnchoredPosition: {x: -0.46496582, y: 0}
   m_SizeDelta: {x: 0.7700043, y: -0.39999962}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &380127407
@@ -2249,7 +2249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.8626855}
   m_AnchorMax: {x: 1, y: 0.98268396}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.5}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0.5}
   m_SizeDelta: {x: 0.5, y: -1.2999878}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &585484479
@@ -3534,7 +3534,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.009000001, y: 0.006262904}
   m_AnchorMax: {x: 0.99200004, y: 0.12200001}
-  m_AnchoredPosition: {x: 0.1000061, y: -0.42004395}
+  m_AnchoredPosition: {x: 0.10003662, y: -0.42004395}
   m_SizeDelta: {x: 0, y: -0.39999962}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1122924224
@@ -5307,10 +5307,10 @@ MonoBehaviour:
   _rewardTMP: {fileID: 33794040}
   _rewardAnimationDuration: 2
   _scoresTMP: {fileID: 380127407}
-  _scoresAnimationDuration: 0
+  _scoresAnimationDuration: 2
   _rewardScatterPercent: 20
   _coin: {fileID: 1122025649}
-  _shift: 15
+  _shift: 65
 --- !u!1 &2014760253
 GameObject:
   m_ObjectHideFlags: 0

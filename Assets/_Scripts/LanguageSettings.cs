@@ -47,6 +47,7 @@ public static class LanguageSettings
 
     public static string Reward { get; private set; }
     public static string Scores { get; private set; }
+    public static string Best { get; private set; }
 
     private static EnglishLanguage _eng = new EnglishLanguage();
     private static RussianLanguage _rus = new RussianLanguage();
@@ -88,6 +89,7 @@ public static class LanguageSettings
 
             Reward = _eng.Reward;
             Scores = _eng.Scores;
+            Best = _eng.Best;
         }
         else if (toLanguage == LanguagesEnum.Russian)
         {
@@ -124,6 +126,7 @@ public static class LanguageSettings
 
             Reward = _rus.Reward;
             Scores = _rus.Scores;
+            Best = _rus.Best;
         }
 
         Languages = toLanguage;
@@ -180,6 +183,7 @@ public class EnglishLanguage
 
     public readonly string Reward = "Reward:";
     public readonly string Scores = "Scores:";
+    public readonly string Best = "Best Game:";
 }
 
 public class RussianLanguage
@@ -218,6 +222,7 @@ public class RussianLanguage
 
     public readonly string Reward = "Награда:";
     public readonly string Scores = "Счёт:";
+    public readonly string Best = "Лучший Счёт:";
 }
 
 
