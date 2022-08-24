@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _normalSize;
     [SerializeField] private float _changeScaleDuration;
 
+    [SerializeField] private LooseMenu _looseMenu;
+
     private void Start()
     {
         _generationSide = new GenerationSide();
@@ -104,7 +106,7 @@ public class GameManager : MonoBehaviour
     {
         if (GameData.PlayerHealth.HealthPoints <= 0)
         {
-            Loos();
+            Lose();
             return;
         }
 
@@ -114,7 +116,7 @@ public class GameManager : MonoBehaviour
         CreateNewSide();
     }
 
-    private void Loos()
+    private void Lose()
     {
         _timerGUI._timer.EndTimer -= WrongSide;
         _timerGUI._timer.EndTimer -= _timerGUI.ResetTimerBar;
@@ -125,6 +127,8 @@ public class GameManager : MonoBehaviour
         _loosMenu.SetActive(true);
         _cubeEffects.StopLevitation();
         _cubeEffects.FallCube();
+
+        _looseMenu.Lose(GameData.GameDifficult.XP, 100);
         print("Nope");
     }
 }

@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class LooseMenu : MonoBehaviour
 {
+    [Header("Show Loose Menu")]
+    [SerializeField] private GameObject _loseMenu;
+    [SerializeField] private float _xCenter;
+    [SerializeField] private float _showLoseMenuDuration;
+    
     [Header("Get Reward Animation")]
     [SerializeField] private TextMeshProUGUI _rewardTMP;
     [SerializeField] private float _rewardAnimationDuration;
@@ -29,12 +34,24 @@ public class LooseMenu : MonoBehaviour
     {
         _startXLocalCoinPos = _coin.transform.localPosition.x;
 
-        _rewardTMP.text = LanguageSettings.Reward;
-        _scoresTMP.text = LanguageSettings.Scores;
+        _rewardTMP.text = LanguageSettings.Reward + "0";
+        _scoresTMP.text = LanguageSettings.Scores + "0";
+        _bestScoresTMP.text = LanguageSettings.Best + "0";
 
-        GetReward(160);
-        ShowScoresAnimation(70);
-        ShowBestScoresAnimation(300);
+        Lose(30, 100);
+    }
+
+
+    public void Lose(int xp, int bestXP)
+    {
+        _loseMenu.transform.DOLocalMoveX(_xCenter, _showLoseMenuDuration).SetEase(Ease.OutBack).OnComplete(() => ShowStatics(xp, bestXP));
+    }
+
+    private void ShowStatics(int xp, int bestXP)
+    {
+        GetReward(xp);
+        ShowScoresAnimation(xp);
+        ShowBestScoresAnimation(bestXP);
     }
 
     public void Restart()
@@ -47,7 +64,7 @@ public class LooseMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void GetReward(int xp)
+    private void GetReward(int xp)
     {
         _reward = Random.Range((xp - (xp * _rewardScatterPercent / 100)) / 2, xp - (xp * _rewardScatterPercent / 100));
 

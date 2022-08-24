@@ -339,7 +339,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Reward:'
+  m_text: Reward:0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d6eac21b23af7f74bb62bde9d1a90f1d, type: 2}
   m_sharedMaterial: {fileID: -4426738847504986890, guid: d6eac21b23af7f74bb62bde9d1a90f1d, type: 2}
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Best Game:'
+  m_text: Best Game:0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d6eac21b23af7f74bb62bde9d1a90f1d, type: 2}
   m_sharedMaterial: {fileID: -4426738847504986890, guid: d6eac21b23af7f74bb62bde9d1a90f1d, type: 2}
@@ -1468,7 +1468,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Scores:'
+  m_text: Scores:0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d6eac21b23af7f74bb62bde9d1a90f1d, type: 2}
   m_sharedMaterial: {fileID: -4426738847504986890, guid: d6eac21b23af7f74bb62bde9d1a90f1d, type: 2}
@@ -3952,7 +3952,7 @@ GameObject:
   - component: {fileID: 1329928422}
   - component: {fileID: 1329928421}
   m_Layer: 5
-  m_Name: Loos Menu
+  m_Name: Lose Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3982,7 +3982,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.030629631, y: 0.068854704}
   m_AnchorMax: {x: 0.9710001, y: 0.80600005}
-  m_AnchoredPosition: {x: -1, y: -0.5}
+  m_AnchoredPosition: {x: -1180.9999, y: -0.5}
   m_SizeDelta: {x: 2.5, y: 2.0999756}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1329928421
@@ -4841,6 +4841,7 @@ MonoBehaviour:
   _inversionTMP: {fileID: 826780486}
   _normalSize: 150
   _changeScaleDuration: 0.5
+  _looseMenu: {fileID: 1995703929}
 --- !u!114 &1897533276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5205,7 +5206,7 @@ GameObject:
   - component: {fileID: 1995703925}
   - component: {fileID: 1995703929}
   m_Layer: 5
-  m_Name: Loose
+  m_Name: Lose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5304,10 +5305,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce241344740646c48962b9eebef5b199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _loseMenu: {fileID: 1329928419}
+  _xCenter: 0
+  _showLoseMenuDuration: 0.5
   _rewardTMP: {fileID: 33794040}
   _rewardAnimationDuration: 2
   _scoresTMP: {fileID: 380127407}
   _scoresAnimationDuration: 2
+  _bestScoresTMP: {fileID: 89752943}
+  _bestScoresAnimationDuration: 2
   _rewardScatterPercent: 20
   _coin: {fileID: 1122025649}
   _shift: 65
