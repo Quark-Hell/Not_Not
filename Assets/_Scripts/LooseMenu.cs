@@ -37,8 +37,6 @@ public class LooseMenu : MonoBehaviour
         _rewardTMP.text = LanguageSettings.Reward + "0";
         _scoresTMP.text = LanguageSettings.Scores + "0";
         _bestScoresTMP.text = LanguageSettings.Best + "0";
-
-        Lose(30, 100);
     }
 
 
